@@ -1,6 +1,6 @@
 import Foundation
 
-public struct MovieActor {
+public struct MovieActor: Sendable, Identifiable, Hashable {
   public let id: Int
   public let order: Int
   public let realName: String

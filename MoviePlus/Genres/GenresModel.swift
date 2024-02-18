@@ -1,11 +1,12 @@
 import CoreModels
+import Foundation
 import Networking
 import Observation
 
-struct GenresRepository {
-  public static var client = APIClient()
+struct GenresRepository: Sendable {
+  static var client = APIClient()
 
-  var moviesByGenre: (Int) async throws -> [MovieSerie]
+  var moviesByGenre: @Sendable (Int) async throws -> [MovieSerie]
 
   static let live = Self { movieId in
     try await makeRequest(path: "genre/\(movieId)/movies")
@@ -14,7 +15,7 @@ struct GenresRepository {
   private static func makeRequest(path: String) async throws -> [MovieSerie] {
     let request = Request(path: path)
     let response: MoviesResponse = try await client.execute(request: request)
-    return response.results.map(\.model)
+    return response.results.map { $0.toModel(type: .movie) }
   }
 }
 
@@ -23,6 +24,7 @@ final class GenresModel {
   private let movieId: Int
   private let repository: GenresRepository
 
+  var error: LocalizedError?
   var movies: [MovieSerie] = []
 
   init(movieId: Int, repository: GenresRepository) {
@@ -35,7 +37,7 @@ final class GenresModel {
     do {
       movies = try await repository.moviesByGenre(movieId).sanitize()
     } catch {
-      print(error.localizedDescription)
+      self.error = error as? LocalizedError
     }
   }
 }

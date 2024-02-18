@@ -1,10 +1,6 @@
 import Foundation
 
 public enum NetworkError: LocalizedError, Equatable {
-  public static func ==(lhs: NetworkError, rhs: NetworkError) -> Bool {
-    lhs.recoverySuggestion == rhs.recoverySuggestion
-  }
-
   case noInternetConnectivity
   case notDetermined
   case unauthorized
@@ -22,5 +18,9 @@ public enum NetworkError: LocalizedError, Equatable {
     case .serverError, .notDetermined:
       "Something wrong happens, please retry later."
     }
+  }
+
+  public static func ==(lhs: NetworkError, rhs: NetworkError) -> Bool {
+    lhs.failureReason == rhs.failureReason
   }
 }

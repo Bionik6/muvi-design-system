@@ -31,14 +31,15 @@ public struct RemoteMovieSerie: Decodable {
     self.firstAirDate = firstAirDate
   }
 
-  public var model: MovieSerie {
+  public func toModel(type: MediaType) -> MovieSerie {
     MovieSerie(
       id: id,
       title: title ?? name ?? "Unknow Movie",
       posterPath: posterPath,
       vote: voteAverage,
       releaseDateString: releaseDate ?? firstAirDate ?? "Today",
-      overview: overview ?? ""
+      overview: overview ?? "",
+      type: type
     )
   }
 }

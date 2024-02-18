@@ -1,6 +1,6 @@
 import Foundation
 
-public enum ClipType: String {
+public enum ClipType: String, Sendable {
   case bloopers = "Bloopers"
   case trailer = "Trailer"
   case teaser = "Teaser"
@@ -9,11 +9,11 @@ public enum ClipType: String {
   case opening = "Opening Credits"
 }
 
-public enum ClipSite: String {
+public enum ClipSite: String, Sendable {
   case youtube = "YouTube"
 }
 
-public struct Clip: Identifiable {
+public struct MovieClip: Identifiable, Sendable {
   public let id = UUID()
   public let name: String
   public let site: ClipSite?

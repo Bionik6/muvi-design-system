@@ -18,6 +18,7 @@
 		4035B6102B82712F004BCF53 /* CoreUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4035B60F2B82712F004BCF53 /* CoreUI */; };
 		4035B6122B8277CE004BCF53 /* SeriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4035B6112B8277CE004BCF53 /* SeriesModel.swift */; };
 		4035B6142B8285F0004BCF53 /* GenresModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4035B6132B8285F0004BCF53 /* GenresModel.swift */; };
+		4035B6162B82A31B004BCF53 /* DetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4035B6152B82A31B004BCF53 /* DetailsModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		4035B6062B826FE8004BCF53 /* MoviesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesModel.swift; sourceTree = "<group>"; };
 		4035B6112B8277CE004BCF53 /* SeriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesModel.swift; sourceTree = "<group>"; };
 		4035B6132B8285F0004BCF53 /* GenresModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresModel.swift; sourceTree = "<group>"; };
+		4035B6152B82A31B004BCF53 /* DetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 		4035B5F02B824C76004BCF53 /* MoviePlus */ = {
 			isa = PBXGroup;
 			children = (
+				4035B6172B82ADEC004BCF53 /* Details */,
 				4035B6052B826F77004BCF53 /* Genres */,
 				4035B6042B826F6F004BCF53 /* Series */,
 				4035B6032B826F67004BCF53 /* Movies */,
@@ -128,6 +131,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4035B6172B82ADEC004BCF53 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				4035B6152B82A31B004BCF53 /* DetailsModel.swift */,
+			);
+			path = Details;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,6 +221,7 @@
 				4035B5F42B824C76004BCF53 /* ContentView.swift in Sources */,
 				4035B5F22B824C76004BCF53 /* MoviePlusApp.swift in Sources */,
 				4035B6072B826FE8004BCF53 /* MoviesModel.swift in Sources */,
+				4035B6162B82A31B004BCF53 /* DetailsModel.swift in Sources */,
 				4035B6142B8285F0004BCF53 /* GenresModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

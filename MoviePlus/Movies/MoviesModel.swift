@@ -3,13 +3,13 @@ import Foundation
 import Networking
 import Observation
 
-struct MoviesRepository {
-  public static var client = APIClient()
+struct MoviesRepository: Sendable {
+  static var client = APIClient()
 
-  var upcomingMovies: () async throws -> [MovieSerie]
-  var trendingMovies: () async throws -> [MovieSerie]
-  var latestMovies: () async throws -> [MovieSerie]
-  var popularMovies: () async throws -> [MovieSerie]
+  var upcomingMovies: @Sendable () async throws -> [MovieSerie]
+  var trendingMovies: @Sendable () async throws -> [MovieSerie]
+  var latestMovies: @Sendable () async throws -> [MovieSerie]
+  var popularMovies: @Sendable () async throws -> [MovieSerie]
 
   static let live = Self(
     upcomingMovies: {
@@ -29,13 +29,13 @@ struct MoviesRepository {
   private static func makeRequest(path: String) async throws -> [MovieSerie] {
     let request = Request(path: path)
     let response: MoviesResponse = try await client.execute(request: request)
-    return response.results.map(\.model)
+    return response.results.map { $0.toModel(type: .movie) }
   }
 }
 
 @Observable
 final class MoviesViewModel {
-  private var repository: MoviesRepository
+  private let repository: MoviesRepository
 
   var error: LocalizedError?
   var comingSoonMovies: [MovieSerie] = []
