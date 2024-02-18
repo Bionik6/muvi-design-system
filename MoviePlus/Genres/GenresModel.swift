@@ -3,22 +3,6 @@ import Foundation
 import Networking
 import Observation
 
-struct GenresRepository: Sendable {
-  static var client = APIClient()
-
-  var moviesByGenre: @Sendable (Int) async throws -> [MovieSerie]
-
-  static let live = Self { movieId in
-    try await makeRequest(path: "genre/\(movieId)/movies")
-  }
-
-  private static func makeRequest(path: String) async throws -> [MovieSerie] {
-    let request = Request(path: path)
-    let response: MoviesResponse = try await client.execute(request: request)
-    return response.results.map { $0.toModel(type: .movie) }
-  }
-}
-
 @Observable
 final class GenresModel {
   private let movieId: Int
@@ -39,5 +23,21 @@ final class GenresModel {
     } catch {
       self.error = error as? LocalizedError
     }
+  }
+}
+
+struct GenresRepository: Sendable {
+  static var client = APIClient()
+
+  var moviesByGenre: @Sendable (Int) async throws -> [MovieSerie]
+
+  static let live = Self { movieId in
+    try await makeRequest(path: "genre/\(movieId)/movies")
+  }
+
+  private static func makeRequest(path: String) async throws -> [MovieSerie] {
+    let request = Request(path: path)
+    let response: MoviesResponse = try await client.execute(request: request)
+    return response.results.map { $0.toModel(type: .movie) }
   }
 }

@@ -3,32 +3,6 @@ import Foundation
 import Networking
 import Observation
 
-struct DetailsRepository: Sendable {
-  static var client = APIClient()
-
-  var details: @Sendable (Int, MediaType) async throws -> MediaDetails
-  var cast: @Sendable (Int, MediaType) async throws -> [MovieActor]
-  var clips: @Sendable (Int, MediaType) async throws -> [MovieClip]
-
-  static let live = DetailsRepository(
-    details: { id, type in
-      let request = Request(path: "\(type.rawValue)/\(id)")
-      let response: RemoteMovieSerieDetails = try await client.execute(request: request)
-      return response.toModel(type: type)
-    },
-    cast: { id, type in
-      let request = Request(path: "\(type.rawValue)/\(id)/credits")
-      let response: CastResponse = try await client.execute(request: request)
-      return response.cast.map(\.model)
-    },
-    clips: { id, type in
-      let request = Request(path: "\(type.rawValue)/\(id)/videos")
-      let response: ClipResponse = try await client.execute(request: request)
-      return response.results.map(\.model)
-    }
-  )
-}
-
 @Observable
 class MediaDetailsViewModel {
   private let media: MovieSerie
@@ -69,4 +43,30 @@ class MediaDetailsViewModel {
       self.error = error as? LocalizedError
     }
   }
+}
+
+struct DetailsRepository: Sendable {
+  static var client = APIClient()
+
+  var details: @Sendable (Int, MediaType) async throws -> MediaDetails
+  var cast: @Sendable (Int, MediaType) async throws -> [MovieActor]
+  var clips: @Sendable (Int, MediaType) async throws -> [MovieClip]
+
+  static let live = DetailsRepository(
+    details: { id, type in
+      let request = Request(path: "\(type.rawValue)/\(id)")
+      let response: RemoteMovieSerieDetails = try await client.execute(request: request)
+      return response.toModel(type: type)
+    },
+    cast: { id, type in
+      let request = Request(path: "\(type.rawValue)/\(id)/credits")
+      let response: CastResponse = try await client.execute(request: request)
+      return response.cast.map(\.model)
+    },
+    clips: { id, type in
+      let request = Request(path: "\(type.rawValue)/\(id)/videos")
+      let response: ClipResponse = try await client.execute(request: request)
+      return response.results.map(\.model)
+    }
+  )
 }
