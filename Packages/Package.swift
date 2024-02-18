@@ -4,17 +4,21 @@
 import PackageDescription
 
 let package = Package(
-  name: "Core",
+  name: "Packages",
   platforms: [
     .iOS(.v17),
   ],
   products: [
+    .singleTargetLibrary("CoreUI"),
     .singleTargetLibrary("CoreModels"),
+    .singleTargetLibrary("Networking"),
   ],
   dependencies: [
   ],
   targets: [
+    .target(name: "CoreUI"),
     .target(name: "CoreModels"),
+    .target(name: "Networking", dependencies: [.target(name: "CoreModels")]),
   ]
 )
 

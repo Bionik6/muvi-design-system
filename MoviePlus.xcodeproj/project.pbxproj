@@ -12,12 +12,12 @@
 		4035B5F62B824C77004BCF53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4035B5F52B824C77004BCF53 /* Assets.xcassets */; };
 		4035B5F92B824C77004BCF53 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4035B5F82B824C77004BCF53 /* Preview Assets.xcassets */; };
 		4035B6072B826FE8004BCF53 /* MoviesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4035B6062B826FE8004BCF53 /* MoviesModel.swift */; };
-		4035B60A2B82712F004BCF53 /* CoreModels in Frameworks */ = {isa = PBXBuildFile; productRef = 4035B6092B82712F004BCF53 /* CoreModels */; };
-		4035B60E2B82712F004BCF53 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = 4035B60D2B82712F004BCF53 /* Networking */; };
-		4035B6102B82712F004BCF53 /* CoreUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4035B60F2B82712F004BCF53 /* CoreUI */; };
 		4035B6122B8277CE004BCF53 /* SeriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4035B6112B8277CE004BCF53 /* SeriesModel.swift */; };
 		4035B6142B8285F0004BCF53 /* GenresModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4035B6132B8285F0004BCF53 /* GenresModel.swift */; };
 		4035B6162B82A31B004BCF53 /* DetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4035B6152B82A31B004BCF53 /* DetailsModel.swift */; };
+		40536BEA2B82BA9400AA788A /* CoreModels in Frameworks */ = {isa = PBXBuildFile; productRef = 40536BE92B82BA9400AA788A /* CoreModels */; };
+		40536BEC2B82BA9400AA788A /* CoreUI in Frameworks */ = {isa = PBXBuildFile; productRef = 40536BEB2B82BA9400AA788A /* CoreUI */; };
+		40536BEE2B82BA9400AA788A /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = 40536BED2B82BA9400AA788A /* Networking */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,13 +26,11 @@
 		4035B5F32B824C76004BCF53 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4035B5F52B824C77004BCF53 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4035B5F82B824C77004BCF53 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		4035B6002B824F1E004BCF53 /* Core */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Core; sourceTree = "<group>"; };
-		4035B6012B824F3E004BCF53 /* Shared */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Shared; sourceTree = "<group>"; };
-		4035B6022B8265F1004BCF53 /* Infrastructure */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Infrastructure; sourceTree = "<group>"; };
 		4035B6062B826FE8004BCF53 /* MoviesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesModel.swift; sourceTree = "<group>"; };
 		4035B6112B8277CE004BCF53 /* SeriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesModel.swift; sourceTree = "<group>"; };
 		4035B6132B8285F0004BCF53 /* GenresModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresModel.swift; sourceTree = "<group>"; };
 		4035B6152B82A31B004BCF53 /* DetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsModel.swift; sourceTree = "<group>"; };
+		4035B61C2B82B956004BCF53 /* Packages */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Packages; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,9 +38,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4035B60E2B82712F004BCF53 /* Networking in Frameworks */,
-				4035B6102B82712F004BCF53 /* CoreUI in Frameworks */,
-				4035B60A2B82712F004BCF53 /* CoreModels in Frameworks */,
+				40536BEE2B82BA9400AA788A /* Networking in Frameworks */,
+				40536BEA2B82BA9400AA788A /* CoreModels in Frameworks */,
+				40536BEC2B82BA9400AA788A /* CoreUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,7 +50,7 @@
 		4035B5E52B824C76004BCF53 = {
 			isa = PBXGroup;
 			children = (
-				4035B5FF2B824EE3004BCF53 /* Packages */,
+				4035B61C2B82B956004BCF53 /* Packages */,
 				4035B5F02B824C76004BCF53 /* MoviePlus */,
 				4035B5EF2B824C76004BCF53 /* Products */,
 				4035B6082B82712F004BCF53 /* Frameworks */,
@@ -88,16 +86,6 @@
 				4035B5F82B824C77004BCF53 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		4035B5FF2B824EE3004BCF53 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				4035B6022B8265F1004BCF53 /* Infrastructure */,
-				4035B6012B824F3E004BCF53 /* Shared */,
-				4035B6002B824F1E004BCF53 /* Core */,
-			);
-			path = Packages;
 			sourceTree = "<group>";
 		};
 		4035B6032B826F67004BCF53 /* Movies */ = {
@@ -156,9 +144,9 @@
 			);
 			name = MoviePlus;
 			packageProductDependencies = (
-				4035B6092B82712F004BCF53 /* CoreModels */,
-				4035B60D2B82712F004BCF53 /* Networking */,
-				4035B60F2B82712F004BCF53 /* CoreUI */,
+				40536BE92B82BA9400AA788A /* CoreModels */,
+				40536BEB2B82BA9400AA788A /* CoreUI */,
+				40536BED2B82BA9400AA788A /* Networking */,
 			);
 			productName = MoviePlus;
 			productReference = 4035B5EE2B824C76004BCF53 /* MoviePlus.app */;
@@ -437,17 +425,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4035B6092B82712F004BCF53 /* CoreModels */ = {
+		40536BE92B82BA9400AA788A /* CoreModels */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CoreModels;
 		};
-		4035B60D2B82712F004BCF53 /* Networking */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Networking;
-		};
-		4035B60F2B82712F004BCF53 /* CoreUI */ = {
+		40536BEB2B82BA9400AA788A /* CoreUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CoreUI;
+		};
+		40536BED2B82BA9400AA788A /* Networking */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Networking;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
