@@ -18,7 +18,6 @@ let package = Package(
     .target(
       name: "Networking",
       dependencies: [
-        .product(name: "CoreUtils", package: "Core"),
         .product(name: "CoreModels", package: "Core"),
       ]
     ),

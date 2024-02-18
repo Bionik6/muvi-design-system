@@ -8,7 +8,9 @@ public struct MovieActor: Sendable, Identifiable, Hashable {
   public let profileImagePath: String?
 
   public var profileImageURL: URL {
-    guard var url = URL(string: "https://image.tmdb.org/t/p/w500") else { fatalError("URL can't be constructed") }
+    guard var url = URL(string: "https://image.tmdb.org/t/p/w500") else {
+      fatalError("URL can't be constructed")
+    }
     url.appendPathComponent(profileImagePath ?? "")
     return url
   }

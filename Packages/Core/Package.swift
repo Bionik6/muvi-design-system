@@ -9,13 +9,11 @@ let package = Package(
     .iOS(.v17),
   ],
   products: [
-    .singleTargetLibrary("CoreUtils"),
     .singleTargetLibrary("CoreModels"),
   ],
   dependencies: [
   ],
   targets: [
-    .target(name: "CoreUtils"),
     .target(name: "CoreModels"),
   ]
 )

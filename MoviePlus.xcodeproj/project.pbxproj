@@ -13,7 +13,6 @@
 		4035B5F92B824C77004BCF53 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4035B5F82B824C77004BCF53 /* Preview Assets.xcassets */; };
 		4035B6072B826FE8004BCF53 /* MoviesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4035B6062B826FE8004BCF53 /* MoviesModel.swift */; };
 		4035B60A2B82712F004BCF53 /* CoreModels in Frameworks */ = {isa = PBXBuildFile; productRef = 4035B6092B82712F004BCF53 /* CoreModels */; };
-		4035B60C2B82712F004BCF53 /* CoreUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 4035B60B2B82712F004BCF53 /* CoreUtils */; };
 		4035B60E2B82712F004BCF53 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = 4035B60D2B82712F004BCF53 /* Networking */; };
 		4035B6102B82712F004BCF53 /* CoreUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4035B60F2B82712F004BCF53 /* CoreUI */; };
 		4035B6122B8277CE004BCF53 /* SeriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4035B6112B8277CE004BCF53 /* SeriesModel.swift */; };
@@ -44,7 +43,6 @@
 				4035B60E2B82712F004BCF53 /* Networking in Frameworks */,
 				4035B6102B82712F004BCF53 /* CoreUI in Frameworks */,
 				4035B60A2B82712F004BCF53 /* CoreModels in Frameworks */,
-				4035B60C2B82712F004BCF53 /* CoreUtils in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,7 +157,6 @@
 			name = MoviePlus;
 			packageProductDependencies = (
 				4035B6092B82712F004BCF53 /* CoreModels */,
-				4035B60B2B82712F004BCF53 /* CoreUtils */,
 				4035B60D2B82712F004BCF53 /* Networking */,
 				4035B60F2B82712F004BCF53 /* CoreUI */,
 			);
@@ -443,10 +440,6 @@
 		4035B6092B82712F004BCF53 /* CoreModels */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CoreModels;
-		};
-		4035B60B2B82712F004BCF53 /* CoreUtils */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = CoreUtils;
 		};
 		4035B60D2B82712F004BCF53 /* Networking */ = {
 			isa = XCSwiftPackageProductDependency;
