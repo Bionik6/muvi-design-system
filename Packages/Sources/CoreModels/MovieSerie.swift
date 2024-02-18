@@ -48,13 +48,17 @@ public struct MovieSerie: Hashable, Identifiable, Sendable {
   }
 
   public var posterURL: URL {
-    guard var url = URL(string: "https://image.tmdb.org/t/p/w500") else { fatalError("URL can't be constructed") }
+    guard var url = URL(string: "https://image.tmdb.org/t/p/w500") else {
+      fatalError("URL can't be constructed")
+    }
     url.appendPathComponent(posterPath ?? "")
     return url
   }
 
   public var largerPosterURL: URL {
-    guard var url = URL(string: "https://image.tmdb.org/t/p/original") else { fatalError("URL can't be constructed") }
+    guard var url = URL(string: "https://image.tmdb.org/t/p/original") else {
+      fatalError("URL can't be constructed")
+    }
     url.appendPathComponent(posterPath ?? "")
     return url
   }
