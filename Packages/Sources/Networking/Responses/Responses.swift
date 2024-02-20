@@ -1,11 +1,7 @@
 import Foundation
 
-public struct MoviesResponse: Decodable {
-  public let results: [RemoteMovieSerie]
-}
-
-public struct SeriesResponse: Decodable {
-  public let results: [RemoteMovieSerie]
+public struct FilmsResponse: Decodable {
+  public let results: [RemoteFilm]
 }
 
 public struct CastResponse: Decodable {

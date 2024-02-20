@@ -7,11 +7,11 @@ import Observation
 final class SeriesViewModel {
   private let repository: SeriesRepository
 
-  var error: LocalizedError?
-  var airingTodaySeries: [MovieSerie] = []
-  var trendingSeries: [MovieSerie] = []
-  var topRatedSeries: [MovieSerie] = []
-  var popularSeries: [MovieSerie] = []
+  private(set) var error: LocalizedError?
+  private(set) var airingTodaySeries: [Film] = []
+  private(set) var trendingSeries: [Film] = []
+  private(set) var topRatedSeries: [Film] = []
+  private(set) var popularSeries: [Film] = []
 
   init(repository: SeriesRepository = .live) {
     self.repository = repository
@@ -41,12 +41,12 @@ final class SeriesViewModel {
 }
 
 struct SeriesRepository: Sendable {
-  static var client = APIClient()
+  private static let client = APIClient()
 
-  var popularSeries: @Sendable () async throws -> [MovieSerie]
-  var trendingSeries: @Sendable () async throws -> [MovieSerie]
-  var topRatedSeries: @Sendable () async throws -> [MovieSerie]
-  var airingTodaySeries: @Sendable () async throws -> [MovieSerie]
+  let popularSeries: @Sendable () async throws -> [Film]
+  let trendingSeries: @Sendable () async throws -> [Film]
+  let topRatedSeries: @Sendable () async throws -> [Film]
+  let airingTodaySeries: @Sendable () async throws -> [Film]
 
   static let live = Self(
     popularSeries: {
@@ -63,9 +63,9 @@ struct SeriesRepository: Sendable {
     }
   )
 
-  private static func makeRequest(path: String) async throws -> [MovieSerie] {
+  private static func makeRequest(path: String) async throws -> [Film] {
     let request = Request(path: path)
-    let response: MoviesResponse = try await client.execute(request: request)
+    let response: FilmsResponse = try await client.execute(request: request)
     return response.results.map { $0.toModel(type: .serie) }
   }
 }

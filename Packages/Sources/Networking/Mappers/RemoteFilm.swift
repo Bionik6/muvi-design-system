@@ -1,7 +1,7 @@
 import CoreModels
 import Foundation
 
-public struct RemoteMovieSerie: Decodable {
+public struct RemoteFilm: Decodable {
   let id: Int
   let title: String?
   let posterPath: String?
@@ -31,8 +31,8 @@ public struct RemoteMovieSerie: Decodable {
     self.firstAirDate = firstAirDate
   }
 
-  public func toModel(type: MediaType) -> MovieSerie {
-    MovieSerie(
+  public func toModel(type: FilmType) -> Film {
+    Film(
       id: id,
       title: title ?? name ?? "Unknow Movie/Serie",
       posterPath: posterPath,

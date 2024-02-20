@@ -13,7 +13,7 @@ public enum ClipSite: String, Sendable {
   case youtube = "YouTube"
 }
 
-public struct MovieClip: Identifiable, Sendable {
+public struct FilmClip: Identifiable, Sendable {
   public let id = UUID()
   public let name: String
   public let site: ClipSite?

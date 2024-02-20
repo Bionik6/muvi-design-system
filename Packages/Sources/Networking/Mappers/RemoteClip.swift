@@ -8,8 +8,8 @@ public struct RemoteClip: Decodable {
   let type: String
   let publishedAt: String
 
-  public var model: MovieClip {
-    MovieClip(
+  public var model: FilmClip {
+    FilmClip(
       name: name,
       site: ClipSite(rawValue: site),
       key: key,

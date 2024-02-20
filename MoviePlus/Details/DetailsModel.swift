@@ -4,32 +4,29 @@ import Networking
 import Observation
 
 @Observable
-class MediaDetailsViewModel {
-  private let media: MovieSerie
-  private let repository: DetailsRepository
+class FilmDetailsModel {
+  private let film: Film
+  private let repository: FilmDetailsRepository
 
-  var error: LocalizedError?
-  var cast: [MovieActor] = []
-  var clips: [MovieClip] = []
-  var genres: [String] = []
-  var trailerURLString: String?
+  private(set) var error: LocalizedError?
+  private(set) var cast: [FilmActor] = []
+  private(set) var clips: [FilmClip] = []
+  private(set) var genres: [String] = []
+  private(set) var trailerURLString: String?
 
-  init(
-    media: MovieSerie,
-    repository: DetailsRepository = .live
-  ) {
-    self.media = media
+  init(film: Film, repository: FilmDetailsRepository) {
+    self.film = film
     self.repository = repository
   }
 
   @MainActor
-  func fetchAllMediaDetails() async throws {
-    async let mediaDetails = await repository.details(media.id, media.type)
-    async let cast = await repository.cast(media.id, media.type)
-    async let clips = await repository.clips(media.id, media.type)
+  func fetchFilmDetails() async throws {
+    async let filmDetails = await repository.details(film.id, film.type)
+    async let cast = await repository.cast(film.id, film.type)
+    async let clips = await repository.clips(film.id, film.type)
     do {
-      let result = try await (mediaDetails: mediaDetails, cast: cast, clips: clips)
-      genres = result.mediaDetails.genres
+      let result = try await (filmDetails: filmDetails, cast: cast, clips: clips)
+      genres = result.filmDetails.genres
       self.cast = result.cast.lazy
         .filter { $0.profileImagePath != nil }
         .sorted { $0.order < $1.order }
@@ -45,17 +42,17 @@ class MediaDetailsViewModel {
   }
 }
 
-struct DetailsRepository: Sendable {
-  static var client = APIClient()
+struct FilmDetailsRepository: Sendable {
+  private static let client = APIClient()
 
-  var details: @Sendable (Int, MediaType) async throws -> MediaDetails
-  var cast: @Sendable (Int, MediaType) async throws -> [MovieActor]
-  var clips: @Sendable (Int, MediaType) async throws -> [MovieClip]
+  let details: @Sendable (Int, FilmType) async throws -> FilmDetails
+  let cast: @Sendable (Int, FilmType) async throws -> [FilmActor]
+  let clips: @Sendable (Int, FilmType) async throws -> [FilmClip]
 
-  static let live = DetailsRepository(
+  static let live = FilmDetailsRepository(
     details: { id, type in
       let request = Request(path: "\(type.rawValue)/\(id)")
-      let response: RemoteMovieSerieDetails = try await client.execute(request: request)
+      let response: RemoteFilmDetails = try await client.execute(request: request)
       return response.toModel(type: type)
     },
     cast: { id, type in

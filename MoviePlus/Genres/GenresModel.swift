@@ -8,8 +8,8 @@ final class GenresModel {
   private let movieId: Int
   private let repository: GenresRepository
 
-  var error: LocalizedError?
-  var movies: [MovieSerie] = []
+  private(set) var error: LocalizedError?
+  private(set) var movies: [Film] = []
 
   init(movieId: Int, repository: GenresRepository) {
     self.movieId = movieId
@@ -27,17 +27,17 @@ final class GenresModel {
 }
 
 struct GenresRepository: Sendable {
-  static var client = APIClient()
+  private static let client = APIClient()
 
-  var moviesByGenre: @Sendable (Int) async throws -> [MovieSerie]
+  let moviesByGenre: @Sendable (Int) async throws -> [Film]
 
   static let live = Self { movieId in
     try await makeRequest(path: "genre/\(movieId)/movies")
   }
 
-  private static func makeRequest(path: String) async throws -> [MovieSerie] {
+  private static func makeRequest(path: String) async throws -> [Film] {
     let request = Request(path: path)
-    let response: MoviesResponse = try await client.execute(request: request)
+    let response: FilmsResponse = try await client.execute(request: request)
     return response.results.map { $0.toModel(type: .movie) }
   }
 }

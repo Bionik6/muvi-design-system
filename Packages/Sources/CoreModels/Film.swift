@@ -1,18 +1,18 @@
 import Foundation
 
-public enum MediaType: String, Sendable {
+public enum FilmType: String, Sendable {
   case movie
   case serie = "tv"
 }
 
-public struct MovieSerie: Hashable, Identifiable, Sendable {
+public struct Film: Hashable, Identifiable, Sendable {
   public let id: Int
   public let title: String
   public let posterPath: String?
   public let vote: Double
   public let releaseDateString: String
   public let overview: String
-  public let type: MediaType
+  public let type: FilmType
 
   public init(
     id: Int,
@@ -21,7 +21,7 @@ public struct MovieSerie: Hashable, Identifiable, Sendable {
     vote: Double,
     releaseDateString: String,
     overview: String,
-    type: MediaType
+    type: FilmType
   ) {
     self.id = id
     self.title = title
@@ -64,8 +64,8 @@ public struct MovieSerie: Hashable, Identifiable, Sendable {
   }
 }
 
-extension Sequence<MovieSerie> {
-  public func sanitize() -> [MovieSerie] {
+extension Sequence<Film> {
+  public func sanitize() -> [Film] {
     lazy
       .filter { $0.posterPath != nil }
       .sorted { $0.releaseDate > $1.releaseDate }

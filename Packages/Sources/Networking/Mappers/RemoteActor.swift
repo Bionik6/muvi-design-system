@@ -8,8 +8,8 @@ public struct RemoteActor: Decodable {
   let character: String?
   let profilePath: String?
 
-  public var model: MovieActor {
-    MovieActor(
+  public var model: FilmActor {
+    FilmActor(
       id: id,
       order: order,
       realName: originalName,

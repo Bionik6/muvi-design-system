@@ -1,7 +1,7 @@
 import CoreModels
 import Foundation
 
-public struct RemoteMovieSerieDetails: Decodable {
+public struct RemoteFilmDetails: Decodable {
   struct Genre: Decodable {
     let id: Int
     let name: String
@@ -39,8 +39,8 @@ public struct RemoteMovieSerieDetails: Decodable {
     self.genres = genres
   }
 
-  public func toModel(type: MediaType) -> MediaDetails {
-    let media = MovieSerie(
+  public func toModel(type: FilmType) -> FilmDetails {
+    let film = Film(
       id: id,
       title: title ?? name ?? "Unknow Movie/Serie",
       posterPath: posterPath,
@@ -49,6 +49,6 @@ public struct RemoteMovieSerieDetails: Decodable {
       overview: overview,
       type: type
     )
-    return MediaDetails(media: media, genres: genres.map(\.name))
+    return FilmDetails(film: film, genres: genres.map(\.name))
   }
 }
