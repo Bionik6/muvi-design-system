@@ -25,8 +25,8 @@ public enum CustomFont {
     CTFontManagerRegisterGraphicsFont(font, &error)
   }
 
-  private static func makeFont(_ name: Inter, size: CGFloat) -> Font {
-    Font.custom(name.rawValue, size: size, relativeTo: .body)
+  private static func makeFont(_ font: Inter, size: CGFloat) -> Font {
+    .custom(font.rawValue, size: size, relativeTo: .body)
   }
 
   static let heading1 = makeFont(.bold, size: 24)
@@ -48,8 +48,4 @@ extension View {
     CustomFont.registerFonts()
     return self
   }
-}
-
-extension Text {
-
 }

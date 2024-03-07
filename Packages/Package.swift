@@ -16,9 +16,23 @@ let package = Package(
   dependencies: [
   ],
   targets: [
-    .target(name: "CoreUI"),
-    .target(name: "CoreModels"),
-    .target(name: "Networking", dependencies: [.target(name: "CoreModels")]),
+    .target(
+      name: "CoreUI",
+      resources: [
+        .process("Resources/Assets.xcassets"),
+        .process("Resources/Fonts/Inter-Bold.ttf"),
+        .process("Resources/Fonts/Inter-Medium.ttf"),
+        .process("Resources/Fonts/Inter-Regular.ttf"),
+        .process("Resources/Fonts/Inter-SemiBold.ttf"),
+      ]
+    ),
+    .target(
+      name: "CoreModels"
+    ),
+    .target(
+      name: "Networking",
+      dependencies: [.target(name: "CoreModels")]
+    ),
   ]
 )
 
