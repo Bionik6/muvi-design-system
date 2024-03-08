@@ -4,7 +4,7 @@ public struct ActorView: View {
   let posterPath: String
   let realName: String
   let characterName: String?
-  
+
   init(
     posterPath: String,
     realName: String,
@@ -14,7 +14,7 @@ public struct ActorView: View {
     self.realName = realName
     self.characterName = characterName
   }
-  
+
   public var body: some View {
     VStack(spacing: 4) {
       ActorImage(posterPath: posterPath)
@@ -40,5 +40,4 @@ public struct ActorView: View {
     }
     .loadCustomFonts()
   }
-  
 }

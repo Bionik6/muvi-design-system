@@ -5,9 +5,9 @@ public struct FilmSection: View {
   private let displayMode: DisplayMode
   private let items: [FilmItem]
   private let onRightButtonTapped: (() -> Void)?
-  
+
   private let filmGrid = Array(repeating: GridItem(.flexible(), spacing: 16), count: 2)
-  
+
   public init(
     title: LocalizedStringResource,
     displayMode: DisplayMode,
@@ -19,7 +19,7 @@ public struct FilmSection: View {
     self.items = items
     self.onRightButtonTapped = onRightButtonTapped
   }
-  
+
   public var body: some View {
     VStack(alignment: .leading, spacing: 16) {
       FilmHeader(
@@ -34,7 +34,7 @@ public struct FilmSection: View {
       }
     }
   }
-  
+
   private var horizontalView: some View {
     ScrollView(.horizontal, showsIndicators: false) {
       HStack(spacing: 16) {
@@ -42,13 +42,13 @@ public struct FilmSection: View {
       }
     }
   }
-  
+
   private var verticalView: some View {
     LazyVGrid(columns: filmGrid, spacing: 24) {
       filmsView
     }
   }
-  
+
   private var filmsView: some View {
     ForEach(items) { item in
       Button(action: item.onFilmTap) {
@@ -69,7 +69,7 @@ extension FilmSection {
     case horizontally
     case vertically
   }
-  
+
   public struct FilmUIModel: Identifiable, Equatable {
     public let id: UUID
     let posterPath: String
@@ -98,7 +98,7 @@ extension FilmSection {
   public struct FilmItem: Identifiable, Equatable {
     public let id: UUID
     let film: FilmUIModel
-    let onFilmTap: () -> ()
+    let onFilmTap: () -> Void
 
     init(
       id: UUID,
@@ -109,13 +109,12 @@ extension FilmSection {
       self.film = film
       self.onFilmTap = onFilmTap
     }
-    
-    public static func == (lhs: FilmSection.FilmItem, rhs: FilmSection.FilmItem) -> Bool {
+
+    public static func ==(lhs: FilmSection.FilmItem, rhs: FilmSection.FilmItem) -> Bool {
       lhs.id == rhs.id
     }
   }
 }
-
 
 #Preview {
   BaseContentView {
@@ -171,12 +170,12 @@ extension FilmSection {
               vote: "6.6"
             ),
             onFilmTap: {}
-          )
+          ),
         ],
-        onRightButtonTapped: { }
+        onRightButtonTapped: {}
       )
       .padding()
-      
+
       FilmSection(
         title: "Trending Now",
         displayMode: .vertically,
@@ -228,7 +227,7 @@ extension FilmSection {
               vote: "6.6"
             ),
             onFilmTap: {}
-          )
+          ),
         ],
         onRightButtonTapped: nil
       )

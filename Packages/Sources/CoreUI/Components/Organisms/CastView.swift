@@ -3,7 +3,7 @@ import SwiftUI
 public struct CastView: View {
   let actors: [ActorModel]
   private let actorGrid = Array(repeating: GridItem(.flexible(), spacing: 16), count: 3)
-  
+
   public var body: some View {
     ScrollView {
       LazyVGrid(columns: actorGrid, spacing: 24) {
@@ -25,7 +25,7 @@ extension CastView {
     let posterPath: String
     let realName: String
     let characterName: String?
-    
+
     public init(
       id: UUID,
       posterPath: String,

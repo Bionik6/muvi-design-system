@@ -3,7 +3,7 @@ import SwiftUI
 struct OutilneButton: View {
   let title: LocalizedStringKey
   let action: () -> Void
-  
+
   init(
     title: LocalizedStringKey,
     action: @escaping () -> Void
@@ -11,7 +11,7 @@ struct OutilneButton: View {
     self.title = title
     self.action = action
   }
-  
+
   var body: some View {
     Button(action: action, label: {
       Label(title, systemImage: "play.circle")
@@ -25,7 +25,7 @@ struct OutilneButton: View {
         )
     })
   }
-  
+
   enum Constants {
     static let iconSize = 14.0
     static let horizontalPadding = 16.0

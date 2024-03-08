@@ -3,7 +3,7 @@ import SwiftUI
 struct FilmHeader: View {
   let title: LocalizedStringResource
   let onRightButtonTapped: (() -> Void)?
-  
+
   init(
     title: LocalizedStringResource,
     onRightButtonTapped: (() -> Void)? = nil
@@ -11,7 +11,7 @@ struct FilmHeader: View {
     self.title = title
     self.onRightButtonTapped = onRightButtonTapped
   }
-  
+
   var body: some View {
     HStack(alignment: .firstTextBaseline) {
       Text(title)
@@ -40,7 +40,7 @@ struct FilmHeader: View {
       Divider()
       FilmHeader(
         title: "Latest release",
-        onRightButtonTapped: { }
+        onRightButtonTapped: {}
       )
     }
     .padding()

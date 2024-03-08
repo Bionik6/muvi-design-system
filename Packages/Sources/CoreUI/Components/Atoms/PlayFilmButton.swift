@@ -5,11 +5,11 @@ struct PlayFilmButton: View {
     case fixed
     case flexible
   }
-  
+
   let title: LocalizedStringKey
   let displayMode: DisplayMode
   let action: () -> Void
-  
+
   init(
     title: LocalizedStringKey,
     displayMode: DisplayMode = .fixed,
@@ -19,7 +19,7 @@ struct PlayFilmButton: View {
     self.displayMode = displayMode
     self.action = action
   }
-  
+
   var body: some View {
     switch displayMode {
     case .fixed:
@@ -28,7 +28,7 @@ struct PlayFilmButton: View {
       flexibleView
     }
   }
-  
+
   private var button: some View {
     Button(action: action, label: {
       Label(title, systemImage: "play.circle")
@@ -42,7 +42,7 @@ struct PlayFilmButton: View {
         }
     })
   }
-  
+
   private var flexibleView: some View {
     Button(action: action, label: {
       Label(title, systemImage: "play.circle")
@@ -56,7 +56,7 @@ struct PlayFilmButton: View {
         }
     })
   }
-  
+
   private var fixedView: some View {
     Button(action: action, label: {
       Label(title, systemImage: "play.circle")
@@ -70,7 +70,7 @@ struct PlayFilmButton: View {
         }
     })
   }
-  
+
   enum Constants {
     static let iconSize = 14.0
     static let horizontalPadding = 16.0

@@ -7,8 +7,8 @@ struct FilmHeroView: View {
   private let viewsNumber: String
   private let vote: String
   private let genres: [String]
-  private let onPlayTrailerButtonTapped: ()->()
- 
+  private let onPlayTrailerButtonTapped: () -> Void
+
   init(
     title: String,
     posterPath: String,
@@ -26,12 +26,11 @@ struct FilmHeroView: View {
     self.genres = genres
     self.onPlayTrailerButtonTapped = onPlayTrailerButtonTapped
   }
-  
-  
+
   var info: String {
     genres.joined(separator: ", ") + " · " + releaseYear
   }
-  
+
   var body: some View {
     VStack {
       FilmImage(posterPath: posterPath)
@@ -42,12 +41,12 @@ struct FilmHeroView: View {
             LinearGradient(
               colors: [
                 Color.black.opacity(0.9),
-                Color.black.opacity(0)
+                Color.black.opacity(0),
               ],
               startPoint: UnitPoint(x: 0.5, y: 1),
               endPoint: UnitPoint(x: 0.5, y: 0.4)
             )
-            
+
             VStack(alignment: .leading, spacing: 12) {
               Text(title)
                 .font(CustomFont.heading2)
@@ -61,7 +60,7 @@ struct FilmHeroView: View {
               HStack {
                 OutilneButton(
                   title: "Watchlist",
-                  action: { }
+                  action: {}
                 )
                 PlayFilmButton(
                   title: "Play trailer",
@@ -87,7 +86,7 @@ struct FilmHeroView: View {
       viewsNumber: "8.1m",
       vote: "9.0",
       genres: ["Action", "Adventure", "Fantasy"],
-      onPlayTrailerButtonTapped: { }
+      onPlayTrailerButtonTapped: {}
     )
     .loadCustomFonts()
   }
