@@ -36,6 +36,7 @@ struct FilmCard: View {
           SummaryItem(title: vote, icon: Image.Icon.star)
         }
       }
+      .foregroundStyle(ColorToken.black20)
     }
     .foregroundColor(.white)
   }

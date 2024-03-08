@@ -15,7 +15,6 @@ struct SummaryItem: View {
       Text(title)
     }
     .font(CustomFont.caption1)
-    .foregroundStyle(ColorToken.black20)
   }
 }
 

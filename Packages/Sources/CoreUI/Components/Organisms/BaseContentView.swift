@@ -11,6 +11,7 @@ public struct BaseContentView<Content: View>: View {
     ZStack {
       ColorToken.blackBg100.ignoresSafeArea()
       content
+        .padding(.horizontal, 16)
     }
     .preferredColorScheme(.dark)
   }

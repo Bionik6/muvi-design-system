@@ -22,7 +22,10 @@ public struct FilmSection: View {
   
   public var body: some View {
     VStack(alignment: .leading, spacing: 16) {
-      FilmHeader(title: title, onRightButtonTapped: onRightButtonTapped)
+      FilmHeader(
+        title: title,
+        onRightButtonTapped: onRightButtonTapped
+      )
       switch displayMode {
       case .horizontally:
         horizontalView
