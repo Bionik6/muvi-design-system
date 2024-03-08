@@ -24,7 +24,8 @@ struct FilmCard: View {
   var body: some View {
     VStack(alignment: .leading, spacing: 8) {
       FilmImage(posterPath: posterPath)
-        .frame(width: Constants.imageWidth, height: Constants.imageHeight)
+        .frame(height: Constants.imageHeight)
+        .frame(minWidth: Constants.imageWidth)
         .clipShape(RoundedRectangle(cornerRadius: Constants.imageCornerRadius))
       FilmTitle(value: title)
       HStack {
@@ -37,7 +38,6 @@ struct FilmCard: View {
       }
     }
     .foregroundColor(.white)
-    .frame(maxWidth: 152)
   }
 
   private enum Constants {
@@ -56,6 +56,7 @@ struct FilmCard: View {
       viewsNumber: "1532",
       vote: "8.4"
     )
+    .frame(width: 152, height: 252)
   }
   .loadCustomFonts()
 }

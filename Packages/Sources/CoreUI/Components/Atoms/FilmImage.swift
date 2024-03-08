@@ -13,13 +13,12 @@ struct FilmImage: View {
       image
         .resizable()
         .aspectRatio(contentMode: .fill)
-        .clipShape(RoundedRectangle(cornerRadius: Constants.imageCornerRadius))
     } placeholder: {
       RoundedRectangle(cornerRadius: Constants.imageCornerRadius)
         .foregroundStyle(ColorToken.black20)
         .overlay {
           Image(systemName: "popcorn.fill")
-            .font(.system(size: 52))
+            .font(.system(size: Constants.popcornSize))
             .foregroundStyle(ColorToken.black60)
         }
     }
@@ -27,6 +26,7 @@ struct FilmImage: View {
 
   private enum Constants {
     static let imageCornerRadius = 8.0
+    static let popcornSize = 52.0
   }
 }
 

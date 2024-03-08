@@ -2,26 +2,26 @@ import SwiftUI
 
 struct FilmHeader: View {
   let title: LocalizedStringResource
-  let accessory: (title: LocalizedStringResource, onTap: () -> Void)?
-
+  let onRightButtonTapped: (() -> Void)?
+  
   init(
     title: LocalizedStringResource,
-    accessory: (title: LocalizedStringResource, onTap: () -> Void)? = nil
+    onRightButtonTapped: (() -> Void)? = nil
   ) {
     self.title = title
-    self.accessory = accessory
+    self.onRightButtonTapped = onRightButtonTapped
   }
-
+  
   var body: some View {
     HStack(alignment: .firstTextBaseline) {
       Text(title)
         .font(CustomFont.heading2)
         .foregroundStyle(ColorToken.white)
       Spacer()
-      accessory.map { title, onTap in
-        Button(action: onTap) {
+      onRightButtonTapped.map {
+        Button(action: $0) {
           HStack(spacing: 4) {
-            Text(title)
+            Text("See All")
             Image(systemName: "chevron.right")
           }
           .font(CustomFont.button)
@@ -40,7 +40,7 @@ struct FilmHeader: View {
       Divider()
       FilmHeader(
         title: "Latest release",
-        accessory: (title: "See All", onTap: {})
+        onRightButtonTapped: { }
       )
     }
     .padding()
