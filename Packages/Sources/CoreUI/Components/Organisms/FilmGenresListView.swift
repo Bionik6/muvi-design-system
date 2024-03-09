@@ -9,13 +9,15 @@ public struct FilmGenresListView: View {
   }
 
   public var body: some View {
-    LazyVGrid(columns: genreGrid, spacing: 16) {
-      ForEach(genres) { genre in
-        Button(action: { genre.onTap(genre.id) }) {
-          FilmGenre(
-            name: genre.name,
-            imageName: genre.imageName
-          )
+    ScrollView {
+      LazyVGrid(columns: genreGrid, spacing: 16) {
+        ForEach(genres) { genre in
+          Button(action: { genre.onTap(genre.id) }) {
+            FilmGenre(
+              name: genre.name,
+              imageName: genre.imageName
+            )
+          }
         }
       }
     }
@@ -49,33 +51,31 @@ extension FilmGenresListView {
 
 #Preview {
   BaseContentView {
-    ScrollView {
-      FilmGenresListView(
-        genres: [
-          .init(
-            id: 1,
-            name: "Action",
-            imageName: "action"
-          ) { _ in },
-          .init(
-            id: 2,
-            name: "Adventure",
-            imageName: "adventure"
-          ) { _ in },
-          .init(
-            id: 3,
-            name: "Fantasy",
-            imageName: "fantasy"
-          ) { _ in },
-          .init(
-            id: 4,
-            name: "Comedy",
-            imageName: "comedy"
-          ) { _ in },
-        ]
-      )
-      .padding()
-      .loadCustomFonts()
-    }
+    FilmGenresListView(
+      genres: [
+        .init(
+          id: 1,
+          name: "Action",
+          imageName: "action"
+        ) { _ in },
+        .init(
+          id: 2,
+          name: "Adventure",
+          imageName: "adventure"
+        ) { _ in },
+        .init(
+          id: 3,
+          name: "Fantasy",
+          imageName: "fantasy"
+        ) { _ in },
+        .init(
+          id: 4,
+          name: "Comedy",
+          imageName: "comedy"
+        ) { _ in },
+      ]
+    )
+    .padding()
+    .loadCustomFonts()
   }
 }

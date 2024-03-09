@@ -3,7 +3,7 @@ import SwiftUI
 public struct FilmSection: View {
   private let title: LocalizedStringResource
   private let displayMode: DisplayMode
-  private let items: [FilmItem]
+  private let films: [FilmUIModel]
   private let onRightButtonTapped: (() -> Void)?
 
   private let filmGrid = Array(repeating: GridItem(.flexible(), spacing: 16), count: 2)
@@ -11,12 +11,12 @@ public struct FilmSection: View {
   public init(
     title: LocalizedStringResource,
     displayMode: DisplayMode,
-    items: [FilmItem],
+    films: [FilmUIModel],
     onRightButtonTapped: (() -> Void)?
   ) {
     self.title = title
     self.displayMode = displayMode
-    self.items = items
+    self.films = films
     self.onRightButtonTapped = onRightButtonTapped
   }
 
@@ -50,14 +50,14 @@ public struct FilmSection: View {
   }
 
   private var filmsView: some View {
-    ForEach(items) { item in
-      Button(action: item.onFilmTap) {
+    ForEach(films) { film in
+      Button(action: { film.onTap(film.id) }) {
         FilmCard(
-          posterPath: item.film.posterPath,
-          title: item.film.title,
-          releaseYear: item.film.releaseYear,
-          viewsNumber: item.film.viewsNumber,
-          vote: item.film.vote
+          posterPath: film.posterPath,
+          title: film.title,
+          releaseYear: film.releaseYear,
+          viewsNumber: film.viewsNumber,
+          vote: film.vote
         )
       }
     }
@@ -71,46 +71,33 @@ extension FilmSection {
   }
 
   public struct FilmUIModel: Identifiable, Equatable {
-    public let id: UUID
+    public let id: Int
     let posterPath: String
     let title: String
     let releaseYear: String
     let viewsNumber: String
     let vote: String
+    let onTap: (Int) -> Void
 
     public init(
-      id: UUID,
+      id: Int,
       title: String,
       posterPath: String,
       releaseYear: String,
       viewsNumber: String,
-      vote: String
+      vote: String,
+      onTap: @escaping (Int) -> Void
     ) {
       self.id = id
-      self.title = title
       self.posterPath = posterPath
+      self.title = title
       self.releaseYear = releaseYear
       self.viewsNumber = viewsNumber
       self.vote = vote
-    }
-  }
-
-  public struct FilmItem: Identifiable, Equatable {
-    public let id: UUID
-    let film: FilmUIModel
-    let onFilmTap: () -> Void
-
-    init(
-      id: UUID,
-      film: FilmUIModel,
-      onFilmTap: @escaping () -> Void
-    ) {
-      self.id = id
-      self.film = film
-      self.onFilmTap = onFilmTap
+      self.onTap = onTap
     }
 
-    public static func ==(lhs: FilmSection.FilmItem, rhs: FilmSection.FilmItem) -> Bool {
+    public static func ==(lhs: FilmSection.FilmUIModel, rhs: FilmSection.FilmUIModel) -> Bool {
       lhs.id == rhs.id
     }
   }
@@ -122,54 +109,42 @@ extension FilmSection {
       FilmSection(
         title: "Trending Now",
         displayMode: .horizontally,
-        items: [
+        films: [
           .init(
-            id: UUID(),
-            film: .init(
-              id: UUID(),
-              title: "No Way Up",
-              posterPath: "hu40Uxp9WtpL34jv3zyWLb5zEVY.jpg",
-              releaseYear: "2024",
-              viewsNumber: "1.5K",
-              vote: "5.8"
-            ),
-            onFilmTap: {}
+            id: 1,
+            title: "No Way Up",
+            posterPath: "hu40Uxp9WtpL34jv3zyWLb5zEVY.jpg",
+            releaseYear: "2024",
+            viewsNumber: "1.5K",
+            vote: "5.8",
+            onTap: { _ in }
           ),
           .init(
-            id: UUID(),
-            film: .init(
-              id: UUID(),
-              title: "Dune: Part Two",
-              posterPath: "8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-              releaseYear: "2024",
-              viewsNumber: "1.3M",
-              vote: "8.4"
-            ),
-            onFilmTap: {}
+            id: 2,
+            title: "Dune: Part Two",
+            posterPath: "8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
+            releaseYear: "2024",
+            viewsNumber: "1.3M",
+            vote: "8.4",
+            onTap: { _ in }
           ),
           .init(
-            id: UUID(),
-            film: .init(
-              id: UUID(),
-              title: "Land of Bad",
-              posterPath: "h27WHO2czaY5twDmV3Wfx5IdqoE.jpg",
-              releaseYear: "2024",
-              viewsNumber: "977K",
-              vote: "7.0"
-            ),
-            onFilmTap: {}
+            id: 3,
+            title: "Land of Bad",
+            posterPath: "h27WHO2czaY5twDmV3Wfx5IdqoE.jpg",
+            releaseYear: "2024",
+            viewsNumber: "977K",
+            vote: "7.0",
+            onTap: { _ in }
           ),
           .init(
-            id: UUID(),
-            film: .init(
-              id: UUID(),
-              title: "Code 8 Part II",
-              posterPath: "hhvMTxlTZtnCOe7YFhod9uz3m37.jpg",
-              releaseYear: "2024",
-              viewsNumber: "873K",
-              vote: "6.6"
-            ),
-            onFilmTap: {}
+            id: 4,
+            title: "Code 8 Part II",
+            posterPath: "hhvMTxlTZtnCOe7YFhod9uz3m37.jpg",
+            releaseYear: "2024",
+            viewsNumber: "873K",
+            vote: "6.6",
+            onTap: { _ in }
           ),
         ],
         onRightButtonTapped: {}
@@ -179,54 +154,42 @@ extension FilmSection {
       FilmSection(
         title: "Trending Now",
         displayMode: .vertically,
-        items: [
+        films: [
           .init(
-            id: UUID(),
-            film: .init(
-              id: UUID(),
-              title: "No Way Up",
-              posterPath: "hu40Uxp9WtpL34jv3zyWLb5zEVY.jpg",
-              releaseYear: "2024",
-              viewsNumber: "1.5K",
-              vote: "5.8"
-            ),
-            onFilmTap: {}
+            id: 1,
+            title: "No Way Up",
+            posterPath: "hu40Uxp9WtpL34jv3zyWLb5zEVY.jpg",
+            releaseYear: "2024",
+            viewsNumber: "1.5K",
+            vote: "5.8",
+            onTap: { _ in }
           ),
           .init(
-            id: UUID(),
-            film: .init(
-              id: UUID(),
-              title: "Dune: Part Two",
-              posterPath: "8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-              releaseYear: "2024",
-              viewsNumber: "1.3M",
-              vote: "8.4"
-            ),
-            onFilmTap: {}
+            id: 2,
+            title: "Dune: Part Two",
+            posterPath: "8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
+            releaseYear: "2024",
+            viewsNumber: "1.3M",
+            vote: "8.4",
+            onTap: { _ in }
           ),
           .init(
-            id: UUID(),
-            film: .init(
-              id: UUID(),
-              title: "Land of Bad",
-              posterPath: "h27WHO2czaY5twDmV3Wfx5IdqoE.jpg",
-              releaseYear: "2024",
-              viewsNumber: "977K",
-              vote: "7.0"
-            ),
-            onFilmTap: {}
+            id: 3,
+            title: "Land of Bad",
+            posterPath: "h27WHO2czaY5twDmV3Wfx5IdqoE.jpg",
+            releaseYear: "2024",
+            viewsNumber: "977K",
+            vote: "7.0",
+            onTap: { _ in }
           ),
           .init(
-            id: UUID(),
-            film: .init(
-              id: UUID(),
-              title: "Code 8 Part II",
-              posterPath: "hhvMTxlTZtnCOe7YFhod9uz3m37.jpg",
-              releaseYear: "2024",
-              viewsNumber: "873K",
-              vote: "6.6"
-            ),
-            onFilmTap: {}
+            id: 4,
+            title: "Code 8 Part II",
+            posterPath: "hhvMTxlTZtnCOe7YFhod9uz3m37.jpg",
+            releaseYear: "2024",
+            viewsNumber: "873K",
+            vote: "6.6",
+            onTap: { _ in }
           ),
         ],
         onRightButtonTapped: nil
