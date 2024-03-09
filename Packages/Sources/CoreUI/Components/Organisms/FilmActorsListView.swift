@@ -7,7 +7,7 @@ public struct FilmActorsListView: View {
   public var body: some View {
     LazyVGrid(columns: actorGrid, spacing: 24) {
       ForEach(actors) { actor in
-        FilmActorView(
+        FilmActor(
           posterPath: actor.posterPath,
           realName: actor.realName,
           characterName: actor.characterName

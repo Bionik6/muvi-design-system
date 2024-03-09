@@ -8,7 +8,7 @@ public struct FilmClipsListView: View {
     LazyVGrid(columns: clipGrid, spacing: 16) {
       ForEach(clips) { clip in
         Button(action: { clip.onTap(clip.id) }) {
-          FilmClipView(title: clip.name, key: clip.key)
+          FilmClip(title: clip.name, key: clip.key)
             .foregroundStyle(ColorToken.white)
         }
       }

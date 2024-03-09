@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct FilmHeroView: View {
+struct FilmDetailHero: View {
   private let title: String
   private let posterPath: String
   private let releaseYear: String
@@ -79,7 +79,7 @@ struct FilmHeroView: View {
 
 #Preview {
   BaseContentView {
-    FilmHeroView(
+    FilmDetailHero(
       title: "The Beekeeper",
       posterPath: "A7EByudX0eOzlkQ2FIbogzyazm2.jpg",
       releaseYear: "2024",

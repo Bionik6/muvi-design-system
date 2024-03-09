@@ -22,21 +22,23 @@ struct FilmCard: View {
   }
 
   var body: some View {
-    VStack(alignment: .leading, spacing: 8) {
+    VStack(alignment: .leading, spacing: 6) {
       FilmImage(posterPath: posterPath)
         .frame(height: Constants.imageHeight)
         .frame(minWidth: Constants.imageWidth)
         .clipShape(RoundedRectangle(cornerRadius: Constants.imageCornerRadius))
-      FilmTitle(value: title)
-      HStack {
-        SummaryItem(title: releaseYear)
-        Spacer()
-        HStack(spacing: 10) {
-          SummaryItem(title: viewsNumber, icon: Image.Icon.eye)
-          SummaryItem(title: vote, icon: Image.Icon.star)
+      VStack(alignment: .leading, spacing: 4) {
+        FilmTitle(value: title)
+        HStack {
+          SummaryItem(title: releaseYear)
+          Spacer()
+          HStack(spacing: 10) {
+            SummaryItem(title: viewsNumber, icon: Image.Icon.eye)
+            SummaryItem(title: vote, icon: Image.Icon.star)
+          }
         }
+        .foregroundStyle(ColorToken.black20)
       }
-      .foregroundStyle(ColorToken.black20)
     }
     .foregroundColor(.white)
   }

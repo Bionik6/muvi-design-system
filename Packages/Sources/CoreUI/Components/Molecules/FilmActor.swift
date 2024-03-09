@@ -1,6 +1,6 @@
 import SwiftUI
 
-public struct FilmActorView: View {
+public struct FilmActor: View {
   let posterPath: String
   let realName: String
   let characterName: String?
@@ -32,7 +32,7 @@ public struct FilmActorView: View {
 #Preview {
   BaseContentView {
     HStack {
-      FilmActorView(
+      FilmActor(
         posterPath: "rtCx0fiYxJVhzXXdwZE2XRTfIKE.jpg",
         realName: "Ibrahima Ciss",
         characterName: "Bionik"
