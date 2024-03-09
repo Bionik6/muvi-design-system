@@ -2,7 +2,7 @@ import Foundation
 
 public struct APIClient {
   private var session: URLSession
-  private var baseURLString: NSString { "https://api.themoviedb.org/3/" }
+  private var baseURL: NSString { "https://api.themoviedb.org/3/" }
 
   public init(session: URLSession = .shared) {
     self.session = session
@@ -22,7 +22,7 @@ public struct APIClient {
   }
 
   private func prepareURLRequest(for request: Request) -> URLRequest {
-    let fullURLString = baseURLString.appendingPathComponent(request.path)
+    let fullURLString = baseURL.appendingPathComponent(request.path)
     guard let url = URL(string: fullURLString) else { fatalError("The URL is not valid") }
 
     var urlRequest = URLRequest(url: url)

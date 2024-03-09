@@ -4,8 +4,8 @@ struct FilmImage: View {
   let posterPath: String
 
   var url: URL {
-    let baseURLString = NSString(string: "https://image.tmdb.org/t/p/original")
-    return URL(string: baseURLString.appendingPathComponent(posterPath))!
+    let url = URL(string: "https://image.tmdb.org/t/p/original")!
+    return url.appending(path: posterPath)
   }
 
   var body: some View {

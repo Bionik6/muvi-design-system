@@ -1,26 +1,24 @@
 import SwiftUI
 
-public struct CastView: View {
-  let actors: [ActorModel]
-  private let actorGrid = Array(repeating: GridItem(.flexible(), spacing: 16), count: 3)
+public struct FilmActorsListView: View {
+  let actors: [ActorUIModel]
+  private let actorGrid = Array(repeating: GridItem(.flexible(), spacing: 16, alignment: .top), count: 3)
 
   public var body: some View {
-    ScrollView {
-      LazyVGrid(columns: actorGrid, spacing: 24) {
-        ForEach(actors) { actor in
-          ActorView(
-            posterPath: actor.posterPath,
-            realName: actor.realName,
-            characterName: actor.characterName
-          )
-        }
+    LazyVGrid(columns: actorGrid, spacing: 24) {
+      ForEach(actors) { actor in
+        FilmActorView(
+          posterPath: actor.posterPath,
+          realName: actor.realName,
+          characterName: actor.characterName
+        )
       }
     }
   }
 }
 
-extension CastView {
-  public struct ActorModel: Equatable, Identifiable {
+extension FilmActorsListView {
+  public struct ActorUIModel: Equatable, Identifiable {
     public let id: UUID
     let posterPath: String
     let realName: String
@@ -42,7 +40,7 @@ extension CastView {
 
 #Preview {
   BaseContentView {
-    CastView(
+    FilmActorsListView(
       actors: [
         .init(
           id: UUID(),
@@ -64,5 +62,6 @@ extension CastView {
         ),
       ]
     )
+    .loadCustomFonts()
   }
 }
