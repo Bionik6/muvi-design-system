@@ -62,9 +62,9 @@ struct YoutubeLinkView: View {
       Image(uiImage: image)
         .resizable()
         .aspectRatio(contentMode: .fill)
-        .frame(height: 94)
+        .frame(height: Constants.imageHeight)
         .frame(maxWidth: .infinity)
-        .clipShape(RoundedRectangle(cornerRadius: 8))
+        .clipShape(RoundedRectangle(cornerRadius: Constants.imageCornerRadius))
         .overlay {
           Image.Icon.play
             .font(.system(size: Constants.imageSize))
@@ -72,7 +72,7 @@ struct YoutubeLinkView: View {
         }
     } else {
       RoundedRectangle(cornerRadius: Constants.imageCornerRadius)
-        .frame(height: 94)
+        .frame(height: Constants.imageHeight)
         .foregroundStyle(ColorToken.black20)
         .overlay {
           Image.Icon.youtubePlay
@@ -85,6 +85,7 @@ struct YoutubeLinkView: View {
   private enum Constants {
     static let imageCornerRadius = 8.0
     static let imageSize = 28.0
+    static let imageHeight = 94.0
   }
 }
 

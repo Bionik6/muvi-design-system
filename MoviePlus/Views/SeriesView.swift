@@ -12,7 +12,7 @@ struct SeriesView: View {
           GeneralSection(title: "Airing Today") {
             FilmsListView(
               displayMode: .horizontal,
-              films: model.airingTodaySeries.toFilmListUIModel,
+              films: model.airingTodaySeries.toUIModel,
               onTap: { model.selectFilm(id: $0.id, in: model.airingTodaySeries) }
             )
           }
@@ -20,7 +20,7 @@ struct SeriesView: View {
           GeneralSection(title: "Trending Now") {
             FilmsListView(
               displayMode: .horizontal,
-              films: model.trendingSeries.toFilmListUIModel,
+              films: model.trendingSeries.toUIModel,
               onTap: { model.selectFilm(id: $0.id, in: model.trendingSeries) }
             )
           }
@@ -28,7 +28,7 @@ struct SeriesView: View {
           GeneralSection(title: "Top Rated") {
             FilmsListView(
               displayMode: .horizontal,
-              films: model.topRatedSeries.toFilmListUIModel,
+              films: model.topRatedSeries.toUIModel,
               onTap: { model.selectFilm(id: $0.id, in: model.topRatedSeries) }
             )
           }
@@ -36,7 +36,7 @@ struct SeriesView: View {
           GeneralSection(title: "Hits Box Office") {
             FilmsListView(
               displayMode: .horizontal,
-              films: model.popularSeries.toFilmListUIModel,
+              films: model.popularSeries.toUIModel,
               onTap: { model.selectFilm(id: $0.id, in: model.popularSeries) }
             )
           }

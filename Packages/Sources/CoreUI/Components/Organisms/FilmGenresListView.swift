@@ -1,13 +1,13 @@
 import SwiftUI
 
 public struct FilmGenresListView: View {
-  private let genres: [FilmGenreUIModel]
-  private let onTap: (FilmGenreUIModel) -> Void
+  private let genres: [UIModel]
+  private let onTap: (UIModel) -> Void
   private let genreGrid = Array(repeating: GridItem(.flexible(), spacing: 16, alignment: .top), count: 2)
 
   public init(
-    genres: [FilmGenreUIModel],
-    onTap: @escaping (FilmGenreUIModel) -> Void
+    genres: [UIModel],
+    onTap: @escaping (UIModel) -> Void
   ) {
     self.genres = genres
     self.onTap = onTap
@@ -30,7 +30,7 @@ public struct FilmGenresListView: View {
 }
 
 extension FilmGenresListView {
-  public struct FilmGenreUIModel: Equatable, Identifiable {
+  public struct UIModel: Identifiable {
     public let id: Int
     let name: String
     let imageName: String

@@ -34,7 +34,7 @@ public struct FilmDetailHero: View {
   public var body: some View {
     VStack {
       FilmImage(posterPath: posterPath, isHighDefinition: true)
-        .frame(height: 500)
+        .frame(height: Constants.imageHeight)
         .clipShape(Rectangle())
         .overlay(alignment: .bottom) {
           ZStack(alignment: .bottom) {
@@ -69,11 +69,16 @@ public struct FilmDetailHero: View {
                 )
               }
             }
-            .padding(16)
+            .padding(Constants.padding)
           }
         }
       Spacer()
     }
+  }
+  
+  private enum Constants {
+    static let imageHeight: CGFloat = 500
+    static let padding: CGFloat = 16.0
   }
 }
 

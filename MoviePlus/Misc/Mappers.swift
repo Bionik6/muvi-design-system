@@ -3,9 +3,9 @@ import Foundation
 import CoreModels
 
 extension [Film] {
-  var toCarouselFilmUIModel: [FilmCarousel.FilmUIModel] {
+  var toCarouselFilmUIModel: [FilmCarousel.UIModel] {
     map { film in
-      FilmCarousel.FilmUIModel(
+      FilmCarousel.UIModel(
         id: film.id,
         posterPath: film.posterPath ?? "",
         genres: [],
@@ -14,9 +14,9 @@ extension [Film] {
     }
   }
 
-  var toFilmListUIModel: [FilmsListView.FilmUIModel] {
+  var toUIModel: [FilmsListView.UIModel] {
     map { film in
-      FilmsListView.FilmUIModel(
+      FilmsListView.UIModel(
         id: film.id,
         title: film.title,
         posterPath: film.posterPath ?? "",
@@ -29,9 +29,9 @@ extension [Film] {
 }
 
 extension [CoreModels.FilmActor] {
-  var toActorUIModel: [FilmActorsListView.ActorUIModel] {
+  var toUIModel: [FilmActorsListView.UIModel] {
     map { actor in
-      FilmActorsListView.ActorUIModel(
+      FilmActorsListView.UIModel(
         id: actor.id,
         posterPath: actor.profileImagePath ?? "",
         realName: actor.realName,
@@ -42,9 +42,9 @@ extension [CoreModels.FilmActor] {
 }
 
 extension [FilmClip] {
-  var toClipUIModel: [FilmClipsListView.ClipUIModel] {
+  var toUIModel: [FilmClipsListView.UIModel] {
     map { clip in
-      FilmClipsListView.ClipUIModel(
+      FilmClipsListView.UIModel(
         id: clip.id,
         name: clip.name,
         key: clip.key
@@ -54,9 +54,9 @@ extension [FilmClip] {
 }
 
 extension [FilmGenre] {
-  var toUIModel: [FilmGenresListView.FilmGenreUIModel] {
+  var toUIModel: [FilmGenresListView.UIModel] {
     map { genre in
-      FilmGenresListView.FilmGenreUIModel(
+      FilmGenresListView.UIModel(
         id: genre.id,
         name: genre.name,
         imageName: genre.imageName

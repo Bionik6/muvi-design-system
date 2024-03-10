@@ -4,7 +4,7 @@ struct ActorImage: View {
   let posterPath: String
 
   var url: URL {
-    let url = URL(string: "https://image.tmdb.org/t/p/original")!
+    let url = URL(string: "https://image.tmdb.org/t/p/w300")!
     return url.appending(path: posterPath)
   }
 

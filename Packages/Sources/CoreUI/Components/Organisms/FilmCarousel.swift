@@ -1,12 +1,12 @@
 import SwiftUI
 
 public struct FilmCarousel: View {
-  private let films: [FilmUIModel]
-  private let onTap: (FilmUIModel) -> Void
+  private let films: [UIModel]
+  private let onTap: (UIModel) -> Void
 
   public init(
-    films: [FilmUIModel],
-    onTap: @escaping (FilmUIModel) -> Void
+    films: [UIModel],
+    onTap: @escaping (UIModel) -> Void
   ) {
     self.films = films
     self.onTap = onTap
@@ -32,12 +32,12 @@ public struct FilmCarousel: View {
       .scrollTargetLayout()
     }
     .scrollTargetBehavior(.viewAligned)
-    .safeAreaPadding(.horizontal, 30)
+    .safeAreaPadding(.horizontal, 46)
   }
 }
 
 extension FilmCarousel {
-  public struct FilmUIModel: Identifiable, Equatable {
+  public struct UIModel: Identifiable {
     public let id: Int
     let posterPath: String
     let genres: [String]

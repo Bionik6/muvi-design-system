@@ -1,11 +1,11 @@
 import SwiftUI
 
 public struct FilmClipsListView: View {
-  let clips: [ClipUIModel]
-  let onTap: (ClipUIModel) -> Void
+  let clips: [UIModel]
+  let onTap: (UIModel) -> Void
   private let clipGrid = Array(repeating: GridItem(.flexible(), spacing: 16, alignment: .top), count: 2)
 
-  public init(clips: [ClipUIModel], onTap: @escaping (ClipUIModel) -> Void) {
+  public init(clips: [UIModel], onTap: @escaping (UIModel) -> Void) {
     self.clips = clips
     self.onTap = onTap
   }
@@ -23,7 +23,7 @@ public struct FilmClipsListView: View {
 }
 
 extension FilmClipsListView {
-  public struct ClipUIModel: Equatable, Identifiable {
+  public struct UIModel: Identifiable {
     public let id: String
     let name: String
     public let key: String
@@ -36,10 +36,6 @@ extension FilmClipsListView {
       self.id = id
       self.name = name
       self.key = key
-    }
-
-    public static func ==(lhs: FilmClipsListView.ClipUIModel, rhs: FilmClipsListView.ClipUIModel) -> Bool {
-      lhs.id == rhs.id
     }
   }
 }

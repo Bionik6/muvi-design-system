@@ -9,17 +9,16 @@ struct MoviesView: View {
     NavigationStack {
       BaseContentView {
         ScrollView {
-          GeneralSection {
-            FilmCarousel(
-              films: model.topMovies.toCarouselFilmUIModel,
-              onTap: { model.selectFilm(id: $0.id, in: model.topMovies) }
-            )
-          }
+          FilmCarousel(
+            films: model.topMovies.toCarouselFilmUIModel,
+            onTap: { model.selectFilm(id: $0.id, in: model.topMovies) }
+          )
+          .padding(.top, 16)
 
           GeneralSection(title: "Coming Soon") {
             FilmsListView(
               displayMode: .horizontal,
-              films: model.comingSoonMovies.toFilmListUIModel,
+              films: model.comingSoonMovies.toUIModel,
               onTap: { model.selectFilm(id: $0.id, in: model.comingSoonMovies) }
             )
           }
@@ -27,7 +26,7 @@ struct MoviesView: View {
           GeneralSection(title: "Trending Now") {
             FilmsListView(
               displayMode: .horizontal,
-              films: model.trendingMovies.toFilmListUIModel,
+              films: model.trendingMovies.toUIModel,
               onTap: { model.selectFilm(id: $0.id, in: model.trendingMovies) }
             )
           }
@@ -35,7 +34,7 @@ struct MoviesView: View {
           GeneralSection(title: "Latest Releases") {
             FilmsListView(
               displayMode: .horizontal,
-              films: model.latestMovies.toFilmListUIModel,
+              films: model.latestMovies.toUIModel,
               onTap: { model.selectFilm(id: $0.id, in: model.latestMovies) }
             )
           }
@@ -43,7 +42,7 @@ struct MoviesView: View {
           GeneralSection(title: "Hits Box Office") {
             FilmsListView(
               displayMode: .horizontal,
-              films: model.popularMovies.toFilmListUIModel,
+              films: model.popularMovies.toUIModel,
               onTap: { model.selectFilm(id: $0.id, in: model.popularMovies) }
             )
           }

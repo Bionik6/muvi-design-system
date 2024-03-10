@@ -8,7 +8,7 @@ struct FilmGenre: View {
     Image(imageName, bundle: .module)
       .resizable()
       .aspectRatio(contentMode: .fill)
-      .frame(maxHeight: 164)
+      .frame(maxHeight: Constants.imageMaxHeight)
       .overlay {
         ZStack {
           Color(hex: "0F1016").opacity(0.5)
@@ -17,7 +17,12 @@ struct FilmGenre: View {
             .font(CustomFont.heading2)
         }
       }
-      .clipShape(RoundedRectangle(cornerRadius: 8.0))
+      .clipShape(RoundedRectangle(cornerRadius: Constants.imageCornerRadius))
+  }
+  
+  private enum Constants {
+    static let imageMaxHeight: CGFloat = 164
+    static let imageCornerRadius: CGFloat = 8.0
   }
 }
 

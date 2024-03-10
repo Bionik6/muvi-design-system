@@ -74,10 +74,8 @@ struct PlayFilmButton: View {
     })
   }
 
-  enum Constants {
-    static let iconSize = 14.0
+  private enum Constants {
     static let horizontalPadding = 16.0
-    static let verticalPadding = 12.0
     static let cornerRadius = 4.0
     static let height = 40.0
   }

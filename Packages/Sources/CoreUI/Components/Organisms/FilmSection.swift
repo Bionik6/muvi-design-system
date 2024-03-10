@@ -2,16 +2,16 @@ import SwiftUI
 
 public struct FilmsListView: View {
   private let displayMode: DisplayMode
-  private let films: [FilmUIModel]
-  private let onTap: (FilmUIModel) -> Void
+  private let films: [UIModel]
+  private let onTap: (UIModel) -> Void
   private let onBottomListReached: (() -> Void)?
 
   private let filmGrid = Array(repeating: GridItem(.flexible(), spacing: 16), count: 2)
 
   public init(
     displayMode: DisplayMode,
-    films: [FilmUIModel],
-    onTap: @escaping (FilmUIModel) -> Void,
+    films: [UIModel],
+    onTap: @escaping (UIModel) -> Void,
     onBottomListReached: (() -> Void)? = nil
   ) {
     self.displayMode = displayMode
@@ -68,7 +68,7 @@ extension FilmsListView {
     case vertical
   }
 
-  public struct FilmUIModel: Identifiable, Equatable {
+  public struct UIModel: Equatable, Identifiable {
     public let id: Int
     let posterPath: String
     let title: String

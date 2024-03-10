@@ -6,7 +6,7 @@ struct FilmImage: View {
 
   init(
     posterPath: String,
-    isHighDefinition: Bool
+    isHighDefinition: Bool = false
   ) {
     self.posterPath = posterPath
     self.isHighDefinition = isHighDefinition
@@ -43,7 +43,7 @@ struct FilmImage: View {
 #Preview {
   BaseContentView {
     VStack {
-      FilmImage(posterPath: "xOMo8BRK7PfcJv9JCnx7s5hj0PX.jpg", isHighDefinition: false)
+      FilmImage(posterPath: "xOMo8BRK7PfcJv9JCnx7s5hj0PX.jpg")
         .frame(width: 200, height: 300)
         .clipped()
       FilmImage(posterPath: "xOMo8BRK7PfcJv9JCnx7s5hj0PX.jpg", isHighDefinition: true)

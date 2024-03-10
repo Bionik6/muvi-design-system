@@ -1,10 +1,10 @@
 import SwiftUI
 
 public struct FilmActorsListView: View {
-  let actors: [ActorUIModel]
+  let actors: [UIModel]
   private let actorGrid = Array(repeating: GridItem(.flexible(), spacing: 16, alignment: .top), count: 3)
 
-  public init(actors: [ActorUIModel]) {
+  public init(actors: [UIModel]) {
     self.actors = actors
   }
 
@@ -22,7 +22,7 @@ public struct FilmActorsListView: View {
 }
 
 extension FilmActorsListView {
-  public struct ActorUIModel: Equatable, Identifiable {
+  public struct UIModel: Identifiable {
     public let id: Int
     let posterPath: String
     let realName: String

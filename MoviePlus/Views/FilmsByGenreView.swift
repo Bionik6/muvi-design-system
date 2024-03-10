@@ -16,7 +16,7 @@ struct FilmsByGenreView: View {
         GeneralSection {
           FilmsListView(
             displayMode: .vertical,
-            films: model.films.toFilmListUIModel,
+            films: model.films.toUIModel,
             onTap: { model.selectFilm(id: $0.id, in: model.films) },
             onBottomListReached: { Task { await model.fetchFilms() } }
           )

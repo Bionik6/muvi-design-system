@@ -42,10 +42,10 @@ struct FilmDetailsView: View {
             .pickerStyle(.segmented)
 
             if selection == 1 {
-              FilmActorsListView(actors: model.cast.toActorUIModel)
+              FilmActorsListView(actors: model.cast.toUIModel)
             } else {
               FilmClipsListView(
-                clips: model.clips.toClipUIModel,
+                clips: model.clips.toUIModel,
                 onTap: { model.playFilmClip(for: $0.key) }
               )
             }

@@ -20,16 +20,14 @@ struct OutilneButton: View {
         .frame(height: Constants.height)
         .frame(maxWidth: .infinity)
         .overlay(
-          RoundedRectangle(cornerRadius: 4)
-            .stroke(ColorToken.red100, lineWidth: 1)
+          RoundedRectangle(cornerRadius: Constants.cornerRadius)
+            .stroke(ColorToken.red100, lineWidth: Constants.lineWidth)
         )
     })
   }
 
-  enum Constants {
-    static let iconSize = 14.0
-    static let horizontalPadding = 16.0
-    static let verticalPadding = 12.0
+  private enum Constants {
+    static let lineWidth = 1.0
     static let cornerRadius = 4.0
     static let height = 40.0
   }
