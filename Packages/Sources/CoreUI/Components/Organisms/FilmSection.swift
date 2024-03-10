@@ -3,12 +3,18 @@ import SwiftUI
 public struct FilmsListView: View {
   private let displayMode: DisplayMode
   private let films: [FilmUIModel]
+  private let onTap: (FilmUIModel) -> Void
 
   private let filmGrid = Array(repeating: GridItem(.flexible(), spacing: 16), count: 2)
 
-  public init(displayMode: DisplayMode, films: [FilmUIModel]) {
-    self.films = films
+  public init(
+    displayMode: DisplayMode,
+    films: [FilmUIModel],
+    onTap: @escaping (FilmUIModel) -> Void
+  ) {
     self.displayMode = displayMode
+    self.films = films
+    self.onTap = onTap
   }
 
   public var body: some View {
@@ -36,7 +42,7 @@ public struct FilmsListView: View {
 
   private var filmsView: some View {
     ForEach(films) { film in
-      Button(action: film.onTap) {
+      Button(action: { onTap(film) }) {
         FilmCard(
           posterPath: film.posterPath,
           title: film.title,
@@ -56,14 +62,13 @@ extension FilmsListView {
     case vertical
   }
 
-  public struct FilmUIModel: Identifiable, Equatable {
+  public struct FilmUIModel: Identifiable {
     public let id: Int
     let posterPath: String
     let title: String
     let releaseYear: String
     let viewsNumber: String
     let vote: String
-    let onTap: () -> Void
 
     public init(
       id: Int,
@@ -71,8 +76,7 @@ extension FilmsListView {
       posterPath: String,
       releaseYear: String,
       viewsNumber: String,
-      vote: String,
-      onTap: @escaping () -> Void
+      vote: String
     ) {
       self.id = id
       self.posterPath = posterPath
@@ -80,14 +84,6 @@ extension FilmsListView {
       self.releaseYear = releaseYear
       self.viewsNumber = viewsNumber
       self.vote = vote
-      self.onTap = onTap
-    }
-
-    public static func ==(
-      lhs: FilmsListView.FilmUIModel,
-      rhs: FilmsListView.FilmUIModel
-    ) -> Bool {
-      lhs.id == rhs.id
     }
   }
 }
@@ -104,8 +100,7 @@ extension FilmsListView {
             posterPath: "hu40Uxp9WtpL34jv3zyWLb5zEVY.jpg",
             releaseYear: "2024",
             viewsNumber: "1.5K",
-            vote: "5.8",
-            onTap: {}
+            vote: "5.8"
           ),
           .init(
             id: 2,
@@ -113,8 +108,7 @@ extension FilmsListView {
             posterPath: "8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
             releaseYear: "2024",
             viewsNumber: "1.3M",
-            vote: "8.4",
-            onTap: {}
+            vote: "8.4"
           ),
           .init(
             id: 3,
@@ -122,8 +116,7 @@ extension FilmsListView {
             posterPath: "h27WHO2czaY5twDmV3Wfx5IdqoE.jpg",
             releaseYear: "2024",
             viewsNumber: "977K",
-            vote: "7.0",
-            onTap: {}
+            vote: "7.0"
           ),
           .init(
             id: 4,
@@ -131,10 +124,10 @@ extension FilmsListView {
             posterPath: "hhvMTxlTZtnCOe7YFhod9uz3m37.jpg",
             releaseYear: "2024",
             viewsNumber: "873K",
-            vote: "6.6",
-            onTap: {}
+            vote: "6.6"
           ),
-        ]
+        ],
+        onTap: { _ in }
       )
       .padding()
 
@@ -147,8 +140,7 @@ extension FilmsListView {
             posterPath: "hu40Uxp9WtpL34jv3zyWLb5zEVY.jpg",
             releaseYear: "2024",
             viewsNumber: "1.5K",
-            vote: "5.8",
-            onTap: {}
+            vote: "5.8"
           ),
           .init(
             id: 2,
@@ -156,8 +148,7 @@ extension FilmsListView {
             posterPath: "8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
             releaseYear: "2024",
             viewsNumber: "1.3M",
-            vote: "8.4",
-            onTap: {}
+            vote: "8.4"
           ),
           .init(
             id: 3,
@@ -165,8 +156,7 @@ extension FilmsListView {
             posterPath: "h27WHO2czaY5twDmV3Wfx5IdqoE.jpg",
             releaseYear: "2024",
             viewsNumber: "977K",
-            vote: "7.0",
-            onTap: {}
+            vote: "7.0"
           ),
           .init(
             id: 4,
@@ -174,10 +164,10 @@ extension FilmsListView {
             posterPath: "hhvMTxlTZtnCOe7YFhod9uz3m37.jpg",
             releaseYear: "2024",
             viewsNumber: "873K",
-            vote: "6.6",
-            onTap: {}
+            vote: "6.6"
           ),
-        ]
+        ],
+        onTap: { _ in }
       )
       .padding()
     }

@@ -1,3 +1,4 @@
+import OSLog
 import CoreModels
 import Foundation
 import Networking
@@ -9,6 +10,9 @@ final class MoviesModel {
   private let repository: MoviesRepository
 
   var selectedFilm: Film?
+  var path: [Film] = []
+
+  private let logger = Logger(subsystem: "dev.iciss.movieplus", category: "Movies")
 
   private(set) var error: LocalizedError?
   private(set) var topMovies: [Film] = []
@@ -46,7 +50,11 @@ final class MoviesModel {
     }
   }
 
-  func showMovieTrailer(for film: Film) {
+  func selectFilm(id: Int, in films: [Film]) {
+    guard let film = films.first(where: { $0.id == id }) else {
+      logger.error("Couldn't find film with id: \(id)")
+      return
+    }
     selectedFilm = film
   }
 }

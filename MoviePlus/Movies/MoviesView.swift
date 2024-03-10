@@ -5,61 +5,55 @@ import YouTubePlayerKit
 
 @MainActor
 struct MoviesView: View {
-  @State var path: [Film] = []
-  private var model = MoviesModel()
+  @State private var model = MoviesModel()
 
   var body: some View {
-    NavigationStack(path: $path) {
+    NavigationStack {
       BaseContentView {
         ScrollView {
           GeneralSection {
             FilmCarousel(
-              films: model.topMovies.toCarouselFilmUIModel(onTap: { film in
-                path.append(film)
-              })
+              films: model.topMovies.toCarouselFilmUIModel,
+              onTap: { model.selectFilm(id: $0.id, in: model.topMovies) }
             )
           }
 
-          GeneralSection(title: "Coming Soon", buttonTapAction: {}) {
+          GeneralSection(title: "Coming Soon") {
             FilmsListView(
               displayMode: .horizontal,
-              films: model.comingSoonMovies.toFilmListUIModel(onTap: { film in
-                path.append(film)
-              })
+              films: model.comingSoonMovies.toFilmListUIModel,
+              onTap: { model.selectFilm(id: $0.id, in: model.comingSoonMovies) }
             )
           }
 
-          GeneralSection(title: "Trending Now", buttonTapAction: {}) {
+          GeneralSection(title: "Trending Now") {
             FilmsListView(
               displayMode: .horizontal,
-              films: model.trendingMovies.toFilmListUIModel(onTap: { film in
-                path.append(film)
-              })
+              films: model.trendingMovies.toFilmListUIModel,
+              onTap: { model.selectFilm(id: $0.id, in: model.trendingMovies) }
             )
           }
 
-          GeneralSection(title: "Latest Releases", buttonTapAction: {}) {
+          GeneralSection(title: "Latest Releases") {
             FilmsListView(
               displayMode: .horizontal,
-              films: model.latestMovies.toFilmListUIModel(onTap: { film in
-                path.append(film)
-              })
+              films: model.latestMovies.toFilmListUIModel,
+              onTap: { model.selectFilm(id: $0.id, in: model.latestMovies) }
             )
           }
 
-          GeneralSection(title: "Hits Box Office", buttonTapAction: {}) {
+          GeneralSection(title: "Hits Box Office") {
             FilmsListView(
               displayMode: .horizontal,
-              films: model.popularMovies.toFilmListUIModel(onTap: { film in
-                path.append(film)
-              })
+              films: model.popularMovies.toFilmListUIModel,
+              onTap: { model.selectFilm(id: $0.id, in: model.popularMovies) }
             )
           }
         }
       }
       .task { await model.fetchMovies() }
       .navigationTitle("Movies")
-      .navigationDestination(for: Film.self) { film in
+      .navigationDestination(item: $model.selectedFilm) { film in
         FilmDetailsView(film: film)
       }
     }

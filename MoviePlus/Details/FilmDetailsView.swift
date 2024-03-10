@@ -4,6 +4,7 @@ import CoreModels
 
 @MainActor
 struct FilmDetailsView: View {
+  @Environment(\.dismiss) var dismiss
   @State private var selection: Int = 1
   @State var model: FilmDetailsModel
 
@@ -22,7 +23,11 @@ struct FilmDetailsView: View {
           vote: model.film.formatedVote,
           genres: model.genres,
           onPlayTrailerButtonTapped: {}
-        ).ignoresSafeArea()
+        )
+        .ignoresSafeArea()
+        .overlay(alignment: .topLeading) {
+          dismissButton
+        }
 
         GeneralSection {
           Text(model.film.overview)
@@ -39,9 +44,10 @@ struct FilmDetailsView: View {
             if selection == 1 {
               FilmActorsListView(actors: model.cast.toActorUIModel)
             } else {
-              FilmClipsListView(clips: model.clips.toClipUIModel(onTap: { clip in
-                model.playFilmClip(for: clip)
-              }))
+              FilmClipsListView(
+                clips: model.clips.toClipUIModel,
+                onTap: { model.playFilmClip(for: $0.key) }
+              )
             }
           }
         }
@@ -53,16 +59,16 @@ struct FilmDetailsView: View {
     .task { await model.fetchFilmDetails() }
     .navigationTitle("")
     .navigationBarHidden(true)
-    .toolbar {
-      ToolbarItem(placement: .cancellationAction) {
-        Button(action: {}) {
-          Image(systemName: "chevron.left")
-            .font(.headline)
-        }
-      }
-    }
     .navigationDestination(for: Film.self) { film in
       Text(film.title)
+    }
+  }
+
+  var dismissButton: some View {
+    Button(action: { dismiss() }) {
+      Image(systemName: "chevron.left")
+        .font(.title2)
+        .padding(.all, 24)
     }
   }
 }

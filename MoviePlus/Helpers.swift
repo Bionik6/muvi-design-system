@@ -3,19 +3,18 @@ import Foundation
 import CoreModels
 
 extension [Film] {
-  func toCarouselFilmUIModel(onTap: @escaping (Film) -> Void) -> [FilmCarousel.FilmUIModel] {
+  var toCarouselFilmUIModel: [FilmCarousel.FilmUIModel] {
     map { film in
       FilmCarousel.FilmUIModel(
         id: film.id,
         posterPath: film.posterPath ?? "",
         genres: [],
-        releaseYear: film.releaseDateYear,
-        onTap: { onTap(film) }
+        releaseYear: film.releaseDateYear
       )
     }
   }
 
-  func toFilmListUIModel(onTap: @escaping (Film) -> Void) -> [FilmsListView.FilmUIModel] {
+  var toFilmListUIModel: [FilmsListView.FilmUIModel] {
     map { film in
       FilmsListView.FilmUIModel(
         id: film.id,
@@ -23,8 +22,7 @@ extension [Film] {
         posterPath: film.posterPath ?? "",
         releaseYear: film.releaseDateYear,
         viewsNumber: "4243242",
-        vote: film.formatedVote,
-        onTap: { onTap(film) }
+        vote: film.formatedVote
       )
     }
   }
@@ -44,13 +42,12 @@ extension [CoreModels.FilmActor] {
 }
 
 extension [FilmClip] {
-  func toClipUIModel(onTap: @escaping (FilmClip) -> Void) -> [FilmClipsListView.ClipUIModel] {
+  var toClipUIModel: [FilmClipsListView.ClipUIModel] {
     map { clip in
       FilmClipsListView.ClipUIModel(
         id: clip.id,
         name: clip.name,
-        key: clip.key,
-        onTap: { onTap(clip) }
+        key: clip.key
       )
     }
   }

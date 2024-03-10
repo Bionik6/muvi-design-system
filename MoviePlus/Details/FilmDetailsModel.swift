@@ -43,8 +43,8 @@ class FilmDetailsModel {
     }
   }
 
-  func playFilmClip(for clip: FilmClip) {
-    selectedClip = clip
+  func playFilmClip(for key: String) {
+    selectedClip = clips.first(where: { $0.key == key })
   }
 }
 
