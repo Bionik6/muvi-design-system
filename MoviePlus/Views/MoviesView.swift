@@ -58,8 +58,6 @@ struct MoviesView: View {
 }
 
 #Preview {
-  NavigationStack {
-    MoviesView()
-      .loadCustomFonts()
-  }
+  MoviesView()
+    .loadCustomFonts()
 }

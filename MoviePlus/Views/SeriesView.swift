@@ -52,8 +52,6 @@ struct SeriesView: View {
 }
 
 #Preview {
-  NavigationStack {
-    SeriesView()
-      .loadCustomFonts()
-  }
+  SeriesView()
+    .loadCustomFonts()
 }

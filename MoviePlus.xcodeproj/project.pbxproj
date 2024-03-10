@@ -90,7 +90,6 @@
 				40A764282B9DDD8400C62350 /* Views */,
 				40A764252B9DDCF500C62350 /* Models */,
 				4035B5F12B824C76004BCF53 /* MoviePlusApp.swift */,
-				4035B5F32B824C76004BCF53 /* ContentView.swift */,
 				4035B5F52B824C77004BCF53 /* Assets.xcassets */,
 				4035B5F72B824C77004BCF53 /* Preview Content */,
 			);
@@ -128,6 +127,7 @@
 		40A764282B9DDD8400C62350 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4035B5F32B824C76004BCF53 /* ContentView.swift */,
 				40A764212B9D2B3E00C62350 /* FilmDetailsView.swift */,
 				40A764232B9DD79900C62350 /* SeriesView.swift */,
 				40A7641A2B9CD84B00C62350 /* MoviesView.swift */,
@@ -374,12 +374,14 @@
 				DEVELOPMENT_TEAM = ZM7Z6QL6F3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Movie+";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -409,12 +411,14 @@
 				DEVELOPMENT_TEAM = ZM7Z6QL6F3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Movie+";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

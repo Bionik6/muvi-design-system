@@ -27,4 +27,5 @@ struct FilmGenresView: View {
 
 #Preview {
   FilmGenresView()
+    .loadCustomFonts()
 }

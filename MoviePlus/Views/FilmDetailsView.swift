@@ -75,7 +75,7 @@ struct FilmDetailsView: View {
 
 #Preview {
   NavigationStack {
-    MoviesView()
+    FilmDetailsView(film: .sample)
       .loadCustomFonts()
   }
 }
