@@ -1,6 +1,6 @@
 import Foundation
 
-public struct APIClient {
+public struct APIClient: Sendable {
   private var session: URLSession
   private var baseURL: NSString { "https://api.themoviedb.org/3/" }
 

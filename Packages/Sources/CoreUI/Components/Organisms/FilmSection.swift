@@ -1,37 +1,22 @@
 import SwiftUI
 
-public struct FilmSection: View {
-  private let title: LocalizedStringResource
+public struct FilmsListView: View {
   private let displayMode: DisplayMode
   private let films: [FilmUIModel]
-  private let onRightButtonTapped: (() -> Void)?
 
   private let filmGrid = Array(repeating: GridItem(.flexible(), spacing: 16), count: 2)
 
-  public init(
-    title: LocalizedStringResource,
-    displayMode: DisplayMode,
-    films: [FilmUIModel],
-    onRightButtonTapped: (() -> Void)?
-  ) {
-    self.title = title
-    self.displayMode = displayMode
+  public init(displayMode: DisplayMode, films: [FilmUIModel]) {
     self.films = films
-    self.onRightButtonTapped = onRightButtonTapped
+    self.displayMode = displayMode
   }
 
   public var body: some View {
-    VStack(alignment: .leading, spacing: 16) {
-      FilmHeader(
-        title: title,
-        onRightButtonTapped: onRightButtonTapped
-      )
-      switch displayMode {
-      case .horizontally:
-        horizontalView
-      case .vertically:
-        verticalView
-      }
+    switch displayMode {
+    case .horizontal:
+      horizontalView
+    case .vertical:
+      verticalView
     }
   }
 
@@ -51,7 +36,7 @@ public struct FilmSection: View {
 
   private var filmsView: some View {
     ForEach(films) { film in
-      Button(action: { film.onTap(film.id) }) {
+      Button(action: film.onTap) {
         FilmCard(
           posterPath: film.posterPath,
           title: film.title,
@@ -59,15 +44,16 @@ public struct FilmSection: View {
           viewsNumber: film.viewsNumber,
           vote: film.vote
         )
+        .frame(maxWidth: displayMode == .horizontal ? 152 : .infinity)
       }
     }
   }
 }
 
-extension FilmSection {
+extension FilmsListView {
   public enum DisplayMode {
-    case horizontally
-    case vertically
+    case horizontal
+    case vertical
   }
 
   public struct FilmUIModel: Identifiable, Equatable {
@@ -77,7 +63,7 @@ extension FilmSection {
     let releaseYear: String
     let viewsNumber: String
     let vote: String
-    let onTap: (Int) -> Void
+    let onTap: () -> Void
 
     public init(
       id: Int,
@@ -86,7 +72,7 @@ extension FilmSection {
       releaseYear: String,
       viewsNumber: String,
       vote: String,
-      onTap: @escaping (Int) -> Void
+      onTap: @escaping () -> Void
     ) {
       self.id = id
       self.posterPath = posterPath
@@ -97,7 +83,10 @@ extension FilmSection {
       self.onTap = onTap
     }
 
-    public static func ==(lhs: FilmSection.FilmUIModel, rhs: FilmSection.FilmUIModel) -> Bool {
+    public static func ==(
+      lhs: FilmsListView.FilmUIModel,
+      rhs: FilmsListView.FilmUIModel
+    ) -> Bool {
       lhs.id == rhs.id
     }
   }
@@ -106,9 +95,8 @@ extension FilmSection {
 #Preview {
   BaseContentView {
     ScrollView {
-      FilmSection(
-        title: "Trending Now",
-        displayMode: .horizontally,
+      FilmsListView(
+        displayMode: .horizontal,
         films: [
           .init(
             id: 1,
@@ -117,7 +105,7 @@ extension FilmSection {
             releaseYear: "2024",
             viewsNumber: "1.5K",
             vote: "5.8",
-            onTap: { _ in }
+            onTap: {}
           ),
           .init(
             id: 2,
@@ -126,7 +114,7 @@ extension FilmSection {
             releaseYear: "2024",
             viewsNumber: "1.3M",
             vote: "8.4",
-            onTap: { _ in }
+            onTap: {}
           ),
           .init(
             id: 3,
@@ -135,7 +123,7 @@ extension FilmSection {
             releaseYear: "2024",
             viewsNumber: "977K",
             vote: "7.0",
-            onTap: { _ in }
+            onTap: {}
           ),
           .init(
             id: 4,
@@ -144,16 +132,14 @@ extension FilmSection {
             releaseYear: "2024",
             viewsNumber: "873K",
             vote: "6.6",
-            onTap: { _ in }
+            onTap: {}
           ),
-        ],
-        onRightButtonTapped: {}
+        ]
       )
       .padding()
 
-      FilmSection(
-        title: "Trending Now",
-        displayMode: .vertically,
+      FilmsListView(
+        displayMode: .vertical,
         films: [
           .init(
             id: 1,
@@ -162,7 +148,7 @@ extension FilmSection {
             releaseYear: "2024",
             viewsNumber: "1.5K",
             vote: "5.8",
-            onTap: { _ in }
+            onTap: {}
           ),
           .init(
             id: 2,
@@ -171,7 +157,7 @@ extension FilmSection {
             releaseYear: "2024",
             viewsNumber: "1.3M",
             vote: "8.4",
-            onTap: { _ in }
+            onTap: {}
           ),
           .init(
             id: 3,
@@ -180,7 +166,7 @@ extension FilmSection {
             releaseYear: "2024",
             viewsNumber: "977K",
             vote: "7.0",
-            onTap: { _ in }
+            onTap: {}
           ),
           .init(
             id: 4,
@@ -189,10 +175,9 @@ extension FilmSection {
             releaseYear: "2024",
             viewsNumber: "873K",
             vote: "6.6",
-            onTap: { _ in }
+            onTap: {}
           ),
-        ],
-        onRightButtonTapped: nil
+        ]
       )
       .padding()
     }

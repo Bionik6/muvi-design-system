@@ -3,9 +3,10 @@ import Foundation
 import Networking
 import Observation
 
+@MainActor
 @Observable
 class FilmDetailsModel {
-  private let film: Film
+  let film: Film
   private let repository: FilmDetailsRepository
 
   private(set) var error: LocalizedError?
@@ -13,14 +14,15 @@ class FilmDetailsModel {
   private(set) var clips: [FilmClip] = []
   private(set) var genres: [String] = []
   private(set) var trailerURLString: String?
+  var selectedClip: FilmClip?
 
-  init(film: Film, repository: FilmDetailsRepository) {
+  init(film: Film, repository: FilmDetailsRepository = .live) {
     self.film = film
     self.repository = repository
   }
 
   @MainActor
-  func fetchFilmDetails() async throws {
+  func fetchFilmDetails() async {
     async let filmDetails = await repository.details(film.id, film.type)
     async let cast = await repository.cast(film.id, film.type)
     async let clips = await repository.clips(film.id, film.type)
@@ -39,6 +41,10 @@ class FilmDetailsModel {
     } catch {
       self.error = error as? LocalizedError
     }
+  }
+
+  func playFilmClip(for clip: FilmClip) {
+    selectedClip = clip
   }
 }
 

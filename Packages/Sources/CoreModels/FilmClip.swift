@@ -14,7 +14,7 @@ public enum ClipSite: String, Sendable {
 }
 
 public struct FilmClip: Identifiable, Sendable {
-  public let id = UUID()
+  public let id: String
   public let name: String
   public let site: ClipSite?
   public let key: String
@@ -22,12 +22,14 @@ public struct FilmClip: Identifiable, Sendable {
   public let publishedDateString: String
 
   public init(
+    id: String,
     name: String,
     site: ClipSite?,
     key: String,
     type: ClipType?,
     publishedDateString: String
   ) {
+    self.id = id
     self.name = name
     self.site = site
     self.key = key

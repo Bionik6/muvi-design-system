@@ -43,7 +43,10 @@ extension FilmGenresListView {
       self.onTap = onTap
     }
 
-    public static func ==(lhs: FilmGenresListView.FilmGenreUIModel, rhs: FilmGenresListView.FilmGenreUIModel) -> Bool {
+    public static func ==(
+      lhs: FilmGenresListView.FilmGenreUIModel,
+      rhs: FilmGenresListView.FilmGenreUIModel
+    ) -> Bool {
       lhs.id == rhs.id
     }
   }

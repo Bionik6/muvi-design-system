@@ -1,7 +1,7 @@
 import CoreModels
 import Foundation
 
-public struct RemoteFilm: Decodable {
+public struct RemoteFilm: Decodable, Sendable {
   let id: Int
   let title: String?
   let posterPath: String?

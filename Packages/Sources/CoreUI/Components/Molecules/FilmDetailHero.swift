@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct FilmDetailHero: View {
+public struct FilmDetailHero: View {
   private let title: String
   private let posterPath: String
   private let releaseYear: String
@@ -9,7 +9,7 @@ struct FilmDetailHero: View {
   private let genres: [String]
   private let onPlayTrailerButtonTapped: () -> Void
 
-  init(
+  public init(
     title: String,
     posterPath: String,
     releaseYear: String,
@@ -31,7 +31,7 @@ struct FilmDetailHero: View {
     genres.joined(separator: ", ") + " · " + releaseYear
   }
 
-  var body: some View {
+  public var body: some View {
     VStack {
       FilmImage(posterPath: posterPath)
         .frame(height: 500)

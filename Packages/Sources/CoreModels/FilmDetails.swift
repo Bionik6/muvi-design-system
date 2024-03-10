@@ -1,6 +1,6 @@
 import Foundation
 
-public struct FilmDetails {
+public struct FilmDetails: Sendable {
   public let film: Film
   public let genres: [String]
 

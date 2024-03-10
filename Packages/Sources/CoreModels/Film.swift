@@ -9,7 +9,7 @@ public struct Film: Hashable, Identifiable, Sendable {
   public let id: Int
   public let title: String
   public let posterPath: String?
-  public let vote: Double
+  private let vote: Double
   public let releaseDateString: String
   public let overview: String
   public let type: FilmType

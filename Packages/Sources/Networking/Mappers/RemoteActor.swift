@@ -1,7 +1,7 @@
 import CoreModels
 import Foundation
 
-public struct RemoteActor: Decodable {
+public struct RemoteActor: Decodable, Sendable {
   let id: Int
   let order: Int
   let originalName: String

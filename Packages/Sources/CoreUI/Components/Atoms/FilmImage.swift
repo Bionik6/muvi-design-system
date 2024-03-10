@@ -4,7 +4,7 @@ struct FilmImage: View {
   let posterPath: String
 
   var url: URL {
-    let url = URL(string: "https://image.tmdb.org/t/p/original")!
+    let url = URL(string: "https://image.tmdb.org/t/p/w500")!
     return url.appending(path: posterPath)
   }
 
@@ -33,5 +33,7 @@ struct FilmImage: View {
 #Preview {
   BaseContentView {
     FilmImage(posterPath: "xOMo8BRK7PfcJv9JCnx7s5hj0PX.jpg")
+      .frame(width: 200, height: 300)
+      .clipped()
   }
 }

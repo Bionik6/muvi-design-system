@@ -3,6 +3,7 @@ import Foundation
 import Networking
 import Observation
 
+@MainActor
 @Observable
 final class SeriesViewModel {
   private let repository: SeriesRepository

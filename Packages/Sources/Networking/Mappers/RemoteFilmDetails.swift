@@ -1,12 +1,7 @@
 import CoreModels
 import Foundation
 
-public struct RemoteFilmDetails: Decodable {
-  struct Genre: Decodable {
-    let id: Int
-    let name: String
-  }
-
+public struct RemoteFilmDetails: Decodable, Sendable {
   let id: Int
   let title: String?
   let posterPath: String
@@ -15,7 +10,7 @@ public struct RemoteFilmDetails: Decodable {
   let overview: String
   let name: String?
   let firstAirDate: String?
-  let genres: [Genre]
+  let genres: [RemoteGenre]
 
   init(
     id: Int,
@@ -26,7 +21,7 @@ public struct RemoteFilmDetails: Decodable {
     name: String?,
     overview: String,
     firstAirDate: String?,
-    genres: [Genre]
+    genres: [RemoteGenre]
   ) {
     self.id = id
     self.title = title

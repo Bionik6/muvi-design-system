@@ -14,10 +14,14 @@ let package = Package(
     .singleTargetLibrary("Networking"),
   ],
   dependencies: [
+    .package(url: "https://github.com/SvenTiigi/YouTubePlayerKit", exact: "1.7.0"),
   ],
   targets: [
     .target(
       name: "CoreUI",
+      dependencies: [
+        .product(name: "YouTubePlayerKit", package: "YouTubePlayerKit"),
+      ],
       resources: [
         .process("Resources/Assets.xcassets"),
         .process("Resources/Fonts/Inter-Bold.ttf"),

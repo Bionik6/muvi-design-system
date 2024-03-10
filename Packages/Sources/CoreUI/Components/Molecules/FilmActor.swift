@@ -26,6 +26,7 @@ public struct FilmActor: View {
           .foregroundStyle(ColorToken.black20)
       }
     }
+    .multilineTextAlignment(.center)
   }
 }
 

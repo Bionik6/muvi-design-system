@@ -1,7 +1,8 @@
 import CoreModels
 import Foundation
 
-public struct RemoteClip: Decodable {
+public struct RemoteClip: Decodable, Sendable {
+  let id: String
   let name: String
   let site: String
   let key: String
@@ -10,6 +11,7 @@ public struct RemoteClip: Decodable {
 
   public var model: FilmClip {
     FilmClip(
+      id: id,
       name: name,
       site: ClipSite(rawValue: site),
       key: key,

@@ -4,18 +4,15 @@ struct FilmHeroCard: View {
   private let posterPath: String
   private let releaseYear: String
   private let genres: [String]
-  private let onButtonTap: () -> Void
 
   init(
     posterPath: String,
     releaseYear: String,
-    genres: [String],
-    onButtonTap: @escaping () -> Void
+    genres: [String]
   ) {
     self.posterPath = posterPath
     self.releaseYear = releaseYear
     self.genres = genres
-    self.onButtonTap = onButtonTap
   }
 
   var body: some View {
@@ -42,13 +39,10 @@ struct FilmHeroCard: View {
               style: .continuous
             )
           )
-          VStack(spacing: 16) {
-            Text(info)
-              .font(CustomFont.caption1)
-              .multilineTextAlignment(.center)
-            PlayFilmButton(title: "Watch trailer", action: onButtonTap)
-              .padding(.bottom, Constants.buttonBottomPadding)
-          }
+          Text(info)
+            .font(CustomFont.caption1)
+            .multilineTextAlignment(.center)
+            .padding(.bottom, Constants.genresBottomPadding)
         }
       }
   }
@@ -61,18 +55,20 @@ struct FilmHeroCard: View {
     static let imageWidth: CGFloat = 303
     static let imageHeight: CGFloat = 404
     static let imageCornerRadius: CGFloat = 24.0
-    static let buttonBottomPadding: CGFloat = -20
+    static let genresBottomPadding: CGFloat = 20
     static let linearBackgroundHeight: CGFloat = 90
   }
 }
 
 #Preview {
-  VStack {
-    FilmHeroCard(
-      posterPath: "gavGnAMTXPkpoFgG0stwgIgKb64.jpg",
-      releaseYear: "2024",
-      genres: ["Action", "Fantasy", "Trailer"]
-    ) {}
+  BaseContentView {
+    VStack {
+      FilmHeroCard(
+        posterPath: "gavGnAMTXPkpoFgG0stwgIgKb64.jpg",
+        releaseYear: "2024",
+        genres: ["Action", "Fantasy", "Trailer"]
+      )
+    }
+    .loadCustomFonts()
   }
-  .loadCustomFonts()
 }
