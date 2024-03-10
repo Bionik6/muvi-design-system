@@ -3,7 +3,7 @@ import LinkPresentation
 import UniformTypeIdentifiers
 
 @Observable
-final class YoutubeLinkPreviewModel {
+final class YoutubeLinkViewModel {
   var image: UIImage?
   let url: URL
 
@@ -51,10 +51,10 @@ final class YoutubeLinkPreviewModel {
 }
 
 struct YoutubeLinkView: View {
-  @State var model: YoutubeLinkPreviewModel
+  @State var model: YoutubeLinkViewModel
 
   init(key: String) {
-    self._model = State(initialValue: YoutubeLinkPreviewModel(key))
+    self._model = State(initialValue: YoutubeLinkViewModel(key))
   }
 
   var body: some View {

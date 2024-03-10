@@ -18,6 +18,6 @@ public struct BaseContentView<Content: View>: View {
 
 #Preview {
   BaseContentView {
-    Text("Hello World")
+    Text("Hello AppDevCon")
   }
 }

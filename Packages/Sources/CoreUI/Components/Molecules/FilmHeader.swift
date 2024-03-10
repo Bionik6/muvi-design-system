@@ -33,8 +33,7 @@ struct FilmHeader: View {
 }
 
 #Preview {
-  ZStack {
-    ColorToken.blackBg100.ignoresSafeArea()
+  BaseContentView {
     VStack {
       FilmHeader(title: "Latest release")
       Divider()

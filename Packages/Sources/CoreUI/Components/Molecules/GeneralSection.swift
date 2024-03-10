@@ -55,7 +55,7 @@ private enum Constants {
       GeneralSection(title: "Most Popular") {
         Text("Hello")
       }
-      GeneralSection(title: "Another section") {
+      GeneralSection(title: "Another section", buttonTapAction: {}) {
         Text("Testing")
       }
     }

@@ -78,8 +78,6 @@ extension FilmCarousel {
       ],
       onTap: { _ in }
     )
-    .padding(.horizontal, 16)
   }
-
   .loadCustomFonts()
 }
