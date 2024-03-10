@@ -5,7 +5,8 @@ import Observation
 
 @MainActor
 @Observable
-final class SeriesViewModel {
+final class SeriesModel: FilmModel {
+  var selectedFilm: Film?
   private let repository: SeriesRepository
 
   private(set) var error: LocalizedError?

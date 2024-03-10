@@ -7,14 +7,15 @@ import Observation
 @Observable
 class FilmDetailsModel {
   let film: Film
+  var selectedClip: FilmClip?
+  var playTrailer: Bool = false
   private let repository: FilmDetailsRepository
 
   private(set) var error: LocalizedError?
   private(set) var cast: [FilmActor] = []
   private(set) var clips: [FilmClip] = []
   private(set) var genres: [String] = []
-  private(set) var trailerURLString: String?
-  var selectedClip: FilmClip?
+  private(set) var filmTrailerKey: String?
 
   init(film: Film, repository: FilmDetailsRepository = .live) {
     self.film = film
@@ -34,7 +35,7 @@ class FilmDetailsModel {
         .sorted { $0.order < $1.order }
       self.clips = result.clips.lazy
         .filter { $0.site != nil && $0.site == .youtube }
-      trailerURLString = self.clips
+      filmTrailerKey = self.clips
         .filter { $0.type != nil && $0.type == .trailer }
         .last?
         .key
@@ -45,6 +46,10 @@ class FilmDetailsModel {
 
   func playFilmClip(for key: String) {
     selectedClip = clips.first(where: { $0.key == key })
+  }
+
+  func playFilmTrailer() {
+    playTrailer = true
   }
 }
 

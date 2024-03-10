@@ -52,3 +52,15 @@ extension [FilmClip] {
     }
   }
 }
+
+extension [FilmGenre] {
+  var toUIModel: [FilmGenresListView.FilmGenreUIModel] {
+    map { genre in
+      FilmGenresListView.FilmGenreUIModel(
+        id: genre.id,
+        name: genre.name,
+        imageName: genre.imageName
+      )
+    }
+  }
+}

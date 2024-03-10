@@ -13,17 +13,13 @@ struct ContentView: View {
         .tabItem { Label("Movies", systemImage: "play.tv.fill") }
         .tag(FilmTab.movies)
 
-      NavigationStack {
-        EmptyView()
-      }
-      .tabItem { Label("TV Shows", systemImage: "rectangle.stack.badge.play.fill") }
-      .tag(FilmTab.series)
+      SeriesView()
+        .tabItem { Label("TV Shows", systemImage: "rectangle.stack.badge.play.fill") }
+        .tag(FilmTab.series)
 
-      NavigationStack {
-        EmptyView()
-      }
-      .tabItem { Label("Genres", systemImage: "rectangle.grid.2x2.fill") }
-      .tag(FilmTab.genres)
+      FilmGenresView()
+        .tabItem { Label("Genres", systemImage: "rectangle.grid.2x2.fill") }
+        .tag(FilmTab.genres)
     }
   }
 }

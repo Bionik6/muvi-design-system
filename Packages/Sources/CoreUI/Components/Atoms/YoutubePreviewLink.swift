@@ -77,7 +77,7 @@ struct YoutubeLinkView: View {
         .overlay {
           Image(systemName: "play.rectangle.fill")
             .font(.system(size: Constants.imageSize))
-            .foregroundStyle(ColorToken.black60)
+            .foregroundStyle(ColorToken.red100)
         }
     }
   }

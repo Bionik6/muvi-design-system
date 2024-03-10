@@ -22,7 +22,7 @@ struct FilmDetailsView: View {
           viewsNumber: "fldjkslfkds",
           vote: model.film.formatedVote,
           genres: model.genres,
-          onPlayTrailerButtonTapped: {}
+          onPlayTrailerButtonTapped: model.playFilmTrailer
         )
         .ignoresSafeArea()
         .overlay(alignment: .topLeading) {
@@ -30,7 +30,7 @@ struct FilmDetailsView: View {
         }
 
         GeneralSection {
-          Text(model.film.overview)
+          Paragraph(text: model.film.overview)
         }
 
         GeneralSection {
@@ -53,15 +53,15 @@ struct FilmDetailsView: View {
         }
       }
     }
-    .sheet(item: $model.selectedClip, content: { clip in
-      FilmTrailerPlayer(videoId: clip.key)
+    .sheet(item: $model.selectedClip) { FilmTrailerPlayer(videoId: $0.key) }
+    .sheet(isPresented: $model.playTrailer, content: {
+      if let youtubeKey = model.filmTrailerKey {
+        FilmTrailerPlayer(videoId: youtubeKey)
+      }
     })
     .task { await model.fetchFilmDetails() }
     .navigationTitle("")
     .navigationBarHidden(true)
-    .navigationDestination(for: Film.self) { film in
-      Text(film.title)
-    }
   }
 
   var dismissButton: some View {

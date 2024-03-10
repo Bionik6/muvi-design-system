@@ -2,7 +2,7 @@ import Foundation
 
 public struct APIClient: Sendable {
   private var session: URLSession
-  private var baseURL: NSString { "https://api.themoviedb.org/3/" }
+  private var baseURL = URL(string: "https://api.themoviedb.org/3/")!
 
   public init(session: URLSession = .shared) {
     self.session = session
@@ -22,27 +22,39 @@ public struct APIClient: Sendable {
   }
 
   private func prepareURLRequest(for request: Request) -> URLRequest {
-    let fullURLString = baseURL.appendingPathComponent(request.path)
-    guard let url = URL(string: fullURLString) else { fatalError("The URL is not valid") }
+    let fullURL = baseURL.appendingPathComponent(request.path)
 
-    var urlRequest = URLRequest(url: url)
+    var urlRequest = URLRequest(url: baseURL)
     urlRequest.httpMethod = request.method.rawValue
+
+    let apiKey = "c9856d0cb57c3f14bf75bdc6c063b8f3"
+    var queryItems = [URLQueryItem(name: "api_key", value: apiKey)]
+
+    if let params = request.params {
+      switch params {
+      case .body(let bodyParams):
+        urlRequest.httpBody = try? JSONEncoder().encode(bodyParams)
+      case .url(let urlParams):
+        var components = URLComponents(url: fullURL, resolvingAgainstBaseURL: true)
+        queryItems.append(contentsOf: urlParams.map { URLQueryItem(name: $0.key, value: String(describing: $0.value)) })
+        components?.queryItems = queryItems
+        urlRequest.url = components?.url
+      }
+    } else {
+      let queryItems = [URLQueryItem(name: "api_key", value: apiKey)]
+      var components = URLComponents(url: fullURL, resolvingAgainstBaseURL: true)
+      components?.queryItems = queryItems
+      urlRequest.url = components?.url
+    }
 
     if let headers = request.headers {
       headers.forEach {
         urlRequest.addValue($0.value, forHTTPHeaderField: $0.key)
       }
     }
+
     urlRequest.addValue("application/json;charset=utf-8", forHTTPHeaderField: "Accept")
     urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
-    let apiKey = "c9856d0cb57c3f14bf75bdc6c063b8f3"
-
-    guard var components = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
-      fatalError("components can't be created")
-    }
-    components.queryItems = [URLQueryItem(name: "api_key", value: apiKey)]
-    urlRequest.url = components.url
 
     return urlRequest
   }

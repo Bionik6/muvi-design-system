@@ -4,17 +4,20 @@ public struct FilmsListView: View {
   private let displayMode: DisplayMode
   private let films: [FilmUIModel]
   private let onTap: (FilmUIModel) -> Void
+  private let onBottomListReached: (() -> Void)?
 
   private let filmGrid = Array(repeating: GridItem(.flexible(), spacing: 16), count: 2)
 
   public init(
     displayMode: DisplayMode,
     films: [FilmUIModel],
-    onTap: @escaping (FilmUIModel) -> Void
+    onTap: @escaping (FilmUIModel) -> Void,
+    onBottomListReached: (() -> Void)? = nil
   ) {
     self.displayMode = displayMode
     self.films = films
     self.onTap = onTap
+    self.onBottomListReached = onBottomListReached
   }
 
   public var body: some View {
@@ -51,6 +54,9 @@ public struct FilmsListView: View {
           vote: film.vote
         )
         .frame(maxWidth: displayMode == .horizontal ? 152 : .infinity)
+        .onAppear {
+          if film == films.last { onBottomListReached?() }
+        }
       }
     }
   }
@@ -62,7 +68,7 @@ extension FilmsListView {
     case vertical
   }
 
-  public struct FilmUIModel: Identifiable {
+  public struct FilmUIModel: Identifiable, Equatable {
     public let id: Int
     let posterPath: String
     let title: String
@@ -127,7 +133,8 @@ extension FilmsListView {
             vote: "6.6"
           ),
         ],
-        onTap: { _ in }
+        onTap: { _ in },
+        onBottomListReached: {}
       )
       .padding()
 
@@ -167,7 +174,8 @@ extension FilmsListView {
             vote: "6.6"
           ),
         ],
-        onTap: { _ in }
+        onTap: { _ in },
+        onBottomListReached: {}
       )
       .padding()
     }

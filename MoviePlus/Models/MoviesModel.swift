@@ -6,13 +6,9 @@ import Observation
 
 @MainActor
 @Observable
-final class MoviesModel {
-  private let repository: MoviesRepository
-
+final class MoviesModel: FilmModel {
   var selectedFilm: Film?
-  var path: [Film] = []
-
-  private let logger = Logger(subsystem: "dev.iciss.movieplus", category: "Movies")
+  private let repository: MoviesRepository
 
   private(set) var error: LocalizedError?
   private(set) var topMovies: [Film] = []
@@ -48,14 +44,6 @@ final class MoviesModel {
     } catch {
       self.error = error as? LocalizedError
     }
-  }
-
-  func selectFilm(id: Int, in films: [Film]) {
-    guard let film = films.first(where: { $0.id == id }) else {
-      logger.error("Couldn't find film with id: \(id)")
-      return
-    }
-    selectedFilm = film
   }
 }
 

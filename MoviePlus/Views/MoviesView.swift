@@ -1,7 +1,5 @@
 import CoreUI
 import SwiftUI
-import CoreModels
-import YouTubePlayerKit
 
 @MainActor
 struct MoviesView: View {
