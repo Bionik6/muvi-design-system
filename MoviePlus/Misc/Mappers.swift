@@ -7,9 +7,7 @@ extension [Film] {
     map { film in
       FilmCarousel.UIModel(
         id: film.id,
-        posterPath: film.posterPath ?? "",
-        genres: [],
-        releaseYear: film.releaseDateYear
+        posterPath: film.posterPath ?? ""
       )
     }
   }
@@ -21,8 +19,8 @@ extension [Film] {
         title: film.title,
         posterPath: film.posterPath ?? "",
         releaseYear: film.releaseDateYear,
-        viewsNumber: "4243242",
-        vote: film.formatedVote
+        voteCount: film.formatedVoteCount,
+        voteAverage: film.formatedVoteAverage
       )
     }
   }

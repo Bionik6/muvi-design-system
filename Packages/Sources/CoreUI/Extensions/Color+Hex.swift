@@ -1,7 +1,7 @@
 import SwiftUI
 
 extension Color {
-  init(hex: String) {
+  public init(hex: String) {
     var cleanHexCode = hex.trimmingCharacters(in: .whitespacesAndNewlines)
     cleanHexCode = cleanHexCode.replacingOccurrences(of: "#", with: "")
 

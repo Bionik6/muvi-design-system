@@ -5,7 +5,10 @@ public struct FilmClipsListView: View {
   let onTap: (UIModel) -> Void
   private let clipGrid = Array(repeating: GridItem(.flexible(), spacing: 16, alignment: .top), count: 2)
 
-  public init(clips: [UIModel], onTap: @escaping (UIModel) -> Void) {
+  public init(
+    clips: [UIModel],
+    onTap: @escaping (UIModel) -> Void
+  ) {
     self.clips = clips
     self.onTap = onTap
   }

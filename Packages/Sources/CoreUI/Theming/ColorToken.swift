@@ -2,7 +2,7 @@ import SwiftUI
 
 enum ColorToken {
   // Semantics
-  static let red100: Color = .hex("#DF2935")
+  public static let red100: Color = .hex("#DF2935")
   static let blue100: Color = .hex("#3DA5D9")
   static let green100: Color = .hex("#20BF55")
   static let orange100: Color = .hex("#FE9920")

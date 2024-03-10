@@ -1,3 +1,4 @@
+import CoreUI
 import SwiftUI
 
 struct ContentView: View {
@@ -21,6 +22,7 @@ struct ContentView: View {
         .tabItem { Label("Genres", systemImage: "rectangle.grid.2x2.fill") }
         .tag(FilmTab.genres)
     }
+    .tint(Color(hex: "#DF2935"))
   }
 }
 

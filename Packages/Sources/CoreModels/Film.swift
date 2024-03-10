@@ -9,7 +9,8 @@ public struct Film: Hashable, Identifiable, Sendable {
   public let id: Int
   public let title: String
   public let posterPath: String?
-  private let vote: Double
+  private let voteAverage: Double
+  private let voteCount: Int
   public let releaseDateString: String
   public let overview: String
   public let type: FilmType
@@ -18,7 +19,8 @@ public struct Film: Hashable, Identifiable, Sendable {
     id: Int,
     title: String,
     posterPath: String?,
-    vote: Double,
+    voteAgerage: Double,
+    voteCount: Int,
     releaseDateString: String,
     overview: String,
     type: FilmType
@@ -26,13 +28,15 @@ public struct Film: Hashable, Identifiable, Sendable {
     self.id = id
     self.title = title
     self.posterPath = posterPath
-    self.vote = vote
+    self.voteCount = voteCount
+    self.voteAverage = voteAgerage
     self.releaseDateString = releaseDateString
     self.overview = overview
     self.type = type
   }
 
-  public var formatedVote: String { String(format: "%.1f", vote) }
+  public var formatedVoteAverage: String { String(format: "%.1f", voteAverage) }
+  public var formatedVoteCount: String { "\(voteCount)" }
 
   public var releaseDateYear: String {
     releaseDate.formatted(.dateTime.year())

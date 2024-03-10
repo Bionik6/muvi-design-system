@@ -1,7 +1,7 @@
 import SwiftUI
 import YouTubePlayerKit
 
-public struct FilmTrailerPlayer: View {
+public struct FilmClipPlayer: View {
   private let videoId: String
 
   private var playerConfiguration: YouTubePlayer.Configuration {
@@ -17,15 +17,17 @@ public struct FilmTrailerPlayer: View {
   }
 
   public var body: some View {
-    YouTubePlayerView(
-      YouTubePlayer(
-        source: .video(id: videoId),
-        configuration: playerConfiguration
+    BaseContentView {
+      YouTubePlayerView(
+        YouTubePlayer(
+          source: .video(id: videoId),
+          configuration: playerConfiguration
+        )
       )
-    )
+    }
   }
 }
 
 #Preview {
-  FilmTrailerPlayer(videoId: "yAN5uspO_hk")
+  FilmClipPlayer(videoId: "yAN5uspO_hk")
 }

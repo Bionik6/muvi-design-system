@@ -31,14 +31,14 @@ public struct FilmsListView: View {
 
   private var horizontalView: some View {
     ScrollView(.horizontal, showsIndicators: false) {
-      HStack(spacing: 16) {
+      HStack(spacing: Constants.horizontalSpacing) {
         filmsView
       }
     }
   }
 
   private var verticalView: some View {
-    LazyVGrid(columns: filmGrid, spacing: 24) {
+    LazyVGrid(columns: filmGrid, spacing: Constants.verticalSpacing) {
       filmsView
     }
   }
@@ -47,18 +47,24 @@ public struct FilmsListView: View {
     ForEach(films) { film in
       Button(action: { onTap(film) }) {
         FilmCard(
-          posterPath: film.posterPath,
           title: film.title,
+          posterPath: film.posterPath,
           releaseYear: film.releaseYear,
-          viewsNumber: film.viewsNumber,
-          vote: film.vote
+          voteCount: film.voteCount,
+          voteAverage: film.voteAverage
         )
-        .frame(maxWidth: displayMode == .horizontal ? 152 : .infinity)
+        .frame(maxWidth: displayMode == .horizontal ? Constants.imageWidth : .infinity)
         .onAppear {
           if film == films.last { onBottomListReached?() }
         }
       }
     }
+  }
+
+  private enum Constants {
+    static let imageWidth: CGFloat = 152
+    static let verticalSpacing: CGFloat = 24.0
+    static let horizontalSpacing: CGFloat = 16.0
   }
 }
 
@@ -73,23 +79,23 @@ extension FilmsListView {
     let posterPath: String
     let title: String
     let releaseYear: String
-    let viewsNumber: String
-    let vote: String
+    let voteCount: String
+    let voteAverage: String
 
     public init(
       id: Int,
       title: String,
       posterPath: String,
       releaseYear: String,
-      viewsNumber: String,
-      vote: String
+      voteCount: String,
+      voteAverage: String
     ) {
       self.id = id
       self.posterPath = posterPath
       self.title = title
       self.releaseYear = releaseYear
-      self.viewsNumber = viewsNumber
-      self.vote = vote
+      self.voteCount = voteCount
+      self.voteAverage = voteAverage
     }
   }
 }
@@ -105,32 +111,32 @@ extension FilmsListView {
             title: "No Way Up",
             posterPath: "hu40Uxp9WtpL34jv3zyWLb5zEVY.jpg",
             releaseYear: "2024",
-            viewsNumber: "1.5K",
-            vote: "5.8"
+            voteCount: "1.5K",
+            voteAverage: "5.8"
           ),
           .init(
             id: 2,
             title: "Dune: Part Two",
             posterPath: "8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
             releaseYear: "2024",
-            viewsNumber: "1.3M",
-            vote: "8.4"
+            voteCount: "1.3M",
+            voteAverage: "8.4"
           ),
           .init(
             id: 3,
             title: "Land of Bad",
             posterPath: "h27WHO2czaY5twDmV3Wfx5IdqoE.jpg",
             releaseYear: "2024",
-            viewsNumber: "977K",
-            vote: "7.0"
+            voteCount: "977K",
+            voteAverage: "7.0"
           ),
           .init(
             id: 4,
             title: "Code 8 Part II",
             posterPath: "hhvMTxlTZtnCOe7YFhod9uz3m37.jpg",
             releaseYear: "2024",
-            viewsNumber: "873K",
-            vote: "6.6"
+            voteCount: "873K",
+            voteAverage: "6.6"
           ),
         ],
         onTap: { _ in },
@@ -146,32 +152,32 @@ extension FilmsListView {
             title: "No Way Up",
             posterPath: "hu40Uxp9WtpL34jv3zyWLb5zEVY.jpg",
             releaseYear: "2024",
-            viewsNumber: "1.5K",
-            vote: "5.8"
+            voteCount: "1.5K",
+            voteAverage: "5.8"
           ),
           .init(
             id: 2,
             title: "Dune: Part Two",
             posterPath: "8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
             releaseYear: "2024",
-            viewsNumber: "1.3M",
-            vote: "8.4"
+            voteCount: "1.3M",
+            voteAverage: "8.4"
           ),
           .init(
             id: 3,
             title: "Land of Bad",
             posterPath: "h27WHO2czaY5twDmV3Wfx5IdqoE.jpg",
             releaseYear: "2024",
-            viewsNumber: "977K",
-            vote: "7.0"
+            voteCount: "977K",
+            voteAverage: "7.0"
           ),
           .init(
             id: 4,
             title: "Code 8 Part II",
             posterPath: "hhvMTxlTZtnCOe7YFhod9uz3m37.jpg",
             releaseYear: "2024",
-            viewsNumber: "873K",
-            vote: "6.6"
+            voteCount: "873K",
+            voteAverage: "6.6"
           ),
         ],
         onTap: { _ in },

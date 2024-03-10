@@ -19,7 +19,7 @@ struct FilmGenre: View {
       }
       .clipShape(RoundedRectangle(cornerRadius: Constants.imageCornerRadius))
   }
-  
+
   private enum Constants {
     static let imageMaxHeight: CGFloat = 164
     static let imageCornerRadius: CGFloat = 8.0

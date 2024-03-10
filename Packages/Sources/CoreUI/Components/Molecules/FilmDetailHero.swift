@@ -4,8 +4,8 @@ public struct FilmDetailHero: View {
   private let title: String
   private let posterPath: String
   private let releaseYear: String
-  private let viewsNumber: String
-  private let vote: String
+  private let voteCount: String
+  private let voteAgerage: String
   private let genres: [String]
   private let onPlayTrailerButtonTapped: () -> Void
 
@@ -13,16 +13,16 @@ public struct FilmDetailHero: View {
     title: String,
     posterPath: String,
     releaseYear: String,
-    viewsNumber: String,
-    vote: String,
+    voteCount: String,
+    voteAverage: String,
     genres: [String],
     onPlayTrailerButtonTapped: @escaping () -> Void
   ) {
     self.title = title
     self.posterPath = posterPath
     self.releaseYear = releaseYear
-    self.viewsNumber = viewsNumber
-    self.vote = vote
+    self.voteCount = voteCount
+    self.voteAgerage = voteAverage
     self.genres = genres
     self.onPlayTrailerButtonTapped = onPlayTrailerButtonTapped
   }
@@ -54,8 +54,8 @@ public struct FilmDetailHero: View {
                 .font(CustomFont.body2)
                 .multilineTextAlignment(.leading)
               HStack(spacing: 16) {
-                SummaryItem(title: viewsNumber, icon: Image.Icon.eye)
-                SummaryItem(title: vote, icon: Image.Icon.star)
+                SummaryItem(title: voteCount, icon: Image.Icon.eye)
+                SummaryItem(title: voteAgerage, icon: Image.Icon.star)
               }
               HStack {
                 OutilneButton(
@@ -75,7 +75,7 @@ public struct FilmDetailHero: View {
       Spacer()
     }
   }
-  
+
   private enum Constants {
     static let imageHeight: CGFloat = 500
     static let padding: CGFloat = 16.0
@@ -88,8 +88,8 @@ public struct FilmDetailHero: View {
       title: "The Beekeeper",
       posterPath: "A7EByudX0eOzlkQ2FIbogzyazm2.jpg",
       releaseYear: "2024",
-      viewsNumber: "8.1m",
-      vote: "9.0",
+      voteCount: "8.2m",
+      voteAverage: "9.8",
       genres: ["Action", "Adventure", "Fantasy"],
       onPlayTrailerButtonTapped: {}
     )

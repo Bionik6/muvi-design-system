@@ -1,24 +1,24 @@
 import SwiftUI
 
 struct FilmCard: View {
-  private let posterPath: String
   private let title: String
+  private let posterPath: String
   private let releaseYear: String
-  private let viewsNumber: String
-  private let vote: String
+  private let voteCount: String
+  private let voteAverage: String
 
   init(
-    posterPath: String,
     title: String,
+    posterPath: String,
     releaseYear: String,
-    viewsNumber: String,
-    vote: String
+    voteCount: String,
+    voteAverage: String
   ) {
-    self.posterPath = posterPath
     self.title = title
+    self.posterPath = posterPath
     self.releaseYear = releaseYear
-    self.viewsNumber = viewsNumber
-    self.vote = vote
+    self.voteCount = voteCount
+    self.voteAverage = voteAverage
   }
 
   var body: some View {
@@ -33,8 +33,8 @@ struct FilmCard: View {
           SummaryItem(title: releaseYear)
           Spacer()
           HStack(spacing: 10) {
-            SummaryItem(title: viewsNumber, icon: Image.Icon.eye)
-            SummaryItem(title: vote, icon: Image.Icon.star)
+            SummaryItem(title: voteCount, icon: Image.Icon.eye)
+            SummaryItem(title: voteAverage, icon: Image.Icon.star)
           }
         }
         .foregroundStyle(ColorToken.black20)
@@ -53,11 +53,11 @@ struct FilmCard: View {
 #Preview {
   BaseContentView {
     FilmCard(
-      posterPath: "xOMo8BRK7PfcJv9JCnx7s5hj0PX.jpg",
       title: "Dune: Part Two",
+      posterPath: "xOMo8BRK7PfcJv9JCnx7s5hj0PX.jpg",
       releaseYear: "2024",
-      viewsNumber: "1532",
-      vote: "8.4"
+      voteCount: "1532",
+      voteAverage: "8.4"
     )
     .frame(width: 152, height: 252)
   }

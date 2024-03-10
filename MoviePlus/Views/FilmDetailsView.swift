@@ -18,9 +18,9 @@ struct FilmDetailsView: View {
         FilmDetailHero(
           title: model.film.title,
           posterPath: model.film.posterPath ?? "",
-          releaseYear: model.film.releaseDateString,
-          viewsNumber: "fldjkslfkds",
-          vote: model.film.formatedVote,
+          releaseYear: model.film.releaseDateYear,
+          voteCount: model.film.formatedVoteCount,
+          voteAverage: model.film.formatedVoteAverage,
           genres: model.genres,
           onPlayTrailerButtonTapped: model.playFilmTrailer
         )
@@ -53,10 +53,10 @@ struct FilmDetailsView: View {
         }
       }
     }
-    .sheet(item: $model.selectedClip) { FilmTrailerPlayer(videoId: $0.key) }
+    .sheet(item: $model.selectedClip) { FilmClipPlayer(videoId: $0.key) }
     .sheet(isPresented: $model.playTrailer, content: {
       if let youtubeKey = model.filmTrailerKey {
-        FilmTrailerPlayer(videoId: youtubeKey)
+        FilmClipPlayer(videoId: youtubeKey)
       }
     })
     .task { await model.fetchFilmDetails() }
