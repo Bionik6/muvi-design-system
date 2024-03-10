@@ -3,6 +3,7 @@ import Foundation
 import Networking
 import Observation
 
+@MainActor
 @Observable
 final class FilmsByGenreModel: FilmModel {
   var selectedFilm: Film?
@@ -18,7 +19,6 @@ final class FilmsByGenreModel: FilmModel {
     self.repository = repository
   }
 
-  @MainActor
   func fetchFilms() async {
     page += 1
     do {

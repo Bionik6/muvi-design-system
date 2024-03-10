@@ -16,7 +16,7 @@ struct FilmHeroCard: View {
   }
 
   var body: some View {
-    FilmImage(posterPath: posterPath)
+    FilmImage(posterPath: posterPath, isHighDefinition: false)
       .frame(width: Constants.imageWidth, height: Constants.imageHeight)
       .clipShape(RoundedRectangle(cornerRadius: Constants.imageCornerRadius))
       .overlay(alignment: .bottom) {

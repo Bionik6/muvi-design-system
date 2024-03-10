@@ -23,7 +23,7 @@ struct FilmCard: View {
 
   var body: some View {
     VStack(alignment: .leading, spacing: 6) {
-      FilmImage(posterPath: posterPath)
+      FilmImage(posterPath: posterPath, isHighDefinition: false)
         .frame(height: Constants.imageHeight)
         .frame(minWidth: Constants.imageWidth)
         .clipShape(RoundedRectangle(cornerRadius: Constants.imageCornerRadius))

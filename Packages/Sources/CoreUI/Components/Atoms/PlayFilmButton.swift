@@ -31,15 +31,18 @@ struct PlayFilmButton: View {
 
   private var button: some View {
     Button(action: action, label: {
-      Label(title, systemImage: "play.circle")
-        .font(CustomFont.button)
-        .foregroundStyle(ColorToken.white)
-        .frame(height: Constants.height)
-        .frame(maxWidth: .infinity)
-        .background {
-          RoundedRectangle(cornerRadius: Constants.cornerRadius)
-            .fill(ColorToken.red100)
-        }
+      Label(
+        title: { Text(title) },
+        icon: { Image.Icon.play }
+      )
+      .font(CustomFont.button)
+      .foregroundStyle(ColorToken.white)
+      .frame(height: Constants.height)
+      .frame(maxWidth: .infinity)
+      .background {
+        RoundedRectangle(cornerRadius: Constants.cornerRadius)
+          .fill(ColorToken.red100)
+      }
     })
   }
 

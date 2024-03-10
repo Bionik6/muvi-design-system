@@ -22,7 +22,6 @@ class FilmDetailsModel {
     self.repository = repository
   }
 
-  @MainActor
   func fetchFilmDetails() async {
     async let filmDetails = await repository.details(film.id, film.type)
     async let cast = await repository.cast(film.id, film.type)

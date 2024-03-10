@@ -66,7 +66,7 @@ struct YoutubeLinkView: View {
         .frame(maxWidth: .infinity)
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .overlay {
-          Image(systemName: "play.circle")
+          Image.Icon.play
             .font(.system(size: Constants.imageSize))
             .foregroundStyle(ColorToken.white)
         }
@@ -75,7 +75,7 @@ struct YoutubeLinkView: View {
         .frame(height: 94)
         .foregroundStyle(ColorToken.black20)
         .overlay {
-          Image(systemName: "play.rectangle.fill")
+          Image.Icon.youtubePlay
             .font(.system(size: Constants.imageSize))
             .foregroundStyle(ColorToken.red100)
         }

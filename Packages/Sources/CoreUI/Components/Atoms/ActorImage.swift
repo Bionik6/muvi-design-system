@@ -20,7 +20,7 @@ struct ActorImage: View {
         .frame(width: Constants.imageSize, height: Constants.imageSize)
         .foregroundStyle(ColorToken.black20)
         .overlay {
-          Image(systemName: "person.fill")
+          Image.Icon.person
             .font(.system(size: Constants.popcornSize))
             .foregroundStyle(ColorToken.black60)
         }

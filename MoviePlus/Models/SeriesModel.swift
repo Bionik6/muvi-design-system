@@ -19,7 +19,6 @@ final class SeriesModel: FilmModel {
     self.repository = repository
   }
 
-  @MainActor
   func fetchSeries() async {
     async let airingTodaySeries = await repository.airingTodaySeries()
     async let trendingSeries = await repository.trendingSeries()

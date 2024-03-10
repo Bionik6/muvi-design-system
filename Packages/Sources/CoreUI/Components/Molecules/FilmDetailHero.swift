@@ -33,7 +33,7 @@ public struct FilmDetailHero: View {
 
   public var body: some View {
     VStack {
-      FilmImage(posterPath: posterPath)
+      FilmImage(posterPath: posterPath, isHighDefinition: true)
         .frame(height: 500)
         .clipShape(Rectangle())
         .overlay(alignment: .bottom) {

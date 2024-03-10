@@ -14,7 +14,7 @@ struct OutilneButton: View {
 
   var body: some View {
     Button(action: action, label: {
-      Label(title, systemImage: "play.circle")
+      Label(title: { Text(title) }, icon: { Image.Icon.plus })
         .font(CustomFont.button)
         .foregroundStyle(ColorToken.red100)
         .frame(height: Constants.height)

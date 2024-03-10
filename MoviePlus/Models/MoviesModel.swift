@@ -1,4 +1,3 @@
-import OSLog
 import CoreModels
 import Foundation
 import Networking
@@ -21,7 +20,6 @@ final class MoviesModel: FilmModel {
     self.repository = repository
   }
 
-  @MainActor
   func fetchMovies() async {
     async let topMovies = await repository.topMovies()
     async let comingSoonMovies = await repository.upcomingMovies()

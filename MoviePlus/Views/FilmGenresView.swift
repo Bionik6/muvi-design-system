@@ -1,23 +1,9 @@
 import CoreUI
 import SwiftUI
-import CoreModels
-
-@MainActor
-@Observable
-class FilmGenreModel {
-  var selectedGenre: FilmGenre?
-
-  func selectGenre(with id: Int) {
-    guard let genre = filmGenres.first(where: { $0.id == id }) else {
-      return
-    }
-    selectedGenre = genre
-  }
-}
 
 @MainActor
 struct FilmGenresView: View {
-  @State private var model = FilmGenreModel()
+  @State private var model = FilmGenresModel()
 
   var body: some View {
     NavigationStack {

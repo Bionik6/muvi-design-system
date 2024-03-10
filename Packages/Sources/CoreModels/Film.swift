@@ -44,24 +44,25 @@ public struct Film: Hashable, Identifiable, Sendable {
 
   public var releaseDate: Date {
     let strategy = Date.ISO8601FormatStyle().year().month().day().dateSeparator(.dash)
-    return try! Date(releaseDateString, strategy: strategy)
+    guard let date = try? Date(releaseDateString, strategy: strategy) else { return .now }
+    return date
   }
 
-  public var posterURL: URL {
-    guard var url = URL(string: "https://image.tmdb.org/t/p/w500") else {
-      fatalError("URL can't be constructed")
-    }
-    url.appendPathComponent(posterPath ?? "")
-    return url
-  }
-
-  public var largerPosterURL: URL {
-    guard var url = URL(string: "https://image.tmdb.org/t/p/original") else {
-      fatalError("URL can't be constructed")
-    }
-    url.appendPathComponent(posterPath ?? "")
-    return url
-  }
+//  public var posterURL: URL {
+//    guard var url = URL(string: "https://image.tmdb.org/t/p/w500") else {
+//      fatalError("URL can't be constructed")
+//    }
+//    url.appendPathComponent(posterPath ?? "")
+//    return url
+//  }
+//
+//  public var largerPosterURL: URL {
+//    guard var url = URL(string: "https://image.tmdb.org/t/p/original") else {
+//      fatalError("URL can't be constructed")
+//    }
+//    url.appendPathComponent(posterPath ?? "")
+//    return url
+//  }
 }
 
 extension Sequence<Film> {
