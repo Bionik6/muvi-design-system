@@ -9,27 +9,12 @@ let package = Package(
     .iOS(.v17),
   ],
   products: [
-    .singleTargetLibrary("CoreUI"),
     .singleTargetLibrary("CoreModels"),
     .singleTargetLibrary("Networking"),
   ],
   dependencies: [
-    .package(url: "https://github.com/SvenTiigi/YouTubePlayerKit", exact: "1.7.0"),
   ],
   targets: [
-    .target(
-      name: "CoreUI",
-      dependencies: [
-        .product(name: "YouTubePlayerKit", package: "YouTubePlayerKit"),
-      ],
-      resources: [
-        .process("Resources/Assets.xcassets"),
-        .process("Resources/Fonts/Inter-Bold.ttf"),
-        .process("Resources/Fonts/Inter-Medium.ttf"),
-        .process("Resources/Fonts/Inter-Regular.ttf"),
-        .process("Resources/Fonts/Inter-SemiBold.ttf"),
-      ]
-    ),
     .target(
       name: "CoreModels"
     ),

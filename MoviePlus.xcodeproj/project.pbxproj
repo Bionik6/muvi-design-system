@@ -16,7 +16,6 @@
 		4035B6142B8285F0004BCF53 /* GenresModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4035B6132B8285F0004BCF53 /* GenresModel.swift */; };
 		4035B6162B82A31B004BCF53 /* FilmDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4035B6152B82A31B004BCF53 /* FilmDetailsModel.swift */; };
 		40536BEA2B82BA9400AA788A /* CoreModels in Frameworks */ = {isa = PBXBuildFile; productRef = 40536BE92B82BA9400AA788A /* CoreModels */; };
-		40536BEC2B82BA9400AA788A /* CoreUI in Frameworks */ = {isa = PBXBuildFile; productRef = 40536BEB2B82BA9400AA788A /* CoreUI */; };
 		40536BEE2B82BA9400AA788A /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = 40536BED2B82BA9400AA788A /* Networking */; };
 		40A7641B2B9CD84B00C62350 /* MoviesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A7641A2B9CD84B00C62350 /* MoviesView.swift */; };
 		40A7641D2B9CFCCF00C62350 /* Mappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A7641C2B9CFCCF00C62350 /* Mappers.swift */; };
@@ -58,7 +57,6 @@
 			files = (
 				40536BEE2B82BA9400AA788A /* Networking in Frameworks */,
 				40536BEA2B82BA9400AA788A /* CoreModels in Frameworks */,
-				40536BEC2B82BA9400AA788A /* CoreUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,7 +162,6 @@
 			name = MoviePlus;
 			packageProductDependencies = (
 				40536BE92B82BA9400AA788A /* CoreModels */,
-				40536BEB2B82BA9400AA788A /* CoreUI */,
 				40536BED2B82BA9400AA788A /* Networking */,
 			);
 			productName = MoviePlus;
@@ -464,10 +461,6 @@
 		40536BE92B82BA9400AA788A /* CoreModels */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CoreModels;
-		};
-		40536BEB2B82BA9400AA788A /* CoreUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = CoreUI;
 		};
 		40536BED2B82BA9400AA788A /* Networking */ = {
 			isa = XCSwiftPackageProductDependency;

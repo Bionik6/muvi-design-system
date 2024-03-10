@@ -1,4 +1,3 @@
-import CoreUI
 import SwiftUI
 
 struct ContentView: View {
@@ -10,19 +9,21 @@ struct ContentView: View {
 
   var body: some View {
     TabView {
-      MoviesView()
+      // MoviesView()
+      Text("Movies")
         .tabItem { Label("Movies", systemImage: "play.tv.fill") }
         .tag(FilmTab.movies)
 
-      SeriesView()
+      // SeriesView()
+      Text("TV Shows")
         .tabItem { Label("TV Shows", systemImage: "rectangle.stack.badge.play.fill") }
         .tag(FilmTab.series)
 
-      FilmGenresView()
+      // FilmGenresView()
+      Text("Genres")
         .tabItem { Label("Genres", systemImage: "rectangle.grid.2x2.fill") }
         .tag(FilmTab.genres)
     }
-    .tint(Color(hex: "#DF2935"))
   }
 }
 
