@@ -4,7 +4,7 @@ import Networking
 final class APIClientTests: XCTestCase {
   private let dummyURL = URL(string: "https://api.example.com/")!
 
-  func testExecute_SuccessfulDataDecoding() async {
+  func test_sut_decodes_data_successfully_when_getting_a_200_response() async {
     // Mock data
     let mockData = """
            { "name": "Movie Name", "description": "A great movie" }
@@ -28,6 +28,32 @@ final class APIClientTests: XCTestCase {
       XCTAssertEqual(movie.description, "A great movie")
     } catch {
       XCTFail("We shouldn't have an error")
+    }
+  }
+  
+  func test_sut_throws_unauthorized_NetworkError_when_getting_401_status_from_server() async {
+    MockURLProtocol.requestHandler = { request in
+      let response = HTTPURLResponse(
+        url: self.dummyURL,
+        statusCode: 401,
+        httpVersion: nil,
+        headerFields: ["Content-Type": "application/json"]
+      )!
+      return (response, Data())
+    }
+    
+    let client = URLSessionAPIClient(session: mockSession)
+    let request = Request(path: "/movies")
+    
+    do {
+      _ = try await client.execute(request: request) as Movie
+      XCTFail("Network error not thrown")
+    } catch {
+      guard let error = error as? NetworkError else {
+        XCTFail("Unexpected error type")
+        return
+      }
+      XCTAssertEqual(error, NetworkError.unauthorized)
     }
   }
 }
