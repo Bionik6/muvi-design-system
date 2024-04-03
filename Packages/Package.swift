@@ -37,7 +37,13 @@ let package = Package(
       name: "Networking",
       dependencies: [.target(name: "CoreModels")]
     ),
-    .testTarget(name: "NetworkingTests", dependencies: ["Networking"]),
+    .testTarget(
+      name: "NetworkingTests",
+      dependencies: ["Networking"],
+      resources: [
+        .process("Fixtures/actors.json")
+      ]
+    ),
   ]
 )
 
