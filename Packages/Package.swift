@@ -37,6 +37,7 @@ let package = Package(
       name: "Networking",
       dependencies: [.target(name: "CoreModels")]
     ),
+    .testTarget(name: "NetworkingTests", dependencies: ["Networking"]),
   ]
 )
 
