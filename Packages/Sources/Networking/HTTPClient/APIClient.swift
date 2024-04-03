@@ -37,7 +37,8 @@ public class URLSessionAPIClient {
     if let params = request.params {
       switch params {
       case .body(let bodyParams):
-        urlRequest.httpBody = try? JSONEncoder().encode(bodyParams)
+        let data = try? JSONEncoder().encode(bodyParams)
+        urlRequest.httpBody = data
       case .url(let urlParams):
         var components = URLComponents(url: fullURL, resolvingAgainstBaseURL: true)
         queryItems.append(contentsOf: urlParams.map { URLQueryItem(name: $0.key, value: String(describing: $0.value)) })

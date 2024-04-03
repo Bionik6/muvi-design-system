@@ -4,7 +4,7 @@ import Networking
 final class APIClientTests: XCTestCase {
   private let dummyURL = URL(string: "https://api.example.com/")!
 
-  func test_sut_decodes_data_successfully_when_getting_a_200_response() async {
+  func test_sut_decodes_data_successfully_after_getting_a_200_response() async {
     let mockData = """
            { "name": "Movie Name", "description": "A great movie" }
     """.data(using: .utf8)!
@@ -19,7 +19,7 @@ final class APIClientTests: XCTestCase {
     }
   }
 
-  func test_sut_fails_todecode_data_successfully_even_when_getting_a_200_response() async {
+  func test_sut_fails_to_decode_data_successfully_after_getting_a_200_response() async {
     let mockData = """
            { "name": "Movie Name", "description": null }
     """.data(using: .utf8)!
@@ -89,10 +89,73 @@ final class APIClientTests: XCTestCase {
   }
 }
 
+// MARK: - URLRequest Tests
+
+extension APIClientTests {
+  func testPrepareURLRequest_with_URLParams() async {
+    makeDummyRequest()
+    let client = URLSessionAPIClient(session: mockSession)
+
+    let request = Request(
+      path: "movies",
+      method: .get,
+      params: .url(["key1": "value1", "key2": 2]),
+      headers: ["Authorization": "Bearer token"]
+    )
+
+    _ = try? await client.execute(request: request) as Movie
+
+    do {
+      let urlRequest = try XCTUnwrap(MockURLProtocol.request)
+      XCTAssertEqual(urlRequest.httpMethod, "GET")
+      XCTAssertEqual(urlRequest.value(forHTTPHeaderField: "Content-Type"), "application/json")
+      XCTAssertEqual(urlRequest.value(forHTTPHeaderField: "Accept"), "application/json;charset=utf-8")
+      XCTAssertEqual(urlRequest.value(forHTTPHeaderField: "Authorization"), "Bearer token")
+      XCTAssertTrue(urlRequest.url?.absoluteString.contains("key1=value1") ?? false)
+      XCTAssertTrue(urlRequest.url?.absoluteString.contains("key2=2") ?? false)
+    } catch {
+      XCTFail("URLRequest shouldn't be nil")
+    }
+  }
+
+  func testPrepareURLRequest_with_BodyParams() async {
+    makeDummyRequest()
+    let client = URLSessionAPIClient(session: mockSession)
+
+    let request = Request(
+      path: "movies",
+      method: .post,
+      params: .body(Movie(name: "Spiderman", description: "A good movie"))
+    )
+
+    _ = try? await client.execute(request: request) as Movie
+
+    do {
+      let urlRequest = try XCTUnwrap(MockURLProtocol.request)
+      XCTAssertEqual(urlRequest.httpMethod, "POST")
+    } catch {
+      XCTFail("URLRequest shouldn't be nil")
+    }
+  }
+
+  private func makeDummyRequest() {
+    MockURLProtocol.requestHandler = { _ in
+      let response = HTTPURLResponse(
+        url: self.dummyURL,
+        statusCode: 200,
+        httpVersion: nil,
+        headerFields: ["Content-Type": "application/json"]
+      )!
+      return (response, Data())
+    }
+  }
+}
+
 // MARK: - Stubs
 
 extension APIClientTests {
   private class MockURLProtocol: URLProtocol {
+    static var request: URLRequest?
     static var error: Error?
     static var requestHandler: ((URLRequest) throws -> (HTTPURLResponse, Data))?
 
@@ -101,7 +164,8 @@ extension APIClientTests {
     }
 
     override class func canonicalRequest(for request: URLRequest) -> URLRequest {
-      request
+      self.request = request
+      return request
     }
 
     override func startLoading() {
@@ -125,9 +189,7 @@ extension APIClientTests {
       }
     }
 
-    override func stopLoading() {
-      // TODO: Andd stop loading here
-    }
+    override func stopLoading() {}
   }
 
   private var mockSession: URLSession {
@@ -136,7 +198,7 @@ extension APIClientTests {
     return URLSession(configuration: configuration)
   }
 
-  private struct Movie: Decodable {
+  private struct Movie: Codable {
     let name: String
     let description: String
   }
