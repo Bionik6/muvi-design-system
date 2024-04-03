@@ -5,23 +5,11 @@ final class APIClientTests: XCTestCase {
   private let dummyURL = URL(string: "https://api.example.com/")!
 
   func test_sut_decodes_data_successfully_when_getting_a_200_response() async {
-    // Mock data
     let mockData = """
            { "name": "Movie Name", "description": "A great movie" }
     """.data(using: .utf8)!
-    MockURLProtocol.requestHandler = { request in
-      let response = HTTPURLResponse(
-        url: self.dummyURL,
-        statusCode: 200,
-        httpVersion: nil,
-        headerFields: ["Content-Type": "application/json"]
-      )!
-      return (response, mockData)
-    }
-    
-    let client = URLSessionAPIClient(session: mockSession)
-    let request = Request(path: "/movies")
-    
+    let (client, request) = makeDummyRequest(from: mockData, statusCode: 200)
+
     do {
       let movie: Movie = try await client.execute(request: request)
       XCTAssertEqual(movie.name, "Movie Name")
@@ -30,21 +18,29 @@ final class APIClientTests: XCTestCase {
       XCTFail("We shouldn't have an error")
     }
   }
-  
-  func test_sut_throws_unauthorized_NetworkError_when_getting_401_status_from_server() async {
-    MockURLProtocol.requestHandler = { request in
-      let response = HTTPURLResponse(
-        url: self.dummyURL,
-        statusCode: 401,
-        httpVersion: nil,
-        headerFields: ["Content-Type": "application/json"]
-      )!
-      return (response, Data())
+
+  func test_sut_fails_todecode_data_successfully_even_when_getting_a_200_response() async {
+    let mockData = """
+           { "name": "Movie Name", "description": null }
+    """.data(using: .utf8)!
+
+    let (client, request) = makeDummyRequest(from: mockData, statusCode: 200)
+
+    do {
+      _ = try await client.execute(request: request) as Movie
+      XCTFail("Processing error should be thrown")
+    } catch {
+      guard let error = error as? NetworkError else {
+        XCTFail("Unexpected error type")
+        return
+      }
+      XCTAssertEqual(error, NetworkError.unprocessableData)
     }
-    
-    let client = URLSessionAPIClient(session: mockSession)
-    let request = Request(path: "/movies")
-    
+  }
+
+  func test_sut_throws_unauthorized_NetworkError_when_getting_401_status_from_server() async {
+    let (client, request) = makeDummyRequest(from: Data(), statusCode: 401)
+
     do {
       _ = try await client.execute(request: request) as Movie
       XCTFail("Network error not thrown")
@@ -55,6 +51,41 @@ final class APIClientTests: XCTestCase {
       }
       XCTAssertEqual(error, NetworkError.unauthorized)
     }
+  }
+
+  func test_sut_throws_unauthorized_NetworkError_when_getting_500_status_from_server() async {
+    let (client, request) = makeDummyRequest(from: Data(), statusCode: 500)
+
+    do {
+      _ = try await client.execute(request: request) as Movie
+      XCTFail("Network error not thrown")
+    } catch {
+      guard let error = error as? NetworkError else {
+        XCTFail("Unexpected error type")
+        return
+      }
+      XCTAssertEqual(error, NetworkError.serverError)
+    }
+  }
+
+  private func makeDummyRequest(
+    from data: Data,
+    statusCode: Int
+  ) -> (URLSessionAPIClient, Request) {
+    MockURLProtocol.requestHandler = { _ in
+      let response = HTTPURLResponse(
+        url: self.dummyURL,
+        statusCode: statusCode,
+        httpVersion: nil,
+        headerFields: ["Content-Type": "application/json"]
+      )!
+      return (response, data)
+    }
+
+    let client = URLSessionAPIClient(session: mockSession)
+    let request = Request(path: "/movies")
+
+    return (client, request)
   }
 }
 
@@ -104,7 +135,7 @@ extension APIClientTests {
     configuration.protocolClasses = [MockURLProtocol.self]
     return URLSession(configuration: configuration)
   }
-  
+
   private struct Movie: Decodable {
     let name: String
     let description: String
