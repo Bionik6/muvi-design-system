@@ -43,6 +43,7 @@ let package = Package(
       resources: [
         .process("Fixtures/clips.json"),
         .process("Fixtures/actors.json"),
+        .process("Fixtures/film_details.json"),
       ]
     ),
   ]

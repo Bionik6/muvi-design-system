@@ -18,12 +18,16 @@ enum FixtureLoader {
     }
     return object
   }
-  
+
   static func loadActors() -> CastResponse {
     loadFixture(filename: "actors")
   }
-  
+
   static func loadClips() -> ClipResponse {
     loadFixture(filename: "clips")
+  }
+
+  static func loadFilmDetails() -> RemoteFilm {
+    loadFixture(filename: "film_details")
   }
 }
