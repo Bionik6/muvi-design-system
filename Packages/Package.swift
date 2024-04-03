@@ -41,7 +41,8 @@ let package = Package(
       name: "NetworkingTests",
       dependencies: ["Networking"],
       resources: [
-        .process("Fixtures/actors.json")
+        .process("Fixtures/clips.json"),
+        .process("Fixtures/actors.json"),
       ]
     ),
   ]

@@ -1,7 +1,7 @@
 import Foundation
 import Networking
 
-public enum FixtureLoader {
+enum FixtureLoader {
   private static func loadFixture<T: Decodable>(
     filename name: String,
     file: StaticString = #file,
@@ -19,7 +19,11 @@ public enum FixtureLoader {
     return object
   }
   
-  public static func loadActors() -> CastResponse {
+  static func loadActors() -> CastResponse {
     loadFixture(filename: "actors")
+  }
+  
+  static func loadClips() -> ClipResponse {
+    loadFixture(filename: "clips")
   }
 }
