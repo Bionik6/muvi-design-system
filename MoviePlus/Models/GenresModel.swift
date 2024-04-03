@@ -31,11 +31,10 @@ final class FilmsByGenreModel: FilmModel {
 }
 
 struct GenresRepository: Sendable {
-  private static let client = APIClient()
-
   let filmsByGenre: @Sendable (Int, Int) async throws -> [Film]
 
   static let live = Self { genreId, page in
+    let client = URLSessionAPIClient()
     let params = RequestParams.url(["page": page])
     let path = "genre/\(genreId)/movies"
     let request = Request(path: path, params: params)

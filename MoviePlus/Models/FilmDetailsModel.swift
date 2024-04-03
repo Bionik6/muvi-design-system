@@ -53,24 +53,25 @@ class FilmDetailsModel {
 }
 
 struct FilmDetailsRepository: Sendable {
-  private static let client = APIClient()
-
   let details: @Sendable (Int, FilmType) async throws -> FilmDetails
   let cast: @Sendable (Int, FilmType) async throws -> [FilmActor]
   let clips: @Sendable (Int, FilmType) async throws -> [FilmClip]
 
   static let live = FilmDetailsRepository(
     details: { id, type in
+      let client = URLSessionAPIClient()
       let request = Request(path: "\(type.rawValue)/\(id)")
       let response: RemoteFilmDetails = try await client.execute(request: request)
       return response.toModel(type: type)
     },
     cast: { id, type in
+      let client = URLSessionAPIClient()
       let request = Request(path: "\(type.rawValue)/\(id)/credits")
       let response: CastResponse = try await client.execute(request: request)
       return response.cast.map(\.model)
     },
     clips: { id, type in
+      let client = URLSessionAPIClient()
       let request = Request(path: "\(type.rawValue)/\(id)/videos")
       let response: ClipResponse = try await client.execute(request: request)
       return response.results.map(\.model)

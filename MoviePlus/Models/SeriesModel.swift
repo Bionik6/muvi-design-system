@@ -42,8 +42,6 @@ final class SeriesModel: FilmModel {
 }
 
 struct SeriesRepository: Sendable {
-  private static let client = APIClient()
-
   let popularSeries: @Sendable () async throws -> [Film]
   let trendingSeries: @Sendable () async throws -> [Film]
   let topRatedSeries: @Sendable () async throws -> [Film]
@@ -65,6 +63,7 @@ struct SeriesRepository: Sendable {
   )
 
   private static func makeRequest(path: String) async throws -> [Film] {
+    let client = URLSessionAPIClient()
     let request = Request(path: path)
     let response: FilmsResponse = try await client.execute(request: request)
     return response.results.map { $0.toModel(type: .serie) }

@@ -1,6 +1,10 @@
 import Foundation
 
-public struct APIClient: Sendable {
+public protocol APIClient {
+  func execute<D: Decodable>(request: Request) async throws -> D
+}
+
+public class URLSessionAPIClient {
   private var session: URLSession
   private var baseURL = URL(string: "https://api.themoviedb.org/3/")!
 
