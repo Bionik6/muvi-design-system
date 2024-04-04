@@ -8,7 +8,7 @@ import Observation
 final class SeriesModel: FilmModel {
   var selectedFilm: Film?
   private let repository: SeriesRepository
-  
+
   private(set) var isLoading = false
   private(set) var error: LocalizedError?
   private(set) var airingTodaySeries: [Film] = []

@@ -16,7 +16,11 @@ final class MoviesModelTests: XCTestCase {
     XCTAssertFalse(sut.isLoading)
     XCTAssertNotNil(sut.error)
 
-    XCTAssertEqual(sut.error?.failureReason, NetworkError.noInternetConnectivity.failureReason)
+    guard let error = sut.error as? NetworkError else {
+      XCTFail("error should be a NetworkError")
+      return
+    }
+    XCTAssertEqual(error, .noInternetConnectivity)
 
     XCTAssertEqual(sut.comingSoonMovies.count, 0)
     XCTAssertEqual(sut.topMovies.count, 0)

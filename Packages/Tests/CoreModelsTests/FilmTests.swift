@@ -3,7 +3,7 @@ import CoreModels
 
 final class FilmTests: XCTestCase {
   func test_sut_properties_are_well_initialized() {
-    let sut = makeSut()
+    let sut = makeSUT()
 
     XCTAssertEqual(sut.id, 1)
     XCTAssertEqual(sut.title, "Spiderman")
@@ -14,17 +14,17 @@ final class FilmTests: XCTestCase {
   }
 
   func test_sut_formatedVoteAverage() {
-    let sut = makeSut()
+    let sut = makeSUT()
     XCTAssertEqual(sut.formatedVoteAverage, "5.9")
   }
 
   func test_sut_formatedVoteCount() {
-    let sut = makeSut()
+    let sut = makeSUT()
     XCTAssertEqual(sut.formatedVoteCount, "102")
   }
 
   func test_sut_releaseDate() {
-    let sut = makeSut()
+    let sut = makeSUT()
     let calendar = Calendar.current
     let components = DateComponents(year: 2022, month: 04, day: 30)
     let date = calendar.date(from: components)
@@ -32,31 +32,31 @@ final class FilmTests: XCTestCase {
   }
 
   func test_sut_releaseDateYear() {
-    let sut = makeSut()
+    let sut = makeSUT()
     XCTAssertEqual(sut.releaseDateYear, "2022")
   }
 
   func test_sut_sanitize() {
     let films = [
-      makeSut(id: 1, posterPath: "poster-path", releaseDate: "2022-04-25"),
-      makeSut(id: 2, posterPath: "poster-path", releaseDate: "2022-04-26"),
-      makeSut(id: 3, posterPath: nil, releaseDate: "2022-04-27"),
-      makeSut(id: 4, posterPath: "poster-path", releaseDate: "2022-04-28"),
+      makeSUT(id: 1, posterPath: "poster-path", releaseDate: "2022-04-25"),
+      makeSUT(id: 2, posterPath: "poster-path", releaseDate: "2022-04-26"),
+      makeSUT(id: 3, posterPath: nil, releaseDate: "2022-04-27"),
+      makeSUT(id: 4, posterPath: "poster-path", releaseDate: "2022-04-28"),
     ]
 
     let sanitizedFilms = films.sanitize()
 
     XCTAssertEqual(sanitizedFilms.count, 3)
     XCTAssertEqual(sanitizedFilms, [
-      makeSut(id: 4, posterPath: "poster-path", releaseDate: "2022-04-28"),
-      makeSut(id: 2, posterPath: "poster-path", releaseDate: "2022-04-26"),
-      makeSut(id: 1, posterPath: "poster-path", releaseDate: "2022-04-25"),
+      makeSUT(id: 4, posterPath: "poster-path", releaseDate: "2022-04-28"),
+      makeSUT(id: 2, posterPath: "poster-path", releaseDate: "2022-04-26"),
+      makeSUT(id: 1, posterPath: "poster-path", releaseDate: "2022-04-25"),
     ])
   }
 }
 
 extension FilmTests {
-  private func makeSut(
+  private func makeSUT(
     id: Int = 1,
     posterPath: String? = "/poster-path",
     releaseDate: String = "2022-04-30"

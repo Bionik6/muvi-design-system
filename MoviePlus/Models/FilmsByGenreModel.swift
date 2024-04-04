@@ -10,6 +10,7 @@ final class FilmsByGenreModel: FilmModel {
   let genre: FilmGenre
   private let repository: GenresRepository
 
+  private(set) var isLoading = false
   private(set) var error: LocalizedError?
   private(set) var films: [Film] = []
   private(set) var page: Int = 0
@@ -20,6 +21,8 @@ final class FilmsByGenreModel: FilmModel {
   }
 
   func fetchFilms() async {
+    defer { isLoading = false }
+    isLoading = true
     page += 1
     do {
       let fetchedFilms = try await repository.filmsByGenre(genre.id, page)
