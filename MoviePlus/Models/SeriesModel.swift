@@ -8,7 +8,8 @@ import Observation
 final class SeriesModel: FilmModel {
   var selectedFilm: Film?
   private let repository: SeriesRepository
-
+  
+  private(set) var isLoading = false
   private(set) var error: LocalizedError?
   private(set) var airingTodaySeries: [Film] = []
   private(set) var trendingSeries: [Film] = []
@@ -20,6 +21,8 @@ final class SeriesModel: FilmModel {
   }
 
   func fetchSeries() async {
+    defer { isLoading = false }
+    isLoading = true
     async let airingTodaySeries = await repository.airingTodaySeries()
     async let trendingSeries = await repository.trendingSeries()
     async let topRatedSeries = await repository.topRatedSeries()
