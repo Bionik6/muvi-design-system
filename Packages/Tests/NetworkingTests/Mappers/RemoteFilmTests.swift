@@ -13,8 +13,8 @@ final class RemoteFilmTests: XCTestCase {
     XCTAssertEqual(sut.voteAverage, 6.32)
     XCTAssertNil(sut.firstAirDate)
     XCTAssertNil(sut.name)
-    XCTAssertEqual(sut.genres.map(\.id), [36, 18])
-    XCTAssertEqual(sut.genres.map(\.name), ["History", "Drama"])
+    XCTAssertEqual(sut.genres.map { $0.map(\.id) }, [36, 18])
+    XCTAssertEqual(sut.genres.map { $0.map(\.name) }, ["History", "Drama"])
     XCTAssertEqual(
       sut.overview,
       """
@@ -23,7 +23,7 @@ final class RemoteFilmTests: XCTestCase {
     )
   }
 
-  /* func test_sut_can_map_to_model() {
+  func test_sut_can_map_to_model() {
     let sut = FixtureLoader.loadFilmDetails()
     let model = sut.toModel(type: .movie)
 
@@ -31,5 +31,5 @@ final class RemoteFilmTests: XCTestCase {
     XCTAssertEqual(sut.title, model.title)
     XCTAssertEqual(sut.posterPath, model.posterPath)
     XCTAssertEqual(sut.overview, model.overview)
-  } */
+  }
 }
