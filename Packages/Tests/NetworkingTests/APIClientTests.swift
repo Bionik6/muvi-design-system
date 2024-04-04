@@ -67,6 +67,24 @@ final class APIClientTests: XCTestCase {
       XCTAssertEqual(error, NetworkError.serverError)
     }
   }
+
+  func test_sut_throws_noInternet_NetworkError() async {
+    MockURLProtocol.requestHandler = { _ in
+      throw URLError(.notConnectedToInternet)
+    }
+
+    let client = URLSessionAPIClient(session: mockSession)
+    let request = Request(path: "/movies")
+
+    do {
+      let _ = try await client.execute(request: request) as Movie
+      XCTFail("Expected to throw NetworkError.noInternetConnectivity, but succeeded")
+    } catch let error as NetworkError {
+      XCTAssertEqual(error, NetworkError.noInternetConnectivity)
+    } catch {
+      XCTFail("Expected NetworkError.noInternetConnectivity, but received \(error)")
+    }
+  }
 }
 
 // MARK: - URLRequest Tests
@@ -120,6 +138,7 @@ extension APIClientTests {
 }
 
 // MARK: - Helpers
+
 extension APIClientTests {
   private func makeDummyRequest() {
     MockURLProtocol.requestHandler = { _ in
@@ -132,8 +151,7 @@ extension APIClientTests {
       return (response, Data())
     }
   }
-  
-  
+
   private func makeDummyRequest(
     from data: Data,
     statusCode: Int
@@ -147,10 +165,10 @@ extension APIClientTests {
       )!
       return (response, data)
     }
-    
+
     let client = URLSessionAPIClient(session: mockSession)
     let request = Request(path: "/movies")
-    
+
     return (client, request)
   }
 }

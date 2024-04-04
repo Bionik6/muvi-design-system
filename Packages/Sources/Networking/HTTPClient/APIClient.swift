@@ -13,16 +13,20 @@ public class URLSessionAPIClient {
   }
 
   public func execute<D: Decodable>(request: Request) async throws -> D {
-    let sessionRequest = prepareURLRequest(for: request)
-    let (data, response) = try await session.data(for: sessionRequest)
-    if let response = response as? HTTPURLResponse {
-      if response.statusCode == 401 { throw NetworkError.unauthorized }
-      if 400...599 ~= response.statusCode { throw NetworkError.serverError }
+    do {
+      let sessionRequest = prepareURLRequest(for: request)
+      let (data, response) = try await session.data(for: sessionRequest)
+      if let response = response as? HTTPURLResponse {
+        if response.statusCode == 401 { throw NetworkError.unauthorized }
+        if 400...599 ~= response.statusCode { throw NetworkError.serverError }
+      }
+      guard let object = try? decoder.decode(D.self, from: data) else {
+        throw NetworkError.unprocessableData
+      }
+      return object
+    } catch URLError.notConnectedToInternet, URLError.timedOut {
+      throw NetworkError.noInternetConnectivity
     }
-    guard let object = try? decoder.decode(D.self, from: data) else {
-      throw NetworkError.unprocessableData
-    }
-    return object
   }
 
   private func prepareURLRequest(for request: Request) -> URLRequest {
