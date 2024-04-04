@@ -46,6 +46,10 @@ let package = Package(
         .process("Fixtures/film_details.json"),
       ]
     ),
+    .testTarget(
+      name: "CoreModelsTests",
+      dependencies: ["CoreModels"]
+    ),
   ]
 )
 

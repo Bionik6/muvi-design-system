@@ -1,4 +1,3 @@
-import Foundation
 import CoreModels
 
 let filmGenres: [FilmGenre] = [
