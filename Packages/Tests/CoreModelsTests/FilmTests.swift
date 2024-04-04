@@ -25,9 +25,10 @@ final class FilmTests: XCTestCase {
 
   func test_sut_releaseDate() {
     let sut = makeSut()
+    let calendar = Calendar.current
     let components = DateComponents(year: 2022, month: 04, day: 30)
-    let date = Calendar.current.date(from: components)
-    XCTAssertTrue(Calendar.current.isDate(date!, inSameDayAs: sut.releaseDate))
+    let date = calendar.date(from: components)
+    XCTAssertTrue(calendar.isDate(date!, inSameDayAs: sut.releaseDate))
   }
 
   func test_sut_releaseDateYear() {

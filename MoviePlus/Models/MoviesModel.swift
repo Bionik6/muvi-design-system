@@ -9,6 +9,8 @@ final class MoviesModel: FilmModel {
   var selectedFilm: Film?
   private let repository: MoviesRepository
 
+  private(set) var isLoading = false
+
   private(set) var error: LocalizedError?
   private(set) var topMovies: [Film] = []
   private(set) var comingSoonMovies: [Film] = []
@@ -21,6 +23,8 @@ final class MoviesModel: FilmModel {
   }
 
   func fetchMovies() async {
+    defer { isLoading = false }
+    isLoading = true
     async let topMovies = await repository.topMovies()
     async let comingSoonMovies = await repository.upcomingMovies()
     async let trendingMovies = await repository.trendingMovies()
