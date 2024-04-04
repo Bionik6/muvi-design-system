@@ -19,7 +19,7 @@ extension Film {
       voteAgerage: 7.454,
       voteCount: 1591,
       releaseDateString: "2024-01-10",
-      overview: "One man’s campaign for vengeance takes on national stakes after he is revealed to be a former operative of a powerful and clandestine organization known as Beekeepers.",
+      overview: "One man’s campaign for vengeance takes on national stakes after he is revealed to be a former operative of a powerful and clandestine organization known as Beekeepers.", genres: ["Adventure", "Fantasy"],
       type: .movie
     )
   }

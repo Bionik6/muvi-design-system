@@ -1,4 +1,4 @@
-import CoreModels
+/*import CoreModels
 import Foundation
 
 public struct RemoteFilmDetails: Decodable, Sendable {
@@ -27,3 +27,4 @@ public struct RemoteFilmDetails: Decodable, Sendable {
     return FilmDetails(film: film, genres: genres.map(\.name))
   }
 }
+*/

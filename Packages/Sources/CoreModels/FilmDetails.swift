@@ -1,5 +1,6 @@
 import Foundation
 
+/*
 public struct FilmDetails: Sendable {
   public let film: Film
   public let genres: [String]
@@ -9,3 +10,4 @@ public struct FilmDetails: Sendable {
     self.genres = genres
   }
 }
+*/

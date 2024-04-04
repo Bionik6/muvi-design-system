@@ -23,12 +23,12 @@ class FilmDetailsModel {
   }
 
   func fetchFilmDetails() async {
-    async let filmDetails = await repository.details(film.id, film.type)
+    async let details = await repository.details(film.id, film.type)
     async let cast = await repository.cast(film.id, film.type)
     async let clips = await repository.clips(film.id, film.type)
     do {
-      let result = try await (filmDetails: filmDetails, cast: cast, clips: clips)
-      genres = result.filmDetails.genres
+      let result = try await (filmDetails: details, cast: cast, clips: clips)
+      genres = result.filmDetails.genres ?? []
       self.cast = result.cast.lazy
         .filter { $0.profileImagePath != nil }
         .sorted { $0.order < $1.order }
@@ -53,7 +53,7 @@ class FilmDetailsModel {
 }
 
 struct FilmDetailsRepository: Sendable {
-  let details: @Sendable (Int, FilmType) async throws -> FilmDetails
+  let details: @Sendable (Int, FilmType) async throws -> Film
   let cast: @Sendable (Int, FilmType) async throws -> [FilmActor]
   let clips: @Sendable (Int, FilmType) async throws -> [FilmClip]
 
@@ -61,7 +61,7 @@ struct FilmDetailsRepository: Sendable {
     details: { id, type in
       let client = URLSessionAPIClient()
       let request = Request(path: "\(type.rawValue)/\(id)")
-      let response: RemoteFilmDetails = try await client.execute(request: request)
+      let response: RemoteFilm = try await client.execute(request: request)
       return response.toModel(type: type)
     },
     cast: { id, type in

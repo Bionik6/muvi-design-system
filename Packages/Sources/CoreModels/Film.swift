@@ -13,6 +13,7 @@ public struct Film: Hashable, Identifiable, Sendable {
   private let voteCount: Int
   public let releaseDateString: String
   public let overview: String
+  public let genres: [String]?
   public let type: FilmType
 
   public init(
@@ -23,6 +24,7 @@ public struct Film: Hashable, Identifiable, Sendable {
     voteCount: Int,
     releaseDateString: String,
     overview: String,
+    genres: [String]?,
     type: FilmType
   ) {
     self.id = id
@@ -33,6 +35,7 @@ public struct Film: Hashable, Identifiable, Sendable {
     self.releaseDateString = releaseDateString
     self.overview = overview
     self.type = type
+    self.genres = genres
   }
 
   public var formatedVoteAverage: String { String(format: "%.1f", voteAverage) }
