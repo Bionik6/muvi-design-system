@@ -1,0 +1,42 @@
+{
+  "configurations" : [
+    {
+      "id" : "0833FFF3-2E89-482E-B169-E03846195886",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:MoviePlus.xcodeproj",
+      "identifier" : "4035B5ED2B824C76004BCF53",
+      "name" : "MoviePlus"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:MoviePlus.xcodeproj",
+        "identifier" : "407E7D762BBF34F300C8EBB1",
+        "name" : "MoviePlusTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Packages",
+        "identifier" : "CoreModelsTests",
+        "name" : "CoreModelsTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Packages",
+        "identifier" : "NetworkingTests",
+        "name" : "NetworkingTests"
+      }
+    }
+  ],
+  "version" : 1
+}

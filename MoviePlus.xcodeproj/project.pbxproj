@@ -71,6 +71,7 @@
 		407E7DCC2BBF5EBB00C8EBB1 /* MoviesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesRepository.swift; sourceTree = "<group>"; };
 		407E7DCE2BBF5EE800C8EBB1 /* SeriesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesRepository.swift; sourceTree = "<group>"; };
 		407E7DD02BBF5F2D00C8EBB1 /* FilmDetailsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmDetailsRepository.swift; sourceTree = "<group>"; };
+		407E7DD22BBF6B6B00C8EBB1 /* MoviePlus.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = MoviePlus.xctestplan; path = MoviePlusTests/MoviePlus.xctestplan; sourceTree = "<group>"; };
 		40A7641A2B9CD84B00C62350 /* MoviesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesView.swift; sourceTree = "<group>"; };
 		40A7641C2B9CFCCF00C62350 /* Mappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mappers.swift; sourceTree = "<group>"; };
 		40A764212B9D2B3E00C62350 /* FilmDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmDetailsView.swift; sourceTree = "<group>"; };
@@ -108,6 +109,7 @@
 		4035B5E52B824C76004BCF53 = {
 			isa = PBXGroup;
 			children = (
+				407E7DD22BBF6B6B00C8EBB1 /* MoviePlus.xctestplan */,
 				4035B61C2B82B956004BCF53 /* Packages */,
 				4035B5F02B824C76004BCF53 /* MoviePlus */,
 				407E7D782BBF34F300C8EBB1 /* MoviePlusTests */,
