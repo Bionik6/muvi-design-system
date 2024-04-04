@@ -17,6 +17,7 @@
   },
   "testTargets" : [
     {
+      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:MoviePlus.xcodeproj",
         "identifier" : "407E7D762BBF34F300C8EBB1",
@@ -24,6 +25,7 @@
       }
     },
     {
+      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:Packages",
         "identifier" : "CoreModelsTests",
@@ -31,6 +33,7 @@
       }
     },
     {
+      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:Packages",
         "identifier" : "NetworkingTests",
