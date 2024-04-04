@@ -27,7 +27,7 @@ enum FixtureLoader {
     loadFixture(filename: "clips")
   }
 
-  static func loadFilmDetails() -> RemoteFilm {
+  static func loadFilmDetails() -> RemoteFilmDetails {
     loadFixture(filename: "film_details")
   }
 }

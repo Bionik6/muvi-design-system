@@ -67,26 +67,6 @@ final class APIClientTests: XCTestCase {
       XCTAssertEqual(error, NetworkError.serverError)
     }
   }
-
-  private func makeDummyRequest(
-    from data: Data,
-    statusCode: Int
-  ) -> (URLSessionAPIClient, Request) {
-    MockURLProtocol.requestHandler = { _ in
-      let response = HTTPURLResponse(
-        url: self.dummyURL,
-        statusCode: statusCode,
-        httpVersion: nil,
-        headerFields: ["Content-Type": "application/json"]
-      )!
-      return (response, data)
-    }
-
-    let client = URLSessionAPIClient(session: mockSession)
-    let request = Request(path: "/movies")
-
-    return (client, request)
-  }
 }
 
 // MARK: - URLRequest Tests
@@ -137,7 +117,10 @@ extension APIClientTests {
       XCTFail("URLRequest shouldn't be nil")
     }
   }
+}
 
+// MARK: - Helpers
+extension APIClientTests {
   private func makeDummyRequest() {
     MockURLProtocol.requestHandler = { _ in
       let response = HTTPURLResponse(
@@ -149,9 +132,30 @@ extension APIClientTests {
       return (response, Data())
     }
   }
+  
+  
+  private func makeDummyRequest(
+    from data: Data,
+    statusCode: Int
+  ) -> (URLSessionAPIClient, Request) {
+    MockURLProtocol.requestHandler = { _ in
+      let response = HTTPURLResponse(
+        url: self.dummyURL,
+        statusCode: statusCode,
+        httpVersion: nil,
+        headerFields: ["Content-Type": "application/json"]
+      )!
+      return (response, data)
+    }
+    
+    let client = URLSessionAPIClient(session: mockSession)
+    let request = Request(path: "/movies")
+    
+    return (client, request)
+  }
 }
 
-// MARK: - Stubs
+// MARK: - Mocks
 
 extension APIClientTests {
   private class MockURLProtocol: URLProtocol {
