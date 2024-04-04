@@ -59,22 +59,23 @@ struct FilmDetailsRepository: Sendable {
 
   static let live = FilmDetailsRepository(
     details: { id, type in
-      let client = URLSessionAPIClient()
-      let request = Request(path: "\(type.rawValue)/\(id)")
-      let response: RemoteFilm = try await client.execute(request: request)
+      let response: RemoteFilm = try await makeRequest(path: "\(type.rawValue)/\(id)")
       return response.toModel(type: type)
     },
     cast: { id, type in
-      let client = URLSessionAPIClient()
-      let request = Request(path: "\(type.rawValue)/\(id)/credits")
-      let response: CastResponse = try await client.execute(request: request)
+      let response: CastResponse = try await makeRequest(path: "\(type.rawValue)/\(id)/credits")
       return response.cast.map(\.model)
     },
     clips: { id, type in
-      let client = URLSessionAPIClient()
-      let request = Request(path: "\(type.rawValue)/\(id)/videos")
-      let response: ClipResponse = try await client.execute(request: request)
+      let response: ClipResponse = try await makeRequest(path: "\(type.rawValue)/\(id)/videos")
       return response.results.map(\.model)
     }
   )
+
+  private static func makeRequest<T: Decodable>(path: String) async throws -> T {
+    let client = URLSessionAPIClient()
+    let request = Request(path: path)
+    let response: T = try await client.execute(request: request)
+    return response
+  }
 }

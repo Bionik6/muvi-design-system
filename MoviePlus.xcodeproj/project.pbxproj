@@ -86,7 +86,7 @@
 		4035B5F02B824C76004BCF53 /* MoviePlus */ = {
 			isa = PBXGroup;
 			children = (
-				4097FB972BBDC84500A4178D /* Services */,
+				4097FB972BBDC84500A4178D /* Repositories */,
 				40A764292B9DDDA800C62350 /* Misc */,
 				40A764282B9DDD8400C62350 /* Views */,
 				40A764252B9DDCF500C62350 /* Models */,
@@ -112,11 +112,11 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4097FB972BBDC84500A4178D /* Services */ = {
+		4097FB972BBDC84500A4178D /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Services;
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 		40A764252B9DDCF500C62350 /* Models */ = {
