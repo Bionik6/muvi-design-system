@@ -47,7 +47,7 @@ final class MoviesModelTests: XCTestCase {
   }
 }
 
-extension MoviesRepository {
+private extension MoviesRepository {
   static let noInternetConnectivityMock = Self(
     topMovies: { [] },
     upcomingMovies: { [Film.sample] },

@@ -11,6 +11,7 @@ class FilmDetailsModel {
   var playTrailer: Bool = false
   private let repository: FilmDetailsRepository
 
+  private(set) var isLoading = false
   private(set) var error: LocalizedError?
   private(set) var cast: [FilmActor] = []
   private(set) var clips: [FilmClip] = []
@@ -23,6 +24,8 @@ class FilmDetailsModel {
   }
 
   func fetchFilmDetails() async {
+    defer { isLoading = false }
+    isLoading = true
     async let details = await repository.details(film.id, film.type)
     async let cast = await repository.cast(film.id, film.type)
     async let clips = await repository.clips(film.id, film.type)

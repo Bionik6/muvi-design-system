@@ -22,10 +22,10 @@ final class SeriesModelTests: XCTestCase {
     }
     XCTAssertEqual(error, .unauthorized)
 
-    XCTAssertEqual(sut.airingTodaySeries.count, 0)
-    XCTAssertEqual(sut.trendingSeries.count, 0)
-    XCTAssertEqual(sut.topRatedSeries.count, 0)
-    XCTAssertEqual(sut.popularSeries.count, 0)
+    XCTAssertTrue(sut.airingTodaySeries.isEmpty)
+    XCTAssertTrue(sut.trendingSeries.isEmpty)
+    XCTAssertTrue(sut.topRatedSeries.isEmpty)
+    XCTAssertTrue(sut.popularSeries.isEmpty)
   }
 
   @MainActor
@@ -47,7 +47,7 @@ final class SeriesModelTests: XCTestCase {
   }
 }
 
-extension SeriesRepository {
+private extension SeriesRepository {
   static let unauthorizedMock = Self(
     popularSeries: { [] },
     trendingSeries: { [Film.sample] },

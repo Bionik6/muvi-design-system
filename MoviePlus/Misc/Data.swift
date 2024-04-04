@@ -10,7 +10,7 @@ let filmGenres: [FilmGenre] = [
 ]
 
 extension Film {
-  static var sample: Film {
+  static var sample: Self {
     Film(
       id: 866398,
       title: "The Beekeeper",
@@ -21,6 +21,31 @@ extension Film {
       overview: "One man’s campaign for vengeance takes on national stakes after he is revealed to be a former operative of a powerful and clandestine organization known as Beekeepers.",
       genres: ["Adventure", "Fantasy"],
       type: .movie
+    )
+  }
+}
+
+extension FilmActor {
+  static var sample: Self {
+    FilmActor(
+      id: 1,
+      order: 2,
+      realName: "Jack Black",
+      characterName: "Po",
+      profileImagePath: "/x3PIk93PTbxT88ohfeb26L1VpZw.jpg"
+    )
+  }
+}
+
+extension FilmClip {
+  static var sample: Self {
+    FilmClip(
+      id: "65e798aeea4263014820ffec",
+      name: "Director Denis Villenueve talks Dune Part Two",
+      site: .youtube,
+      key: "asTOTXj5AtI",
+      type: .clip,
+      publishedDateString: "2024-03-01T21:16:46.000Z"
     )
   }
 }

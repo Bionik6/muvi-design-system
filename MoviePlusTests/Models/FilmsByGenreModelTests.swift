@@ -30,7 +30,7 @@ final class FilmsByGenreModelTests: XCTestCase {
     }
     XCTAssertEqual(error, .unprocessableData)
 
-    XCTAssertEqual(sut.films.count, 0)
+    XCTAssertTrue(sut.films.isEmpty)
   }
 
   @MainActor
@@ -55,7 +55,7 @@ final class FilmsByGenreModelTests: XCTestCase {
   }
 }
 
-extension GenresRepository {
+private extension GenresRepository {
   static let unauthorizedMock = Self(
     filmsByGenre: { _, _ in throw NetworkError.unprocessableData }
   )
