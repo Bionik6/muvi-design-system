@@ -11,7 +11,7 @@ public struct RemoteFilm: Decodable, Sendable {
   let overview: String?
   let name: String?
   let firstAirDate: String?
-  let genres: [RemoteGenre]
+  let genres: [RemoteGenre]?
 
   public func toModel(type: FilmType) -> Film {
     Film(
@@ -22,7 +22,7 @@ public struct RemoteFilm: Decodable, Sendable {
       voteCount: voteCount,
       releaseDateString: releaseDate ?? firstAirDate ?? "Today",
       overview: overview ?? "",
-      genres: genres.map(\.name),
+      genres: genres.map { $0.map(\.name) } ?? [],
       type: type
     )
   }
