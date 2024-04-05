@@ -44,6 +44,7 @@ struct SeriesView: View {
       }
       .task { await model.fetchSeries() }
       .navigationTitle("TV Shows")
+      .loader(title: "Please wait while fetching the TV Shows", condition: model.isLoading)
       .navigationDestination(item: $model.selectedFilm) { film in
         FilmDetailsView(film: film)
       }

@@ -48,6 +48,7 @@ struct MoviesView: View {
           }
         }
       }
+      .loader(title: "Please wait while fetching movies", condition: model.isLoading)
       .task { await model.fetchMovies() }
       .navigationTitle("Movies")
       .navigationDestination(item: $model.selectedFilm) { film in
