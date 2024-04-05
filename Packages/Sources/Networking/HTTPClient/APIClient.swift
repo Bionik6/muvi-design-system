@@ -35,8 +35,7 @@ public class URLSessionAPIClient {
     var urlRequest = URLRequest(url: baseURL)
     urlRequest.httpMethod = request.method.rawValue
 
-    let apiKey = "c9856d0cb57c3f14bf75bdc6c063b8f3"
-    var queryItems = [URLQueryItem(name: "api_key", value: apiKey)]
+    var queryItems = [URLQueryItem(name: "api_key", value: Constants.API_KEY)]
 
     if let params = request.params {
       switch params {
@@ -50,7 +49,7 @@ public class URLSessionAPIClient {
         urlRequest.url = components?.url
       }
     } else {
-      let queryItems = [URLQueryItem(name: "api_key", value: apiKey)]
+      let queryItems = [URLQueryItem(name: "api_key", value: Constants.API_KEY)]
       var components = URLComponents(url: fullURL, resolvingAgainstBaseURL: true)
       components?.queryItems = queryItems
       urlRequest.url = components?.url
