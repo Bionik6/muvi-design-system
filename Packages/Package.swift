@@ -35,7 +35,10 @@ let package = Package(
     ),
     .target(
       name: "Networking",
-      dependencies: [.target(name: "CoreModels")]
+      dependencies: [.target(name: "CoreModels")],
+      resources: [
+        .process("Resources/api.themoviedb.org.der"),
+      ]
     ),
     .testTarget(
       name: "NetworkingTests",

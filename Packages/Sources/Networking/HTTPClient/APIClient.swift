@@ -4,7 +4,7 @@ public protocol APIClient {
   func execute<D: Decodable>(request: Request) async throws -> D
 }
 
-public class URLSessionAPIClient {
+public class URLSessionAPIClient: NSObject, APIClient {
   private var session: URLSession
   private var baseURL = URL(string: "https://api.themoviedb.org/3/")!
 
@@ -15,7 +15,7 @@ public class URLSessionAPIClient {
   public func execute<D: Decodable>(request: Request) async throws -> D {
     do {
       let sessionRequest = prepareURLRequest(for: request)
-      let (data, response) = try await session.data(for: sessionRequest)
+      let (data, response) = try await session.data(for: sessionRequest, delegate: self)
       if let response = response as? HTTPURLResponse {
         if response.statusCode == 401 { throw NetworkError.unauthorized }
         if 400...599 ~= response.statusCode { throw NetworkError.serverError }
@@ -71,5 +71,36 @@ public class URLSessionAPIClient {
     let decoder = JSONDecoder()
     decoder.keyDecodingStrategy = .convertFromSnakeCase
     return decoder
+  }
+
+  private let certificates: [Data] = {
+    let url = Bundle.module.url(forResource: "api.themoviedb.org", withExtension: "der")!
+    let data = try! Data(contentsOf: url)
+    return [data]
+  }()
+}
+
+extension URLSessionAPIClient: URLSessionTaskDelegate {
+  public func urlSession(
+    _ session: URLSession,
+    didReceive challenge: URLAuthenticationChallenge,
+    completionHandler: @escaping (
+      URLSession.AuthChallengeDisposition,
+      URLCredential?
+    ) -> Void
+  ) {
+    if let trust = challenge.protectionSpace.serverTrust,
+       SecTrustGetCertificateCount(trust) > 0 {
+      if let certificate = SecTrustGetCertificateAtIndex(trust, 0) {
+        let data = SecCertificateCopyData(certificate) as Data
+        if certificates.contains(data) {
+          completionHandler(.useCredential, URLCredential(trust: trust))
+          return
+        } else {
+          completionHandler(.cancelAuthenticationChallenge, nil)
+        }
+      }
+    }
+    completionHandler(.cancelAuthenticationChallenge, nil)
   }
 }
