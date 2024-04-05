@@ -4,6 +4,13 @@ import Networking
 final class APIClientTests: XCTestCase {
   private let dummyURL = URL(string: "https://api.example.com/")!
 
+  override func tearDown() {
+    MockURLProtocol.error = nil
+    MockURLProtocol.request = nil
+    MockURLProtocol.requestHandler = nil
+    super.tearDown()
+  }
+
   func test_sut_decodes_data_successfully_after_getting_a_200_response() async {
     let mockData = """
            { "name": "Movie Name", "description": "A great movie" }
