@@ -24,9 +24,9 @@ public struct FilmActorsListView: View {
 extension FilmActorsListView {
   public struct UIModel: Identifiable {
     public let id: Int
-    let posterPath: String
-    let realName: String
-    let characterName: String?
+    public let posterPath: String
+    public let realName: String
+    public let characterName: String?
 
     public init(
       id: Int,

@@ -28,7 +28,7 @@ public struct FilmClipsListView: View {
 extension FilmClipsListView {
   public struct UIModel: Identifiable {
     public let id: String
-    let name: String
+    public let name: String
     public let key: String
 
     public init(

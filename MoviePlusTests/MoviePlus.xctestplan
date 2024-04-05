@@ -13,7 +13,8 @@
       "containerPath" : "container:MoviePlus.xcodeproj",
       "identifier" : "4035B5ED2B824C76004BCF53",
       "name" : "MoviePlus"
-    }
+    },
+    "testExecutionOrdering" : "random"
   },
   "testTargets" : [
     {

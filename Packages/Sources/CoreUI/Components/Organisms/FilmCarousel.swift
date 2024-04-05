@@ -35,7 +35,7 @@ public struct FilmCarousel: View {
 extension FilmCarousel {
   public struct UIModel: Identifiable {
     public let id: Int
-    let posterPath: String
+    public let posterPath: String
 
     public init(
       id: Int,

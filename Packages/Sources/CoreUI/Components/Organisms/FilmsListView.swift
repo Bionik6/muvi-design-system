@@ -76,11 +76,11 @@ extension FilmsListView {
 
   public struct UIModel: Equatable, Identifiable {
     public let id: Int
-    let posterPath: String
-    let title: String
-    let releaseYear: String
-    let voteCount: String
-    let voteAverage: String
+    public let posterPath: String
+    public let title: String
+    public let releaseYear: String
+    public let voteCount: String
+    public let voteAverage: String
 
     public init(
       id: Int,

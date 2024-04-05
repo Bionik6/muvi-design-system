@@ -32,8 +32,8 @@ public struct FilmGenresListView: View {
 extension FilmGenresListView {
   public struct UIModel: Identifiable {
     public let id: Int
-    let name: String
-    let imageName: String
+    public let name: String
+    public let imageName: String
 
     public init(
       id: Int,
