@@ -3,7 +3,7 @@ import SwiftUI
 public struct LoadingViewModifier: ViewModifier {
   private let title: String
   private let condition: Bool
-  
+
   init(title: String? = nil, condition: Bool) {
     guard let title else {
       self.title = "Please wait"
@@ -13,11 +13,11 @@ public struct LoadingViewModifier: ViewModifier {
     self.title = title
     self.condition = condition
   }
-  
+
   public func body(content: Content) -> some View {
     content.overlay(loadingOverlay)
   }
-  
+
   @ViewBuilder private var loadingOverlay: some View {
     if condition {
       ZStack {
@@ -32,7 +32,6 @@ public struct LoadingViewModifier: ViewModifier {
     }
   }
 }
-
 
 extension View {
   public func loader(title: String? = nil, condition: Bool) -> some View {

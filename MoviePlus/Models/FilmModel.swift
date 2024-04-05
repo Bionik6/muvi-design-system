@@ -7,6 +7,7 @@ let logger = Logger(subsystem: "dev.iciss.movieplus", category: "Movies")
 
 @MainActor
 protocol FilmModel: AnyObject {
+  var error: LocalizedError? { get set }
   var selectedFilm: Film? { get set }
 }
 
@@ -17,5 +18,9 @@ extension FilmModel {
       return
     }
     selectedFilm = film
+  }
+
+  func resetError() {
+    error = nil
   }
 }

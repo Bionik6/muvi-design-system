@@ -6,11 +6,11 @@ import Observation
 @Observable
 final class MoviesModel: FilmModel {
   var selectedFilm: Film?
+  var error: LocalizedError?
+
   private let repository: MoviesRepository
 
   private(set) var isLoading = false
-
-  private(set) var error: LocalizedError?
   private(set) var topMovies: [Film] = []
   private(set) var comingSoonMovies: [Film] = []
   private(set) var trendingMovies: [Film] = []

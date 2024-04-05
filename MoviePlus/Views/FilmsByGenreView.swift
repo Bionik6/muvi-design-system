@@ -23,8 +23,10 @@ struct FilmsByGenreView: View {
         }
       }
     }
-    .task { await model.fetchFilms() }
     .navigationTitle(model.genre.name)
+    .task { await model.fetchFilms() }
+    .refreshable(action: { await model.fetchFilms() })
+    .errorAlert(error: model.error, action: model.resetError)
     .navigationDestination(item: $model.selectedFilm) { film in
       FilmDetailsView(film: film)
     }

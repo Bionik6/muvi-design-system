@@ -6,10 +6,11 @@ import Observation
 @Observable
 final class SeriesModel: FilmModel {
   var selectedFilm: Film?
-  private let repository: SeriesRepository
+  var error: LocalizedError?
 
+  private let repository: SeriesRepository
   private(set) var isLoading = false
-  private(set) var error: LocalizedError?
+
   private(set) var airingTodaySeries: [Film] = []
   private(set) var trendingSeries: [Film] = []
   private(set) var topRatedSeries: [Film] = []

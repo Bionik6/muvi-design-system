@@ -48,9 +48,11 @@ struct MoviesView: View {
           }
         }
       }
-      .loader(title: "Please wait while fetching movies", condition: model.isLoading)
-      .task { await model.fetchMovies() }
       .navigationTitle("Movies")
+      .task { await model.fetchMovies() }
+      .errorAlert(error: model.error, action: model.resetError)
+      .refreshable(action: { await model.fetchMovies() })
+      .loader(title: "Please wait while fetching movies", condition: model.isLoading)
       .navigationDestination(item: $model.selectedFilm) { film in
         FilmDetailsView(film: film)
       }

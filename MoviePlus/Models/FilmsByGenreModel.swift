@@ -6,11 +6,12 @@ import Observation
 @Observable
 final class FilmsByGenreModel: FilmModel {
   var selectedFilm: Film?
+  var error: LocalizedError?
+
   let genre: FilmGenre
   private let repository: GenresRepository
 
   private(set) var isLoading = false
-  private(set) var error: LocalizedError?
   private(set) var films: [Film] = []
   private(set) var page: Int = 0
 

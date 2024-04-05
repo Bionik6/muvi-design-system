@@ -42,8 +42,10 @@ struct SeriesView: View {
           }
         }
       }
-      .task { await model.fetchSeries() }
       .navigationTitle("TV Shows")
+      .task { await model.fetchSeries() }
+      .refreshable(action: { await model.fetchSeries() })
+      .errorAlert(error: model.error, action: model.resetError)
       .loader(title: "Please wait while fetching the TV Shows", condition: model.isLoading)
       .navigationDestination(item: $model.selectedFilm) { film in
         FilmDetailsView(film: film)
