@@ -39,6 +39,7 @@
 		40A7642D2B9DDFEC00C62350 /* FilmGenresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A7642C2B9DDFEC00C62350 /* FilmGenresView.swift */; };
 		40A7642F2B9DE9B300C62350 /* FilmsByGenreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A7642E2B9DE9B300C62350 /* FilmsByGenreView.swift */; };
 		40A764312B9DF17700C62350 /* FilmGenresModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A764302B9DF17700C62350 /* FilmGenresModel.swift */; };
+		40E3B9A82BBFF848004C0C69 /* FilmModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E3B9A72BBFF848004C0C69 /* FilmModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		40A7642C2B9DDFEC00C62350 /* FilmGenresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmGenresView.swift; sourceTree = "<group>"; };
 		40A7642E2B9DE9B300C62350 /* FilmsByGenreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsByGenreView.swift; sourceTree = "<group>"; };
 		40A764302B9DF17700C62350 /* FilmGenresModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmGenresModel.swift; sourceTree = "<group>"; };
+		40E3B9A72BBFF848004C0C69 /* FilmModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 				407E7DC42BBF4E3800C8EBB1 /* FilmsByGenreModelTests.swift */,
 				407E7DC62BBF535A00C8EBB1 /* FilmDetailsModelTests.swift */,
 				407E7DC82BBF5C6200C8EBB1 /* FilmGenresModelTests.swift */,
+				40E3B9A72BBFF848004C0C69 /* FilmModelTests.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				407E7DD52BBF8D2000C8EBB1 /* MapperTests.swift in Sources */,
+				40E3B9A82BBFF848004C0C69 /* FilmModelTests.swift in Sources */,
 				407E7DC72BBF535A00C8EBB1 /* FilmDetailsModelTests.swift in Sources */,
 				407E7D802BBF43F200C8EBB1 /* MoviesModelTests.swift in Sources */,
 				407E7DC52BBF4E3800C8EBB1 /* FilmsByGenreModelTests.swift in Sources */,
