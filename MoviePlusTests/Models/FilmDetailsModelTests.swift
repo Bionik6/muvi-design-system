@@ -54,7 +54,6 @@ final class FilmDetailsModelTests: XCTestCase {
 
   @MainActor
   func test_sut_plays_filmClip_selection() async {
-    let film = Film.sample
     let key = "asTOTXj5AtI"
     let sut = makeSUT(repository: .happyPathMock)
 
