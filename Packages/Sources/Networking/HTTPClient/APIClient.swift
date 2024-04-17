@@ -15,7 +15,7 @@ public class URLSessionAPIClient: NSObject, APIClient {
   public func execute<D: Decodable>(request: Request) async throws -> D {
     do {
       let sessionRequest = prepareURLRequest(for: request)
-      let (data, response) = try await session.data(for: sessionRequest, delegate: self)
+      let (data, response) = try await session.data(for: sessionRequest)
       if let response = response as? HTTPURLResponse {
         if response.statusCode == 401 { throw NetworkError.unauthorized }
         if 400...599 ~= response.statusCode { throw NetworkError.serverError }

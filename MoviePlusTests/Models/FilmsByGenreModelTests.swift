@@ -47,6 +47,26 @@ final class FilmsByGenreModelTests: XCTestCase {
 
     XCTAssertEqual(sut.films.count, 2)
   }
+  
+  @MainActor
+  func test_sut_pages_increment_on_successful_response() async {
+    let sut = makeSUT(repository: .happyPathMock)
+    
+    XCTAssertFalse(sut.isLoading)
+    XCTAssertNil(sut.error)
+    
+    await sut.fetchFilms()
+    XCTAssertEqual(sut.page, 1)
+    XCTAssertEqual(sut.films.count, 2)
+    
+    await sut.fetchFilms()
+    XCTAssertEqual(sut.page, 2)
+    XCTAssertEqual(sut.films.count, 4)
+    
+    await sut.fetchFilms()
+    XCTAssertEqual(sut.page, 3)
+    XCTAssertEqual(sut.films.count, 6)
+  }
 
   @MainActor
   private func makeSUT(repository: GenresRepository) -> FilmsByGenreModel {
